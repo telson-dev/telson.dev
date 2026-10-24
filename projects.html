@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作品 | telson.dev</title>
+<meta name="description" content="作品集：Pteropilot 开源 MCP server、程序化渲染的 30 秒产品宣传片、手写静态站 telson.dev。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="telson.dev">
+<meta property="og:title" content="作品 | telson.dev">
+<meta property="og:description" content="Pteropilot 开源 MCP server、程序化渲染宣传片、手写静态站。">
+<meta property="og:image" content="assets/img/cover.jpg">
+<meta property="og:url" content="https://telson.dev/projects.html">
+<meta name="theme-color" content="#06090f">
+<!-- 站点图标：当前临时使用 Pteropilot 图标（assets/img/icon.png）。换成自己的图标时，替换该文件即可全站生效（含 favicon / apple-touch-icon / OG 等） -->
+<link rel="icon" href="assets/img/icon.png" type="image/png">
+<link rel="canonical" href="https://telson.dev/projects.html">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="bg-field"></div>
+<div class="bg-grid"></div>
+<canvas class="grid-canvas" aria-hidden="true"></canvas>
+<div class="scroll-progress" aria-hidden="true"><i></i></div>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/icon.png" alt="telson">
+      telson<span>.dev</span>
+    </a>
+    <button class="nav__toggle" type="button" aria-label="菜单" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav__links" id="nav-links" aria-label="主导航">
+      <a class="nav__link" href="index.html">首页</a>
+      <a class="nav__link" href="projects.html" aria-current="page">作品</a>
+      <a class="nav__link" href="pteropilot.html">Pteropilot</a>
+      <a class="nav__link nav__link--cta" href="services.html">接单 · 找我干活</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">作品 · Work</p>
+      <h1 style="margin:18px 0 18px">做过的东西</h1>
+      <p class="lead" style="max-width:620px">
+        三个项目，三种活法：一个能装进 AI 对话的开源工具，一条代码渲染出来的宣传片，一台不靠框架的网站。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ project 1 ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <article class="feature reveal">
+        <div class="feature__media">
+          <img src="assets/img/cover.jpg" alt="Pteropilot 宣传片画面" loading="lazy" width="1600" height="900">
+        </div>
+        <div class="feature__body">
+          <span class="page-hero__badge"><span class="dot-live"></span>01 · 开源项目</span>
+          <h3>Pteropilot</h3>
+          <p>
+            开源的 MCP server：让 Claude、Cursor 用自然语言管理 Pterodactyl / Pelican 游戏服务器。
+            面板 API 全功能覆盖（电源、控制台、文件、备份），权限最小化设计，API Key 不出本机。
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">MCP</span>
+            <span class="tag">Pterodactyl</span>
+            <span class="tag">Pelican</span>
+            <span class="tag">MIT</span>
+          </div>
+          <div class="link-row">
+            <a class="textlink" href="pteropilot.html">项目详情 →</a>
+            <a class="textlink textlink--muted" href="https://github.com/telson-dev/pteropilot" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="textlink textlink--muted" href="https://pypi.org/project/pteropilot/" target="_blank" rel="noopener">PyPI ↗</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ project 2 ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">02 · 视频管线</p>
+        <h2>30 秒产品宣传片</h2>
+        <p class="lead">
+          整支片子由代码生成：1080P60、1800 帧、分镜与动效全部写成确定性函数，
+          配乐用纯代码合成（126 BPM，drop 精确落在第 10 秒），全程没有剪辑软件、没有素材库、没有版权风险。
+        </p>
+      </div>
+
+      <div class="gallery reveal" style="margin-bottom:18px">
+        <figure>
+          <img src="assets/img/shot-panel.jpg" alt="宣传片画面：服务器面板告警" loading="lazy" width="1200" height="675">
+          <figcaption>00:01 · 冷开场</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/shot-chain.jpg" alt="宣传片画面：AI 调用工具链" loading="lazy" width="1200" height="675">
+          <figcaption>00:13 · 工具链</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/shot-brand.jpg" alt="宣传片画面：品牌收尾" loading="lazy" width="1200" height="675">
+          <figcaption>00:26 · 收尾</figcaption>
+        </figure>
+      </div>
+
+      <div class="grid grid--2" style="gap:18px">
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:16px">技术做法</h3>
+          <ul class="ticks" style="font-size:14.5px">
+            <li><strong>确定性动画</strong>：单个 HTML 画布，<code>seek(t)</code> 由秒数推导全部画面</li>
+            <li><strong>帧级渲染</strong>：无头 Chrome 逐帧截图 → ffmpeg 编码，可重跑、可复现</li>
+            <li><strong>代码合成配乐</strong>：纯 Python 标准库生成，节拍与画面共用同一组常量</li>
+            <li><strong>程序化质检</strong>：像素探针检查品牌色、文本边界 lint、60 点亮度扫描</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:16px">参数</h3>
+          <ul class="ticks" style="font-size:14.5px">
+            <li>1920×1080 · 60fps · H.264 / AAC</li>
+            <li>时长 30.000 秒，126 BPM，drop @10s</li>
+            <li>品牌色：青 <code>#2fd9ff</code> / 紫 <code>#8a5cff</code></li>
+            <li>纯音乐 + 屏幕字幕，无配音</li>
+          </ul>
+          <div class="link-row" style="margin-top:18px">
+            <a class="textlink" href="https://www.bilibili.com/video/BV1hznV61ESf" target="_blank" rel="noopener">B 站观看 ↗</a>
+            <a class="textlink textlink--muted" href="pteropilot.html#demo">站内播放 →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ project 3 ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="grid grid--2" style="gap:clamp(24px,4vw,52px);align-items:center">
+        <div class="reveal">
+          <span class="page-hero__badge">03 · 本站</span>
+          <h2 style="margin:16px 0 16px">telson.dev</h2>
+          <p class="lead" style="margin-bottom:16px">
+            你正在看的这台网站。手写 HTML / CSS / JS，没有框架、没有构建步骤、没有外部字体和依赖，
+            一个 <code>rsync</code> 就能部署。
+          </p>
+          <ul class="ticks" style="font-size:14.5px">
+            <li>四个页面、一个 CSS 文件、一个 30 行的 JS</li>
+            <li>响应式布局，移动端可读</li>
+            <li>支持中英双语切换（Pteropilot 页）</li>
+            <li>首屏无外部请求，加载快</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:14px">技术栈</h3>
+          <div class="tags" style="margin:0">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS Grid</span>
+            <span class="tag">Vanilla JS</span>
+            <span class="tag">IntersectionObserver</span>
+            <span class="tag">零依赖</span>
+          </div>
+          <p style="margin-top:18px;font-size:13.5px">
+            自己写站点的好处：想改哪儿改哪儿，不用跟框架斗智斗勇。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ cta ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="contact-band reveal">
+        <p class="eyebrow">下一步</p>
+        <h2 style="margin:14px 0 12px">你也可以有一个这样的东西</h2>
+        <p class="lead" style="max-width:620px">
+          工具、网站、脚本、短片——说清楚你要什么，我来拆成能交付的活。
+        </p>
+        <div class="btn-row" style="margin-top:26px">
+          <a class="btn btn--primary" href="services.html">看接单服务 →</a>
+          <button class="btn btn--ghost" type="button" data-copy="2361034217@qq.com" data-copy-done="邮箱已复制">复制邮箱</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <span>© <span data-year>2026</span> telson.dev · 手写静态站，无框架无依赖</span>
+    <span>
+      <a href="projects.html">作品</a> ·
+      <a href="pteropilot.html">Pteropilot</a> ·
+      <a href="services.html">接单</a> ·
+      <a href="https://github.com/telson-dev" target="_blank" rel="noopener">GitHub</a>
+    </span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

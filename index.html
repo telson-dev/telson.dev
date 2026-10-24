@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>telson.dev — 独立开发者 · AI 工具 / 自动化 / 网页</title>
+<meta name="description" content="telson 的个人站点：开源项目 Pteropilot（MCP 服务器，用自然语言管理游戏服务器），以及自动化脚本、网页与 AI 工具定制服务。">
+<meta name="author" content="telson">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="telson.dev">
+<meta property="og:title" content="telson.dev — 独立开发者 · AI 工具 / 自动化 / 网页">
+<meta property="og:description" content="开源项目 Pteropilot，以及自动化脚本、网页与 AI 工具定制。">
+<meta property="og:image" content="assets/img/cover.jpg">
+<meta property="og:url" content="https://telson.dev/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#06090f">
+<!-- 站点图标：当前临时使用 Pteropilot 图标（assets/img/icon.png）。换成自己的图标时，替换该文件即可全站生效（含 favicon / apple-touch-icon / OG 等） -->
+<link rel="icon" href="assets/img/icon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/icon.png">
+<link rel="canonical" href="https://telson.dev/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"telson","url":"https://telson.dev/","jobTitle":"独立开发者","sameAs":["https://github.com/telson-dev"]}</script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="bg-field"></div>
+<div class="bg-grid"></div>
+<canvas class="grid-canvas" aria-hidden="true"></canvas>
+<div class="scroll-progress" aria-hidden="true"><i></i></div>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/icon.png" alt="telson">
+      telson<span>.dev</span>
+    </a>
+    <button class="nav__toggle" type="button" aria-label="菜单" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav__links" id="nav-links" aria-label="主导航">
+      <a class="nav__link" href="index.html" aria-current="page">首页</a>
+      <a class="nav__link" href="projects.html">作品</a>
+      <a class="nav__link" href="pteropilot.html">Pteropilot</a>
+      <a class="nav__link nav__link--cta" href="services.html">接单 · 找我干活</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ hero ============ -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="eyebrow">独立开发者 · Independent Developer</p>
+        <h1>把想法做成<br><em>能用的软件</em>。</h1>
+        <p class="lead hero__lead">
+          我写 AI 工具、自动化脚本和小而美的网页。代表作
+          <a class="textlink" href="pteropilot.html">Pteropilot</a> ——
+          一个开源的 MCP 服务器，让 Claude、Cursor 用一句中文就能管理
+          Pterodactyl / Pelican 游戏服务器面板。
+        </p>
+
+        <div class="btn-row">
+          <a class="btn btn--primary" href="services.html">
+            接单 · 说说你的需求
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="projects.html">看看我做过什么</a>
+        </div>
+
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">AI / MCP</span>
+          <span class="chip">自动化</span>
+          <span class="chip">静态站</span>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <div class="frame__glow"></div>
+        <div class="frame">
+          <div class="frame__bar">
+            <span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span>
+            <span class="frame__url">github.com/telson-dev/pteropilot</span>
+          </div>
+          <div class="frame__body">
+            <img src="assets/img/cover.jpg" alt="Pteropilot 宣传片画面：用自然语言管好你的游戏服务器" width="1600" height="900" fetchpriority="high">
+          </div>
+        </div>
+        <div class="float-card">
+          <span class="prompt">$</span>
+          <span class="cmd-slot" data-type="uvx pteropilot"></span>
+          <button class="copy" type="button" data-copy="uvx pteropilot">复制</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ featured ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">精选作品</p>
+        <h2>Pteropilot</h2>
+        <p class="lead">开源的 MCP 服务器。不用交出 SSH，也不用登录面板——在对话里说一句话，服务器就动起来了。</p>
+      </div>
+
+      <article class="feature reveal">
+        <div class="feature__media">
+          <img src="assets/img/cover.jpg" alt="Pteropilot 30 秒宣传片画面" loading="lazy" width="1600" height="900">
+        </div>
+        <div class="feature__body">
+          <span class="page-hero__badge"><span class="dot-live"></span>v0.2.0 · MIT · 已发布</span>
+          <h3>用自然语言，管好你的游戏服务器</h3>
+          <p>
+            支持 Pterodactyl v1 与 Pelican。服务器列表、电源控制、控制台指令、文件管理、一键备份，
+            全部走面板 API，权限最小化：只读模式和危险操作二次确认默认开启，API Key 永远留在你本机。
+          </p>
+          <div class="tags">
+            <span class="tag">MCP</span>
+            <span class="tag">Python</span>
+            <span class="tag">Pterodactyl</span>
+            <span class="tag">Pelican</span>
+            <span class="tag">Claude / Cursor</span>
+          </div>
+          <div class="link-row">
+            <a class="textlink" href="pteropilot.html">项目详情 →</a>
+            <a class="textlink textlink--muted" href="https://github.com/telson-dev/pteropilot" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="textlink textlink--muted" href="https://pypi.org/project/pteropilot/" target="_blank" rel="noopener">PyPI ↗</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ services ============ -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">接单</p>
+        <h2>需要人帮你把东西做出来？</h2>
+        <p class="lead">代码交付、异步沟通、说清楚就干活。小单当天开工，大单先出方案再报价。</p>
+      </div>
+
+      <div class="grid grid--3">
+        <article class="card reveal">
+          <div class="card__icon">&gt;_</div>
+          <h3>自动化脚本与爬虫</h3>
+          <p>把重复劳动交给代码：数据采集、批量处理、定时任务、报表生成、Excel 自动化。</p>
+          <span class="card__price">¥199 起</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__icon">&lt;/&gt;</div>
+          <h3>网页与工具站</h3>
+          <p>产品官网、落地页、内部工具。响应式、加载快、直接能上线，源码完整交付。</p>
+          <span class="card__price">¥499 起</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__icon">◈</div>
+          <h3>AI / MCP 工具定制</h3>
+          <p>把你的业务接进 Claude、Cursor：MCP Server、Agent 工具链、模型调用与自动化流程。</p>
+          <span class="card__price">¥499 起</span>
+        </article>
+      </div>
+
+      <div class="btn-row" style="margin-top:28px">
+        <a class="btn btn--ghost" href="services.html">查看完整服务与报价 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ about ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="grid grid--2" style="align-items:start">
+        <div class="reveal">
+          <p class="eyebrow">关于</p>
+          <h2 style="margin:14px 0 18px">写代码，也写文档。</h2>
+          <p class="lead" style="margin-bottom:16px">
+            我是 telson，独立开发者。喜欢把 AI 和代码拼在一起，做出真正能用的东西：
+            有能跑起来的开源项目，有能上线的网站，也有把想法变成 30 秒画面的渲染管线。
+          </p>
+          <p class="lead">
+            我更在意「交付出来能不能用」，而不是「代码写了多少行」。
+            这台网站也是手写的静态站——零框架、零外部依赖、单文件 CSS。
+          </p>
+        </div>
+
+        <div class="card reveal">
+          <h3 style="margin-bottom:18px">快速了解</h3>
+          <ul class="ticks" style="margin-bottom:22px">
+            <li><strong>开源项目</strong>：Pteropilot（GitHub + PyPI，MIT）</li>
+            <li><strong>擅长</strong>：Python 自动化、TypeScript 前端、MCP / Agent 工具</li>
+            <li><strong>工作方式</strong>：文字沟通、异步交付、源码全给</li>
+            <li><strong>联系</strong>：QQ 邮箱，24 小时内回复</li>
+          </ul>
+          <div class="link-row">
+            <a class="textlink" href="services.html">看接单说明 →</a>
+            <a class="textlink textlink--muted" href="https://github.com/telson-dev" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ contact ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="contact-band reveal">
+        <p class="eyebrow">联系</p>
+        <h2 style="margin:14px 0 12px">有需求？复制邮箱，写封邮件给我。</h2>
+        <p class="lead" style="max-width:620px">
+          把「要做什么、给谁用、什么时候要」写清楚发过来，我会先回一个方案和报价。
+          学生项目和开源项目可以聊价格。
+        </p>
+        <div class="contact-list">
+          <span class="contact-item"><span class="label">邮箱</span><code class="contact-value">2361034217@qq.com</code>
+            <button class="copy" type="button" data-copy="2361034217@qq.com" data-copy-done="已复制">复制</button></span>
+          <span class="contact-item"><span class="label">QQ</span><code class="contact-value">2361034217</code>
+            <button class="copy" type="button" data-copy="2361034217" data-copy-done="已复制">复制</button></span>
+          <span class="contact-item"><span class="label">GitHub</span><a href="https://github.com/telson-dev" target="_blank" rel="noopener">telson-dev</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <span>© <span data-year>2026</span> telson.dev · 手写静态站，无框架无依赖</span>
+    <span>
+      <a href="projects.html">作品</a> ·
+      <a href="pteropilot.html">Pteropilot</a> ·
+      <a href="services.html">接单</a> ·
+      <a href="https://github.com/telson-dev" target="_blank" rel="noopener">GitHub</a>
+    </span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

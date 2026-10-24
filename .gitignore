@@ -1,0 +1,5 @@
+# 本地预览 / QA
+_telson-dev-qa/
+*.log
+.DS_Store
+Thumbs.db

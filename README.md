@@ -171,3 +171,28 @@ nginx -t && systemctl reload nginx
 - 渐变标题：`animation-name: gradient-pan`，背景位置实测 `59.09% → 92.72%`
 - 滚动进度条：顶部 `0%` → 滚动一半 `67.74%`
 - 终端打字：完成后文本为 `uvx pteropilot`，光标已移除
+## 仓库与在线预览
+
+- 仓库：https://github.com/telson-dev/telson.dev
+- GitHub Pages（自动构建，推送即更新）：https://telson-dev.github.io/telson.dev/
+
+### 日常更新流程
+
+```powershell
+cd D:\Projects\telson-dev
+# 改完文件后
+git add -A
+git commit -m "更新：说明改了什么"
+git push
+```
+
+推送后 GitHub Pages 会自动重新构建（约 1 分钟），预览地址刷新即可看到。
+
+### 绑定自定义域名 telson.dev（可选，以后做）
+
+1. 在仓库根目录新建文件 `CNAME`，内容一行：`telson.dev`
+2. 域名 DNS 添加记录：`CNAME  telson.dev → telson-dev.github.io`
+3. 仓库 Settings → Pages → Custom domain 填 `telson.dev` → 开启 Enforce HTTPS
+4. **注意**：GitHub Pages 在中国大陆访问时快时慢；如果要稳定，建议改用 Cloudflare Pages（连同一个仓库即可）
+
+> 目前不建议立刻绑定：`telson.dev` 现在指向阿里云服务器（未备案被 403），DNS 不改会互相打架。等确定主机方案再改。

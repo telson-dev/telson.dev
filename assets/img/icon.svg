@@ -1,23 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="telson.dev">
   <defs>
-    <linearGradient id="tbg" x1="0" y1="0" x2="0.55" y2="1">
-      <stop offset="0" stop-color="#111e37"/>
-      <stop offset="1" stop-color="#050810"/>
-    </linearGradient>
+
     <linearGradient id="tail" gradientUnits="userSpaceOnUse"
       x1="35.44" y1="51.5" x2="19.88" y2="37.84">
       <stop offset="0" stop-color="#43d9ff"/>
       <stop offset="0.42" stop-color="#9db8ff"/>
       <stop offset="1" stop-color="#8a5cff"/>
     </linearGradient>
-    <linearGradient id="tring" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#43d9ff" stop-opacity="0.5"/>
-      <stop offset="1" stop-color="#8a5cff" stop-opacity="0.26"/>
-    </linearGradient>
-    <radialGradient id="tsheen" cx="0.32" cy="0.1" r="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.13"/>
-      <stop offset="0.55" stop-color="#ffffff" stop-opacity="0"/>
-    </radialGradient>
+
     <radialGradient id="tvenom" cx="0.5" cy="0.5" r="0.5">
       <stop offset="0" stop-color="#8deeff" stop-opacity="0.8"/>
       <stop offset="0.45" stop-color="#8deeff" stop-opacity="0.22"/>
@@ -30,10 +20,8 @@
       <feGaussianBlur stdDeviation="0.9"/>
     </filter>
   </defs>
-  <rect x="1.5" y="1.5" width="61" height="61" rx="16.5" fill="url(#tbg)"/>
-  <rect x="2.1" y="2.1" width="59.8" height="59.8" rx="15.9" fill="none" stroke="url(#tring)" stroke-width="1.1"/>
-  <rect x="1.5" y="1.5" width="61" height="61" rx="16.5" fill="url(#tsheen)"/>
 
+  <g transform="translate(32 32) scale(1.16) translate(-32 -32)">
   <g transform="translate(-3.1 -5.1)">
     <!-- 蝎尾 · 外发光 -->
 
@@ -67,6 +55,7 @@
     <path d="M38.47 20.08 L38.22 20.03 L37.97 19.99 L37.72 19.95 L37.46 19.91 L37.21 19.88 L36.96 19.85 L36.7 19.83 L36.45 19.81 L36.2 19.8 L35.95 19.79 L35.7 19.79 L35.45 19.79 L35.2 19.79 L34.95 19.8 L34.7 19.82 L34.45 19.83 L34.2 19.85 L33.96 19.88 L33.71 19.91 L33.47 19.95 L33.23 19.99 L32.99 20.03 L32.75 20.08 L32.51 20.13" fill="none" stroke="#ffffff" stroke-width="1.92" stroke-linecap="round"/>
     <path d="M27.4 22.48 L27.21 22.62 L27.04 22.76 L26.86 22.9 L26.69 23.05 L26.52 23.2 L26.35 23.36 L26.19 23.51 L26.03 23.67 L25.87 23.83 L25.72 23.99 L25.57 24.16 L25.42 24.32 L25.28 24.49 L25.14 24.66 L25 24.84 L24.87 25.01 L24.74 25.19 L24.61 25.37 L24.49 25.55 L24.37 25.73 L24.25 25.91 L24.14 26.1 L24.03 26.28 L23.93 26.47 L23.83 26.66 L23.73 26.85 L23.64 27.04 L23.55 27.24 L23.46 27.43 L23.38 27.62 L23.3 27.82 L23.22 28.02 L23.15 28.21 L23.08 28.41 L23.02 28.61 L22.96 28.81" fill="none" stroke="#ffffff" stroke-width="1.65" stroke-linecap="round"/>
     <path d="M22.15 29.07 Q21.08 34.69 20.22 37.19" fill="none" stroke="#ffffff" stroke-width="0.9" stroke-linecap="round" opacity="0.7"/>
+  </g>
   </g>
   </g>
 </svg>

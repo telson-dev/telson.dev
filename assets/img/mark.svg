@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="telson">
+  <defs>
+    <linearGradient id="tmark" x1="0.12" y1="0.12" x2="0.88" y2="0.9">
+      <stop offset="0" stop-color="#43d9ff"/>
+      <stop offset="0.5" stop-color="#9db8ff"/>
+      <stop offset="1" stop-color="#8a5cff"/>
+    </linearGradient>
+    <linearGradient id="tdot" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d6f6ff"/>
+      <stop offset="0.45" stop-color="#54e3ff"/>
+      <stop offset="1" stop-color="#2fd9ff"/>
+    </linearGradient>
+    <radialGradient id="tglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4fe0ff" stop-opacity="0.5"/>
+      <stop offset="0.55" stop-color="#4fe0ff" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#4fe0ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <path fill="url(#tmark)" d="M16.6 16.4
+    C21 13.2 43 13.2 47.4 16.4
+    C45.3 19 42.8 20.5 39.6 21
+    L24.4 21
+    C21.2 20.5 18.7 19 16.6 16.4
+    Z"/>
+  <path d="M19.8 16.0 C23.8 13.4 40.2 13.4 44.2 16.0"
+        fill="none" stroke="#ffffff" stroke-opacity="0.24" stroke-width="1.2" stroke-linecap="round"/>
+  <rect x="28.9" y="14.2" width="6.2" height="22" rx="3.1" fill="url(#tmark)"/>
+
+  <circle cx="43" cy="46" r="9" fill="url(#tglow)"/>
+  <circle cx="43" cy="46" r="4.3" fill="url(#tdot)"/>
+  <circle cx="41.8" cy="44.7" r="1.1" fill="#ffffff" fill-opacity="0.85"/>
+</svg>

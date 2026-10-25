@@ -122,15 +122,16 @@ nginx -t && systemctl reload nginx
 - 滚动动画 9/9 触发；复制按钮正常；双语切换 + localStorage 持久化正常
 - 首页零外部请求；Pteropilot 页仅 B 站 iframe
 
-## 更换图标
+## 图标（原创）
 
-当前**临时**使用 Pteropilot 的产品图标（`assets/img/icon.png`，256×256 PNG）。换成自己的图标时：
+图标为手绘 SVG，概念：品牌名 `telson`（生物学中的「尾节/尾扇」）+ `telson.dev` 的「点」。
 
-1. 准备 256×256 或 512×512 的 PNG，替换 `assets/img/icon.png`
-2. 同时用作 favicon、apple-touch-icon、OG 图与页头 logo，改一个文件全站生效
-3. 如需换 OG 分享图，另替换 `assets/img/cover.jpg`（建议 1600×900）
+- `assets/img/icon.svg` — 完整版：深色圆角瓦片 + 翼形 T + 发光圆点（favicon 主用）
+- `assets/img/mark.svg` — 裸标版：只有翼形 T + 圆点（页头 logo 用）
+- `assets/img/icon.png`（512）与 `assets/img/apple-touch-icon.png`（180）— 由 `icon.svg` 栅格化导出
+- `assets/img/pteropilot-icon.png` — Pteropilot 产品图标（项目页展示用）
 
-> 联系方式已改为「展示 + 一键复制」：邮箱与 QQ 都是纯文本 + 复制按钮，不再使用 `mailto:`（没有邮件客户端时 mailto 点了没反应）。
+**改图标**：直接编辑 `icon.svg` 与 `mark.svg`，然后用无头 Chrome 重新导出 PNG（脚本在 QA 目录：`raster_icon.js`，需在 `D:\Projects\pteropilot\promo\src` 有 puppeteer-core），替换两个 PNG 即可。
 ## 修复记录（2026-10-24 第二轮）
 
 **问题**：部分复制按钮点击无反应；「发送邮件」按钮点击无效。

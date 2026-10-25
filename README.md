@@ -126,14 +126,14 @@ nginx -t && systemctl reload nginx
 
 图标为程序生成的手绘 SVG，概念：**蝎尾**——`telson` 在生物学里既指蝎子的**尾节**（藏毒针的那一节），也指虾蟹的尾扇。
 
-造型：一条由粗到细的五段尾巴，从底部抬起、绕过右侧与顶部，末端毒针向下钩起；青→蓝→紫渐变，带霓虹外发光与管状高光；**透明背景，无底板、无边框**，主体约占画布 72%，光学居中。
+造型：一条由粗到细的五段尾巴，从底部抬起、绕过右侧与顶部，末端毒针向下钩起；青→蓝→紫渐变，带霓虹外发光、管状高光，以及一圈 **2.8 宽的深靛紫描边**（深色底像光晕、浅色底像轮廓，小尺寸更抓眼）。**透明背景，无底板、无边框**，主体约占画布 83%，光学居中。
 
 - `assets/img/icon.svg` — 图标主体：**透明底、无底板无边框**的蝎尾（favicon 主用）
 - `assets/img/mark.svg` — 与 icon.svg 同源（页头 logo 用，26px）
 - `assets/img/icon.png`（512）与 `assets/img/apple-touch-icon.png`（180）— 由 `icon.svg` 栅格化导出
 - `assets/img/pteropilot-icon.png` — Pteropilot 产品图标（项目页展示用）
 
-几何由 `_telson-dev-qa/gen_scorpion_icon.js` 用参数方程生成（螺旋 + 分段 + 毒针），视觉中心已校准到画布中心（四边留白 7.5–9 / 64）。
+几何由 `_telson-dev-qa/gen_scorpion_icon.js` 用参数方程生成（螺旋 + 分段 + 毒针），视觉中心已校准到画布中心（四边留白 5.4–7.2 / 64）。
 
 **改图标**：编辑 `gen_scorpion_icon.js` 的参数（回转角度、半径、段数、锥度）或直接改两个 SVG，然后用无头 Chrome 重新导出 PNG（`raster_icon.js`，需 `D:\Projects\pteropilot\promo\src` 下的 puppeteer-core）。
 

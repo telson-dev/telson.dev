@@ -202,3 +202,17 @@ git push
 4. **注意**：GitHub Pages 在中国大陆访问时快时慢；如果要稳定，建议改用 Cloudflare Pages（连同一个仓库即可）
 
 > 目前不建议立刻绑定：`telson.dev` 现在指向阿里云服务器（未备案被 403），DNS 不改会互相打架。等确定主机方案再改。
+## 全站中英切换（2026-10-25）
+
+导航栏右侧有「中 / EN」开关，**所有页面**通用，选择记忆在 `localStorage`，跨页生效，标题也会切换。
+
+实现（`assets/js/main.js`）：
+
+1. `data-zh` / `data-en` 属性：适合含内联标签（链接、加粗、代码）的段落，切换时替换 `innerHTML`。
+2. **词表** `DICT`：适合纯文本节点。匹配时**忽略全部空白**（`norm()` 去掉所有 `\s`），所以 HTML 里的换行与缩进不影响匹配。
+3. 复制按钮的提示文案随语言切换（`Copied` / `Email copied`）。
+4. 页面标题由 `<body data-title-zh data-title-en>` 提供。
+
+**改文案时注意**：新增纯中文句子 → 在 `DICT` 里加一条（键为中文原文，值为英文）；含链接的段落 → 用 `data-zh` / `data-en` 属性。
+
+**静态资源版本号**：`index.html` 等页面里 `style.css?v=20261025c`、`main.js?v=20261025c`，改完 CSS/JS 记得 bump，否则浏览器可能吃旧缓存。

@@ -18,9 +18,9 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="canonical" href="https://telson.dev/pteropilot.html">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Pteropilot","applicationCategory":"DeveloperApplication","operatingSystem":"Python 3.12+","description":"Open-source MCP server that lets AI assistants manage game servers on Pterodactyl / Pelican panels.","url":"https://telson.dev/pteropilot.html","codeRepository":"https://github.com/telson-dev/pteropilot","license":"https://opensource.org/licenses/MIT","softwareVersion":"0.2.1","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"}}</script>
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=20261025c">
 </head>
-<body>
+<body data-title-zh="Pteropilot — 用自然语言管理 Pterodactyl / Pelican 游戏服务器 | telson.dev" data-title-en="Pteropilot — Manage Pterodactyl / Pelican game servers in plain language | telson.dev">
 
 <div class="bg-field"></div>
 <div class="bg-grid"></div>
@@ -40,12 +40,16 @@
       <a class="nav__link" href="index.html" data-zh="首页" data-en="Home">首页</a>
       <a class="nav__link" href="projects.html" data-zh="作品" data-en="Work">作品</a>
       <a class="nav__link" href="pteropilot.html" aria-current="page">Pteropilot</a>
+      <div class="lang-toggle" role="group" aria-label="语言 / Language">
+        <button type="button" data-lang="zh" aria-pressed="true">中</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
       <a class="nav__link nav__link--cta" href="services.html" data-zh="接单 · 找我干活" data-en="Hire me">接单 · 找我干活</a>
     </nav>
   </div>
 </header>
 
-<main data-i18n-root>
+<main>
 
   <!-- ============ page hero ============ -->
   <section class="page-hero">
@@ -55,10 +59,7 @@
           <span class="dot-live"></span>
           <span data-zh="v0.2.1 · MIT · 已发布" data-en="v0.2.1 · MIT · released">v0.2.1 · MIT · 已发布</span>
         </span>
-        <div class="lang-toggle" role="group" aria-label="语言 / Language">
-          <button type="button" data-lang="zh" aria-pressed="true">中文</button>
-          <button type="button" data-lang="en" aria-pressed="false">EN</button>
-        </div>
+
       </div>
 
       <div class="grid grid--2" style="gap:clamp(24px,4vw,52px);align-items:center">
@@ -427,6 +428,6 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js" defer></script>
+<script src="assets/js/main.js?v=20261025c" defer></script>
 </body>
 </html>

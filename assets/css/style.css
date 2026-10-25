@@ -1017,3 +1017,22 @@ button.btn {
   .float-card .caret { animation: none; }
   .scroll-progress i { transition: none; }
 }
+/* ---------- 导航中的全站语言切换器 ---------- */
+.nav__links .lang-toggle {
+  margin-left: 8px;
+  flex: 0 0 auto;
+  align-self: center;
+}
+
+.nav__links .lang-toggle button {
+  padding: 5px 11px;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 760px) {
+  .nav__links .lang-toggle {
+    margin: 10px 0 0;
+    align-self: flex-start;
+  }
+}

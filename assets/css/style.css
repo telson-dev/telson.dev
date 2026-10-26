@@ -269,6 +269,53 @@ p { margin: 0; }
   padding: clamp(56px, 8vw, 104px) 0 clamp(48px, 7vw, 88px);
 }
 
+/* 首页顶部品牌区：大图标 + 站名 + 介绍 */
+.hero__brand {
+  display: flex;
+  justify-content: center;
+  margin-bottom: clamp(30px, 5vw, 56px);
+}
+
+.hero-brand {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 26px);
+  text-align: left;
+  animation: brand-in 0.9s cubic-bezier(0.2, 0.9, 0.25, 1.15) both;
+}
+
+.hero-brand__logo {
+  width: clamp(76px, 10vw, 108px);
+  height: clamp(76px, 10vw, 108px);
+  filter: drop-shadow(0 0 20px rgba(47, 217, 255, 0.32));
+  animation: brand-float 6s ease-in-out 1.3s infinite;
+}
+
+.hero-brand__name {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 46px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.hero-brand__name span { color: var(--cyan); }
+
+.hero-brand__tagline {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: clamp(13px, 1.7vw, 15.5px);
+}
+
+@keyframes brand-in {
+  from { opacity: 0; transform: scale(0.55) translateY(16px); filter: blur(10px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+
+@keyframes brand-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
 .hero__grid {
   display: grid;
   grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
@@ -1013,6 +1060,7 @@ button.btn {
 /* 减少动态效果 */
 @media (prefers-reduced-motion: reduce) {
   h1 em { animation: none; background-position: 40% 50%; }
+  .hero-brand, .hero-brand__logo { animation: none; }
   .hero__visual .frame { animation: none; }
   .float-card .caret { animation: none; }
   .scroll-progress i { transition: none; }

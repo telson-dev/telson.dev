@@ -144,7 +144,7 @@
       '静态站': 'Static sites',
       '精选作品': 'Featured work',
       '开源的 MCP 服务器。不用交出 SSH，也不用登录面板——在对话里说一句话，服务器就动起来了。': 'Open-source MCP server. No SSH, no panel logins — one sentence in chat and your server moves.',
-      'v0.2.1 · MIT · 已发布': 'v0.2.1 · MIT · released',
+      'v0.2.2 · MIT · 已发布': 'v0.2.2 · MIT · released',
       '用自然语言，管好你的游戏服务器': 'Manage your game servers in plain language',
       '支持 Pterodactyl v1 与 Pelican。服务器列表、电源控制、控制台指令、文件管理、一键备份，全部走面板 API，权限最小化：只读模式和危险操作二次确认默认开启，API Key 永远留在你本机。': 'Works with Pterodactyl v1 and Pelican. Server list, power control, console, file management, one-click backups — all through the panel API with least privilege: read-only mode and confirmation for risky actions on by default, and the API key never leaves your machine.',
       '项目详情 →': 'Project details →',
@@ -352,6 +352,7 @@
 
     function apply(lang) {
       var isEn = lang === 'en';
+      activeLang = lang;
       document.documentElement.lang = isEn ? 'en' : 'zh-CN';
 
       document.querySelectorAll('[data-zh][data-en]').forEach(function (el) {
@@ -380,7 +381,41 @@
 
     var saved = null;
     try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    var activeLang = saved === 'en' ? 'en' : 'zh';
     if (saved === 'en') apply('en');
+
+    /* ---------- 版本号：从 GitHub 拉取 pyproject.toml 解析，失败回退本地默认 ---------- */
+    var VERSION_TOKEN_RE = /v\d+\.\d+\.\d+/g;
+    function applyVersion(ver) {
+      var zh = 'v' + ver + ' · MIT · 已发布';
+      var en = 'v' + ver + ' · MIT · released';
+      Object.keys(DICT).forEach(function (k) {
+        if (/^v\d+\.\d+\.\d+ · MIT · /.test(k)) delete DICT[k];
+      });
+      DICT[zh] = en;
+      document.querySelectorAll('[data-version]').forEach(function (el) {
+        if (el.hasAttribute('data-zh') && el.hasAttribute('data-en')) {
+          el.setAttribute('data-zh', zh);
+          el.setAttribute('data-en', en);
+          el.innerHTML = activeLang === 'en' ? en : zh;
+        } else {
+          el.textContent = el.textContent.replace(VERSION_TOKEN_RE, 'v' + ver);
+        }
+      });
+    }
+    function loadVersionFromGithub() {
+      fetch('https://raw.githubusercontent.com/telson-dev/pteropilot/main/pyproject.toml', { cache: 'no-store' })
+        .then(function (r) {
+          if (!r.ok) throw new Error('http ' + r.status);
+          return r.text();
+        })
+        .then(function (txt) {
+          var m = txt.match(/version\s*=\s*["']([^"']+)["']/);
+          if (m && m[1]) applyVersion(m[1]);
+        })
+        .catch(function () { /* 拉取失败：保持本地默认版本号 */ });
+    }
+    loadVersionFromGithub();
   })();
 
   /* ---------- pointer-reactive grid (top of page only) ---------- */

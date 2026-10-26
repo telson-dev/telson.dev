@@ -316,6 +316,29 @@ p { margin: 0; }
   50% { transform: translateY(-7px); }
 }
 
+/* Minecraft 风格闪烁标语（每次刷新随机一条） */
+.hero-splash {
+  margin: 10px 0 0;
+  color: #ffff55;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(13px, 1.8vw, 16.5px);
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 14px rgba(255, 255, 85, 0.35);
+  cursor: pointer;
+  animation: splash-flicker 4.5s steps(1) infinite;
+  user-select: none;
+}
+
+@keyframes splash-flicker {
+  0%, 100% { opacity: 1; }
+  86% { opacity: 1; }
+  88% { opacity: 0.55; }
+  90% { opacity: 1; }
+  92% { opacity: 0.75; }
+  94% { opacity: 1; }
+}
+
 .hero__grid {
   display: grid;
   grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
@@ -1060,7 +1083,7 @@ button.btn {
 /* 减少动态效果 */
 @media (prefers-reduced-motion: reduce) {
   h1 em { animation: none; background-position: 40% 50%; }
-  .hero-brand, .hero-brand__logo { animation: none; }
+  .hero-brand, .hero-brand__logo, .hero-splash { animation: none; }
   .hero__visual .frame { animation: none; }
   .float-card .caret { animation: none; }
   .scroll-progress i { transition: none; }

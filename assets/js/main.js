@@ -144,7 +144,7 @@
       '静态站': 'Static sites',
       '精选作品': 'Featured work',
       '开源的 MCP 服务器。不用交出 SSH，也不用登录面板——在对话里说一句话，服务器就动起来了。': 'Open-source MCP server. No SSH, no panel logins — one sentence in chat and your server moves.',
-      'v0.2.2 · MIT · 已发布': 'v0.2.2 · MIT · released',
+      'v0.2.3 · MIT · 已发布': 'v0.2.3 · MIT · released',
       '用自然语言，管好你的游戏服务器': 'Manage your game servers in plain language',
       '支持 Pterodactyl v1 与 Pelican。服务器列表、电源控制、控制台指令、文件管理、一键备份，全部走面板 API，权限最小化：只读模式和危险操作二次确认默认开启，API Key 永远留在你本机。': 'Works with Pterodactyl v1 and Pelican. Server list, power control, console, file management, one-click backups — all through the panel API with least privilege: read-only mode and confirmation for risky actions on by default, and the API key never leaves your machine.',
       '项目详情 →': 'Project details →',
@@ -403,17 +403,33 @@
         }
       });
     }
+    function parseVersion(txt) {
+      var m = txt.match(/version\s*=\s*["']([^"']+)["']/);
+      return m && m[1] ? m[1] : null;
+    }
     function loadVersionFromGithub() {
-      fetch('https://raw.githubusercontent.com/telson-dev/pteropilot/main/pyproject.toml', { cache: 'no-store' })
+      // 主路：GitHub API（contents 端点返回 base64）；备胎：raw CDN。都失败则保持本地默认。
+      fetch('https://api.github.com/repos/telson-dev/pteropilot/contents/pyproject.toml', { cache: 'no-store' })
         .then(function (r) {
           if (!r.ok) throw new Error('http ' + r.status);
-          return r.text();
+          return r.json();
         })
-        .then(function (txt) {
-          var m = txt.match(/version\s*=\s*["']([^"']+)["']/);
-          if (m && m[1]) applyVersion(m[1]);
+        .then(function (j) {
+          var ver = parseVersion(j && j.content ? atob(j.content) : '');
+          if (ver) applyVersion(ver);
         })
-        .catch(function () { /* 拉取失败：保持本地默认版本号 */ });
+        .catch(function () {
+          return fetch('https://raw.githubusercontent.com/telson-dev/pteropilot/main/pyproject.toml', { cache: 'no-store' })
+            .then(function (r) {
+              if (!r.ok) throw new Error('http ' + r.status);
+              return r.text();
+            })
+            .then(function (txt) {
+              var ver = parseVersion(txt);
+              if (ver) applyVersion(ver);
+            })
+            .catch(function () { /* 两条路都失败：保持本地默认版本号 */ });
+        });
     }
     loadVersionFromGithub();
   })();

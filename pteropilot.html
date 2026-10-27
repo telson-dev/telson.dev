@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pteropilot — 用自然语言管理 Pterodactyl / Pelican 游戏服务器 | telson.dev</title>
-<meta name="description" content="Pteropilot 是一个开源 MCP server，让 Claude、Cursor 等 AI 助手用自然语言管理 Pterodactyl / Pelican 面板上的游戏服务器：电源控制、控制台、文件、备份，权限最小化。">
+<meta name="description" content="Pteropilot 是一个开源 MCP server，让 Claude、Cursor 等 AI 助手用自然语言管理 Pterodactyl / Pelican 面板上的游戏服务器：电源控制、控制台、文件、备份、玩家在线、崩服检测与 webhook/邮件告警、批量操作，权限最小化。">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="telson.dev">
 <meta property="og:title" content="Pteropilot — 用自然语言管理游戏服务器">
@@ -18,7 +18,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="canonical" href="https://telson.dev/pteropilot.html">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Pteropilot","applicationCategory":"DeveloperApplication","operatingSystem":"Python 3.12+","description":"Open-source MCP server that lets AI assistants manage game servers on Pterodactyl / Pelican panels.","url":"https://telson.dev/pteropilot.html","codeRepository":"https://github.com/telson-dev/pteropilot","license":"https://opensource.org/licenses/MIT","softwareVersion":"0.2.1","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"}}</script>
-<link rel="stylesheet" href="assets/css/style.css?v=20261026c">
+<link rel="stylesheet" href="assets/css/style.css?v=20261026d">
 </head>
 <body data-title-zh="Pteropilot — 用自然语言管理 Pterodactyl / Pelican 游戏服务器 | telson.dev" data-title-en="Pteropilot — Manage Pterodactyl / Pelican game servers in plain language | telson.dev">
 
@@ -217,6 +217,30 @@
           <div class="card__icon">▣</div>
           <h3 data-zh="备份" data-en="Backups">备份</h3>
           <p data-zh="查看备份列表、创建新备份、从备份恢复、删除旧备份。" data-en="List backups, create one, restore from one, delete old ones.">查看备份列表、创建新备份、从备份恢复、删除旧备份。</p>
+        </article>
+        <article class="card reveal">
+          <div class="card__icon">◉</div>
+          <h3 data-zh="玩家在线" data-en="Who is online">玩家在线</h3>
+          <p data-zh="从控制台日志解析玩家进出，直接回答「现在谁在线」，兼容主流服务端日志格式。"
+             data-en="Parse join/leave lines from the console and answer \"who is online right now\", compatible with the major server log formats.">
+            从控制台日志解析玩家进出，直接回答「现在谁在线」，兼容主流服务端日志格式。
+          </p>
+        </article>
+        <article class="card reveal">
+          <div class="card__icon">🚨</div>
+          <h3 data-zh="崩服检测与告警" data-en="Crash detection & alerts">崩服检测与告警</h3>
+          <p data-zh="状态级 + 日志级崩溃信号检测（OOM / JVM / 异常退出 / 致命错误），可配 webhook / 邮件通知、冷却去重、连续确认防误报。"
+             data-en="State-level plus log-level crash detection (OOM / JVM / abnormal exit / fatal), with optional webhook / email alerts, cooldown dedup and confirm-count anti-flap.">
+            状态级 + 日志级崩溃信号检测（OOM / JVM / 异常退出 / 致命错误），可配 webhook / 邮件通知、冷却去重、连续确认防误报。
+          </p>
+        </article>
+        <article class="card reveal">
+          <div class="card__icon">⇄</div>
+          <h3 data-zh="批量操作" data-en="Batch ops">批量操作</h3>
+          <p data-zh="一次列出全部服务器状态摘要，批量开机 / 关机 / 重启，单台失败不阻断整体。"
+             data-en="One-shot status summary across every server, batch start / stop / restart, per-server failures don't block the rest.">
+            一次列出全部服务器状态摘要，批量开机 / 关机 / 重启，单台失败不阻断整体。
+          </p>
         </article>
         <article class="card reveal">
           <div class="card__icon">◈</div>
@@ -428,6 +452,6 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=20261026c" defer></script>
+<script src="assets/js/main.js?v=20261026d" defer></script>
 </body>
 </html>

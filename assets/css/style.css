@@ -211,6 +211,24 @@ p { margin: 0; }
 
 .nav__link--cta:hover { color: #041119; background: linear-gradient(120deg, #67e8ff, var(--cyan)); }
 
+/* 导航“新”徽标 */
+.nav-new {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  line-height: 1.4;
+  font-weight: 700;
+  vertical-align: 2px;
+  color: #041119;
+  background: linear-gradient(120deg, #ffd166, #ff9e2c);
+}
+
+@media (max-width: 960px) {
+  .nav__link { font-size: 13.5px; padding: 7px 10px; }
+}
+
 .nav__toggle {
   display: none;
   width: 40px;

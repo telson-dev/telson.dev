@@ -435,35 +435,19 @@
   })();
 
   /* ---------- 首页闪烁标语（Minecraft 风格：每次刷新随机一条，点击换一条） ---------- */
+  /* ============================================================
+     在这里写你自己的标语！每条占一行，用单引号包起来，逗号分隔，例如：
+       '这条标语是你写的',
+       '我也是你写的',
+       ...
+     注意：最后一条后面不要加逗号。改完保存刷新页面即可看到。
+     ============================================================ */
   (function heroSplash() {
     var el = document.getElementById('hero-splash');
     if (!el) return;
     var SPLASHES = [
-      'Also try Pteropilot!',
-      'Made by telson!',
-      '100% hand-written, 0% framework',
-      'Now with 100% more AI!',
-      "It's a me, telson!",
-      'The farlands are real.',
-      'Reticulating splines...',
-      'Mmm... fresh code.',
-      'Yodel-ay-hee-hoo!',
-      'Can you find the easter egg?',
-      'Be excellent to each other.',
-      'Hello, world. Again.',
-      'sudo make it work.',
-      'Keep calm and commit early.',
-      'No AI was harmed building this site.',
-      'uv run, don\u2019t walk.',
-      'One does not simply push to main.',
-      'Force-push is a felony.',
-      'The cake is a lie.',
-      'Diamonds are at layer -59.',
-      'This splash is 100% certified organic.',
-      'If I had a server for every bug...',
-      'This site runs on tea and curiosity.',
-      'Also try telson.dev!',
     ];
+    if (!SPLASHES.length) return; // 没填标语时保持页面默认，不显示空内容
     var last = -1;
     function pick() {
       var i;

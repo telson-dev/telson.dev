@@ -107,6 +107,13 @@ nginx -t && systemctl reload nginx
 
 ## 自检清单（改完跑一遍）
 
+```powershell
+# 自动化检查（本地链接/资源、页内锚点、sitemap 一致性、SEO 元数据、JSON-LD；加 --live 再查线上部署）
+python scripts/check_site.py
+python scripts/check_site.py --live
+```
+
+- [ ] `check_site.py` 退出码 0（本地 + 线上都通过）
 - [ ] 浏览器控制台无报错
 - [ ] 390px / 768px / 1440px 三档没有横向滚动条
 - [ ] 手机端菜单能展开

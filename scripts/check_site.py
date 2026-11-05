@@ -1,0 +1,221 @@
+#!/usr/bin/env python3
+"""telson.dev 站点自检：本地链接 / 资源引用 / sitemap 一致性 / SEO 元数据 / 页内锚点。
+
+用法（在站点仓库根目录）：
+    python scripts/check_site.py            # 检查当前目录
+    python scripts/check_site.py --root .   # 指定根目录
+
+退出码：0 = 全部通过；1 = 发现问题（逐条打印）。
+零依赖，只用标准库。
+"""
+
+from __future__ import annotations
+
+import argparse
+import re
+import sys
+from html.parser import HTMLParser
+from pathlib import Path
+from urllib.parse import urlparse
+
+LOCAL_SCHEMES = ("", None)
+SKIP_PREFIXES = ("http://", "https://", "//", "mailto:", "tel:", "javascript:", "data:")
+
+
+class PageParser(HTMLParser):
+    """收集页面里的链接、资源引用、id 与 SEO 元数据。"""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.links: list[tuple[str, str]] = []  # (attr, value)
+        self.ids: set[str] = set()
+        self.title = ""
+        self.meta: dict[str, str] = {}
+        self.canonical = ""
+        self._in_title = False
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        d = {k: (v or "") for k, v in attrs}
+        if "id" in d:
+            self.ids.add(d["id"])
+        if "name" in d and tag == "a":
+            self.ids.add(d["name"])
+        for attr in ("href", "src"):
+            if attr in d and d[attr]:
+                self.links.append((attr, d[attr]))
+        if tag == "title":
+            self._in_title = True
+        if tag == "meta":
+            key = d.get("property") or d.get("name") or ""
+            if key and "content" in d:
+                self.meta[key] = d["content"]
+        if tag == "link" and d.get("rel") == "canonical":
+            self.canonical = d.get("href", "")
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "title":
+            self._in_title = False
+
+    def handle_data(self, data: str) -> None:
+        if self._in_title:
+            self.title += data
+
+
+def parse_page(path: Path) -> PageParser:
+    p = PageParser()
+    p.feed(path.read_text(encoding="utf-8"))
+    p.close()
+    return p
+
+
+def is_local(url: str) -> bool:
+    return not url.startswith(SKIP_PREFIXES)
+
+
+def resolve_local(root: Path, page: Path, url: str) -> tuple[Path | None, str]:
+    """把本地引用解析成目标文件；返回 (target_path, kind)。kind: file|anchor|empty|external。"""
+    if url.startswith("#"):
+        return None, "anchor"
+    clean = url.split("?")[0].split("#")[0]
+    if not clean:
+        return None, "empty"
+    target = (page.parent / clean).resolve()
+    return target, "file"
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="telson.dev 站点自检")
+    ap.add_argument("--root", default=".", help="站点根目录（默认当前目录）")
+    ap.add_argument("--live", action="store_true", help="额外检查线上部署（HEAD 每个页面）")
+    ap.add_argument("--base-url", default="https://telson.dev", help="线上基础 URL")
+    args = ap.parse_args()
+    root = Path(args.root).resolve()
+
+    errors: list[str] = []
+    warnings: list[str] = []
+
+    html_files = sorted(root.glob("*.html"))
+    if not html_files:
+        print(f"❌ 在 {root} 下没有找到 *.html")
+        return 1
+
+    pages: dict[Path, PageParser] = {}
+    for f in html_files:
+        pages[f] = parse_page(f)
+
+    # 1) 本地链接 / 资源引用
+    checked = 0
+    for page, p in pages.items():
+        for attr, url in p.links:
+            if not is_local(url):
+                continue
+            target, kind = resolve_local(root, page, url)
+            if kind != "file":
+                continue
+            checked += 1
+            if not target.exists():
+                errors.append(f"[链接] {page.name}: {attr}=\"{url}\" 目标不存在")
+
+    # 2) 页内锚点（href="#x" 且同页没有 id/name=x）
+    for page, p in pages.items():
+        for attr, url in p.links:
+            if attr != "href" or not url.startswith("#") or len(url) <= 1:
+                continue
+            anchor = url[1:]
+            if anchor not in p.ids:
+                errors.append(f"[锚点] {page.name}: href=\"#{anchor}\" 页内没有对应 id/name")
+
+    # 3) sitemap 一致性
+    sitemap = root / "sitemap.xml"
+    if sitemap.exists():
+        sm = sitemap.read_text(encoding="utf-8")
+        locs = re.findall(r"<loc>([^<]+)</loc>", sm)
+        sm_paths = set()
+        for loc in locs:
+            u = urlparse(loc)
+            rel = u.path.lstrip("/") or "index.html"
+            sm_paths.add(rel)
+            if not (root / rel).exists():
+                errors.append(f"[sitemap] {loc} 对应文件不存在（{rel}）")
+        for f in html_files:
+            if f.name == "404.html":
+                continue
+            if f.name not in sm_paths:
+                errors.append(f"[sitemap] {f.name} 未收录进 sitemap.xml")
+    else:
+        warnings.append("[sitemap] 未找到 sitemap.xml")
+
+    # 4) SEO 元数据
+    for page, p in pages.items():
+        if page.name == "404.html":
+            continue
+        if not p.title.strip():
+            errors.append(f"[SEO] {page.name}: 缺少 <title>")
+        if "description" not in p.meta:
+            errors.append(f"[SEO] {page.name}: 缺少 meta description")
+        if not p.canonical:
+            warnings.append(f"[SEO] {page.name}: 缺少 canonical")
+        if "og:title" not in p.meta:
+            warnings.append(f"[SEO] {page.name}: 缺少 og:title")
+        if "og:description" not in p.meta:
+            warnings.append(f"[SEO] {page.name}: 缺少 og:description")
+        if "og:url" in p.meta and "canonical" in p.meta:
+            pass
+
+    # 5) 页内 JSON-LD 合法性（能解析即可）
+    import json
+
+    for page, p in pages.items():
+        raw = page.read_text(encoding="utf-8")
+        for m in re.finditer(
+            r'<script type="application/ld\+json">(.*?)</script>', raw, re.S
+        ):
+            try:
+                json.loads(m.group(1))
+            except json.JSONDecodeError as e:
+                errors.append(f"[JSON-LD] {page.name}: 解析失败 {e}")
+
+    # 输出
+    print(f"📄 检查 {len(html_files)} 个页面，本地引用 {checked} 个")
+
+    # 6) 线上部署检查（可选）
+    if args.live:
+        import time
+        import urllib.request
+
+        base = args.base_url.rstrip("/")
+        live_urls = [f"{base}/" + rel.lstrip("/") for rel in sorted(sm_paths)]
+        live_urls.append(f"{base}/404.html")
+        for url in live_urls:
+            last_err = None
+            for attempt in range(3):  # 重试 3 次，过滤瞬时网络抖动
+                try:
+                    req = urllib.request.Request(
+                        url, method="HEAD", headers={"User-Agent": "check_site"}
+                    )
+                    with urllib.request.urlopen(req, timeout=20) as r:
+                        if r.status != 200:
+                            last_err = f"返回 HTTP {r.status}"
+                        else:
+                            last_err = None
+                        break
+                except Exception as e:  # noqa: BLE001
+                    last_err = str(e)
+                    time.sleep(1 + attempt)
+            if last_err:
+                errors.append(f"[live] {url} 请求失败（重试 3 次）: {last_err}")
+        print(f"🌐 线上检查 {len(live_urls)} 个 URL（{base}）")
+
+    for w in warnings:
+        print(f"  ⚠️  {w}")
+    if errors:
+        print(f"\n❌ 发现 {len(errors)} 个问题：")
+        for e in errors:
+            print(f"  - {e}")
+        return 1
+    print(f"\n✅ 全部通过（{len(warnings)} 个警告）")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -182,17 +182,34 @@ nginx -t && systemctl reload nginx
 - 仓库：https://github.com/telson-dev/telson.dev
 - GitHub Pages（自动构建，推送即更新）：https://telson-dev.github.io/telson.dev/
 
-### 日常更新流程
+### 日常更新流程（⚠️ 不用 git push —— 走 Git Data API）
+
+本机到 github.com 的 `git push` 在国内网络**不可用**（TCP 被拦），因此推送统一走
+GitHub **Git Data API**（本地脚本 `D:\Projects\_telson-dev-qa\push_repo.py`：
+blob → tree(base = 远端 main 的 tree) → commit → PATCH ref）。
 
 ```powershell
 cd D:\Projects\telson-dev
-# 改完文件后
 git add -A
 git commit -m "更新：说明改了什么"
-git push
+
+# 推送（用 API，不覆盖远端其它文件：base 取远端树，只改列出的文件）
+$env:GH_TOKEN = "<GitHub token>"
+$env:COMMIT_MSG = "更新：说明改了什么"
+python D:\Projects\_telson-dev-qa\push_repo.py 'telson-dev/telson.dev' index.html assets/css/style.css
+Remove-Item Env:GH_TOKEN, Env:COMMIT_MSG
 ```
 
-推送后 GitHub Pages 会自动重新构建（约 1 分钟），预览地址刷新即可看到。
+推送后 GitHub Pages 自动重新构建（约 1 分钟），刷新线上即可看到。
+
+**本地 ↔ 远端一致性（重要）**：
+- 远端是权威：API 提交不会自动同步回本地，所以**本地仓库可能落后于远端**（典型：
+  `assets/downloads/pteropilot-pro-lite.exe` 33MB 的 Lite 镜像只在远端、本地不入库，
+  对账见 `git ls-files` 与远端 tree 的差异）。
+- 因此**不要用整树强制推送**（`git push --force` 之类）；一律用上面的 API 脚本
+  （base = 远端 tree，不会删掉远端独有文件）。
+- 二进制大文件（安装包/exe）放远端（API 推送），不入本地库；`.gitignore` 已忽略
+  `assets/downloads/*.exe`。
 
 ### 绑定自定义域名 telson.dev（可选，以后做）
 

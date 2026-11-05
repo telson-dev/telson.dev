@@ -3,3 +3,6 @@ _telson-dev-qa/
 *.log
 .DS_Store
 Thumbs.db
+
+# 大体积下载文件（Lite 镜像等）只放远端（API 推送），本地不入库
+assets/downloads/*.exe

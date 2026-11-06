@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pteropilot 更新日志 — 版本历史 | telson.dev</title>
+<meta name="description" content="Pteropilot 更新日志：从 v0.1.0 到 v0.2.14 的版本历史——36 个 MCP 工具、批量并发化、日志搜索、连接诊断、玩家统计、计划重启、备份下载等，310+ 项测试。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="telson.dev">
+<meta property="og:title" content="Pteropilot 更新日志">
+<meta property="og:description" content="v0.1.0 → v0.2.14 · 36 个工具 · 310+ 测试">
+<meta property="og:url" content="https://telson.dev/changelog.html">
+<meta name="theme-color" content="#06090f">
+<link rel="icon" href="assets/img/icon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/icon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="canonical" href="https://telson.dev/changelog.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Pteropilot 更新日志","description":"Pteropilot 从 v0.1.0 到 v0.2.14 的版本历史","url":"https://telson.dev/changelog.html","author":{"@type":"Person","name":"telson"}}</script>
+<link rel="stylesheet" href="assets/css/style.css?v=20261026e">
+</head>
+<body data-title-zh="Pteropilot 更新日志 — 版本历史 | telson.dev" data-title-en="Pteropilot Changelog — Version History | telson.dev">
+
+<div class="bg-field"></div>
+<div class="bg-grid"></div>
+<canvas class="grid-canvas" aria-hidden="true"></canvas>
+<div class="scroll-progress" aria-hidden="true"><i></i></div>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/mark.svg" alt="telson">
+      telson<span>.dev</span>
+    </a>
+    <button class="nav__toggle" type="button" aria-label="菜单" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav__links" id="nav-links" aria-label="主导航">
+      <a class="nav__link" href="index.html" data-zh="首页" data-en="Home">首页</a>
+      <a class="nav__link" href="projects.html" data-zh="作品" data-en="Work">作品</a>
+      <a class="nav__link" href="pteropilot.html">Pteropilot</a>
+      <a class="nav__link" href="tutorial.html" data-zh="教程" data-en="Tutorial">教程</a>
+      <div class="lang-toggle" role="group" aria-label="语言 / Language">
+        <button type="button" data-lang="zh" aria-pressed="true">中</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="nav__link nav__link--cta" href="services.html" data-zh="接单 · 找我干活" data-en="Hire me">接单 · 找我干活</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ page hero ============ -->
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="page-hero__badge"><span class="dot-live"></span><span data-version data-zh="Pteropilot · 更新日志 · MIT" data-en="Pteropilot · Changelog · MIT">Pteropilot · 更新日志 · MIT</span></span>
+      <h1 style="margin:22px 0 16px">更新日志</h1>
+      <p class="lead" style="font-size:clamp(18px,2.1vw,22px);color:var(--text);font-weight:700"
+         data-zh="从 v0.1.0 到 v0.2.14：36 个工具、310+ 项测试，持续迭代。"
+         data-en="From v0.1.0 to v0.2.14: 36 tools, 310+ tests, iterating steadily.">
+        从 v0.1.0 到 v0.2.14：36 个工具、310+ 项测试，持续迭代。
+      </p>
+      <p class="lead" style="max-width:640px;margin-top:10px"
+         data-zh="完整记录见 GitHub CHANGELOG；这里只列对使用者有影响的变更。"
+         data-en="Full history lives in the GitHub CHANGELOG; only user-facing changes are listed here.">
+        完整记录见 GitHub CHANGELOG；这里只列对使用者有影响的变更。
+      </p>
+      <div class="btn-row" style="margin-top:24px">
+        <a class="btn btn--primary" href="pteropilot.html" data-zh="回到项目页" data-en="Project page">回到项目页</a>
+        <a class="btn btn--ghost" href="https://github.com/telson-dev/pteropilot/blob/main/CHANGELOG.md" target="_blank" rel="noopener" data-zh="GitHub 完整记录 ↗" data-en="Full changelog on GitHub ↗">GitHub 完整记录 ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ versions ============ -->
+  <section class="section section--tight">
+    <div class="wrap" style="max-width:820px">
+
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.14 <span class="muted" style="font-size:13px;font-weight:400">2026-11-05</span></h2>
+        <ul class="ticks">
+          <li data-zh="batch_get_status 并发化：多台服务器状态并发拉取（保序、单台失败不阻断）" data-en="batch_get_status is now concurrent (order kept, per-server failures tolerated)">batch_get_status 并发化：多台服务器状态并发拉取（保序、单台失败不阻断）</li>
+        </ul>
+      </article>
+
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.13 <span class="muted" style="font-size:13px;font-weight:400">2026-11-05</span></h2>
+        <ul class="ticks">
+          <li data-zh="新增 check_panel_connection 连接诊断：验证地址/密钥，401/403/404 给出可操作提示" data-en="New check_panel_connection: validates URL/key, actionable hints for 401/403/404">新增 check_panel_connection 连接诊断：验证地址/密钥，401/403/404 给出可操作提示</li>
+        </ul>
+      </article>
+
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.12 <span class="muted" style="font-size:13px;font-weight:400">2026-11-05</span></h2>
+        <ul class="ticks">
+          <li data-zh="新增 search_server_logs 日志搜索：关键字搜索（不区分大小写、带行号、末尾 5000 行）" data-en="New search_server_logs: case-insensitive keyword search with line numbers (last 5000 lines)">新增 search_server_logs 日志搜索：关键字搜索（不区分大小写、带行号、末尾 5000 行）</li>
+        </ul>
+      </article>
+
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.11 <span class="muted" style="font-size:13px;font-weight:400">2026-11-05</span></h2>
+        <ul class="ticks">
+          <li data-zh="batch_backup_status 显示备份总大小 + 多台并发；get_server_status 网络流量人类可读" data-en="batch_backup_status shows total size and runs concurrently; human-readable network traffic in get_server_status">batch_backup_status 显示备份总大小 + 多台并发；get_server_status 网络流量人类可读</li>
+        </ul>
+      </article>
+
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.10 <span class="muted" style="font-size:13px;font-weight:400">2026-11-04</span></h2>
+        <ul class="ticks">
+          <li data-zh="list_backups / list_files 大小人类可读（1048576 → 1.0 MB），备份显示创建日期" data-en="Human-readable sizes in list_backups/list_files (1048576 → 1.0 MB); backup creation dates">list_backups / list_files 大小人类可读（1048576 → 1.0 MB），备份显示创建日期</li>
+        </ul>
+      </article>
+
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.9 <span class="muted" style="font-size:13px;font-weight:400">2026-11-04</span></h2>
+        <ul class="ticks">
+          <li data-zh="get_server_status 显示内存/磁盘上限；在线时长格式化为人类可读（1 天 1 小时 1 分 1 秒）" data-en="Resource limits shown in get_server_status; uptime formatted as human-readable">get_server_status 显示内存/磁盘上限；在线时长格式化为人类可读（1 天 1 小时 1 分 1 秒）</li>
+        </ul>
+      </article>
+
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.8 <span class="muted" style="font-size:13px;font-weight:400">2026-11-03</span></h2>
+        <ul class="ticks">
+          <li data-zh="新增 batch_list_players 批量在线玩家；get_server_status 增加在线玩家数（日志推断）" data-en="New batch_list_players; online player count in get_server_status (log-inferred)">新增 batch_list_players 批量在线玩家；get_server_status 增加在线玩家数（日志推断）</li>
+        </ul>
+      </article>
+
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.7 <span class="muted" style="font-size:13px;font-weight:400">2026-11-02</span></h2>
+        <ul class="ticks">
+          <li data-zh="新增 get_backup_download（备份下载链接）、get_server_startup（启动命令与变量）、batch_get_console_log（批量日志）" data-en="New get_backup_download, get_server_startup, batch_get_console_log">新增 get_backup_download（备份下载链接）、get_server_startup（启动命令与变量）、batch_get_console_log（批量日志）</li>
+          <li data-zh="list_my_servers 支持 with_status 状态列与 status 过滤（如只看 running）" data-en="list_my_servers supports with_status and status filters (e.g. running only)">list_my_servers 支持 with_status 状态列与 status 过滤（如只看 running）</li>
+          <li data-zh="批量工具并发化：广播/批量电源/批量备份，多台耗时从 N× 降到 ≈1×" data-en="Batch tools parallelized: broadcast/power/backup now ~1x latency instead of Nx">批量工具并发化：广播/批量电源/批量备份，多台耗时从 N× 降到 ≈1×</li>
+        </ul>
+      </article>
+
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.6 <span class="muted" style="font-size:13px;font-weight:400">2026-11-02</span></h2>
+        <ul class="ticks">
+          <li data-zh="新增 broadcast_message（批量广播公告）、read_server_logs（日志排查）、player_history_stats（玩家活跃统计）、schedule_restart（公告 + 定时重启）" data-en="New broadcast_message, read_server_logs, player_history_stats, schedule_restart">新增 broadcast_message（批量广播公告）、read_server_logs（日志排查）、player_history_stats（玩家活跃统计）、schedule_restart（公告 + 定时重启）</li>
+        </ul>
+      </article>
+
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.5 <span class="muted" style="font-size:13px;font-weight:400">2026-10-28</span></h2>
+        <ul class="ticks">
+          <li data-zh="真实面板实测工具 scripts/live_smoke.py（只读端到端探测，不触发写操作）" data-en="Real-panel live smoke tool (read-only end-to-end probing)">真实面板实测工具 scripts/live_smoke.py（只读端到端探测，不触发写操作）</li>
+          <li data-zh="diagnose_crash 扩充：看门狗超时、原生崩溃信号；密钥脱敏加固" data-en="diagnose_crash: watchdog timeouts, native crash signals; secret redaction hardening">diagnose_crash 扩充：看门狗超时、原生崩溃信号；密钥脱敏加固</li>
+        </ul>
+      </article>
+
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.4 <span class="muted" style="font-size:13px;font-weight:400">2026-10-28</span></h2>
+        <ul class="ticks">
+          <li data-zh="新增 pteropilot-alerts 崩服告警命令：钉钉/企业微信 webhook + 邮件双通道、冷却去重、连续确认阈值、按服务器配置与路由" data-en="New pteropilot-alerts command: webhook + email channels, cooldowns, confirmation thresholds, per-server routing">新增 pteropilot-alerts 崩服告警命令：钉钉/企业微信 webhook + 邮件双通道、冷却去重、连续确认阈值、按服务器配置与路由</li>
+          <li data-zh="新增 batch_backup_status / batch_backup 批量备份；双面板兼容（PANEL_APP_KEY + 密钥角色诊断）" data-en="New batch backup tools; dual-panel support (PANEL_APP_KEY + key-role diagnostics)">新增 batch_backup_status / batch_backup 批量备份；双面板兼容（PANEL_APP_KEY + 密钥角色诊断）</li>
+        </ul>
+      </article>
+
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.3 <span class="muted" style="font-size:13px;font-weight:400">2026-10-26</span></h2>
+        <ul class="ticks">
+          <li data-zh="新增 diagnose_crash 崩溃诊断（内存不足 / JVM 崩溃 / 反复崩溃循环）与 batch_power 批量电源" data-en="New diagnose_crash and batch_power">新增 diagnose_crash 崩溃诊断（内存不足 / JVM 崩溃 / 反复崩溃循环）与 batch_power 批量电源</li>
+        </ul>
+      </article>
+
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.2 <span class="muted" style="font-size:13px;font-weight:400">2026-10-24</span></h2>
+        <ul class="ticks">
+          <li data-zh="新增 list_players、check_server_health、batch_get_status；MCP 握手真实版本号；面板错误中文化" data-en="New list_players, check_server_health, batch_get_status; real version in MCP handshake; localized panel errors">新增 list_players、check_server_health、batch_get_status；MCP 握手真实版本号；面板错误中文化</li>
+        </ul>
+      </article>
+
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.0 <span class="muted" style="font-size:13px;font-weight:400">2026-09-30</span></h2>
+        <ul class="ticks">
+          <li data-zh="Pelican 兼容性验证；新增 upload_file / download_file / create_folder / rename_file 四个文件工具；修复状态与分页问题" data-en="Pelican compatibility; four new file tools; status and pagination fixes">Pelican 兼容性验证；新增 upload_file / download_file / create_folder / rename_file 四个文件工具；修复状态与分页问题</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.1.0 <span class="muted" style="font-size:13px;font-weight:400">2026-09-27</span></h2>
+        <ul class="ticks">
+          <li data-zh="首个版本：服务器列表/状态/电源/指令/文件/备份、只读模式、高危二次确认、中英双语 README" data-en="First release: servers/status/power/commands/files/backups, read-only mode, confirmations, bilingual README">首个版本：服务器列表/状态/电源/指令/文件/备份、只读模式、高危二次确认、中英双语 README</li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <span>© <span data-year>2026</span> telson.dev · <a href="index.html" data-zh="首页" data-en="Home">首页</a></span>
+    <span>
+      <a href="projects.html" data-zh="作品" data-en="Work">作品</a> ·
+      <a href="pteropilot.html">Pteropilot</a> ·
+      <a href="tutorial.html">教程</a> ·
+      <a href="changelog.html">更新日志</a> ·
+      <a href="pro.html">Pro</a> ·
+      <a href="https://github.com/telson-dev" target="_blank" rel="noopener">GitHub</a>
+    </span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js?v=20261026e" defer></script>
+</body>
+</html>

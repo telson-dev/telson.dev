@@ -1,0 +1,28 @@
+name: Site Check
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Local checks (links / anchors / sitemap / SEO / JSON-LD)
+        run: python scripts/check_site.py
+
+      - name: Live check (deployed site)
+        # 线上部署有延迟，push 后等一会儿；只做 HEAD 探测（带 3 次重试）
+        run: |
+          sleep 60
+          python scripts/check_site.py --live
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        continue-on-error: true

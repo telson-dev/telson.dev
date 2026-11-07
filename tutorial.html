@@ -110,7 +110,7 @@
       <ul class="ticks" style="margin-top:16px">
         <li data-zh="Claude Desktop：编辑 claude_desktop_config.json；Cursor：MCP 面板里添加或编辑 .cursor/mcp.json。" data-en="Claude Desktop: edit claude_desktop_config.json; Cursor: add it in the MCP panel or edit .cursor/mcp.json.">Claude Desktop：编辑 claude_desktop_config.json；Cursor：MCP 面板里添加。</li>
         <li data-zh="PANEL_URL 要带协议（https://）；API Key 用权限最小化的那个（见第 4 步）。" data-en="PANEL_URL needs the protocol (https://); use a least-privilege API key (see step 4).">PANEL_URL 要带协议（https://）；API Key 用权限最小化的那个（见第 4 步）。</li>
-        <li data-zh="改完配置重启客户端，等 AI 识别到 pteropilot 的 37 个工具。" data-en="Restart the client after editing; the AI will pick up pteropilot's 37 tools.">改完配置重启客户端，等 AI 识别到 pteropilot 的 37 个工具。</li>
+        <li data-zh="改完配置重启客户端，等 AI 识别到 pteropilot 的 38 个工具。" data-en="Restart the client after editing; the AI will pick up pteropilot's 38 tools.">改完配置重启客户端，等 AI 识别到 pteropilot 的 38 个工具。</li>
         <li data-zh="配置完先让 AI 执行 check_panel_connection 自检：返回「✅ 已连通」即配置正确；报 401/403/404 会给出具体排查方向。" data-en="After configuring, ask the AI to run check_panel_connection: a 'connected' result means the setup is right; 401/403/404 come with concrete troubleshooting hints.">配置完先让 AI 执行 check_panel_connection 自检：返回「✅ 已连通」即配置正确；报 401/403/404 会给出具体排查方向。</li>
       </ul>
     </div>
@@ -134,9 +134,15 @@
         <div class="card reveal">
           <p style="color:var(--text);font-weight:600">「看看最近日志有没有崩溃信号」</p>
         </div>
+        <div class="card reveal">
+          <p style="color:var(--text);font-weight:600">「smp 服的 IP 和端口是多少？」</p>
+        </div>
+        <div class="card reveal">
+          <p style="color:var(--text);font-weight:600">「这个服分配的数据库地址和账号是什么？」</p>
+        </div>
       </div>
-      <p class="muted" style="margin-top:14px" data-zh="更多能力：电源控制、控制台指令、文件管理、备份、玩家在线、批量操作、广播公告。完整清单见 pteropilot 项目页。" data-en="More: power control, console commands, files, backups, online players, batch ops, broadcast. Full list on the pteropilot page.">
-        更多能力：电源控制、控制台指令、文件管理、备份、玩家在线、批量操作、广播公告。完整清单见 pteropilot 项目页。
+      <p class="muted" style="margin-top:14px" data-zh="更多能力：电源控制、控制台指令、文件管理、备份、玩家在线、网络地址、数据库信息、批量操作、广播公告、定时重启、崩服告警。完整清单见 pteropilot 项目页。" data-en="More: power control, console commands, files, backups, online players, network addresses, database info, batch ops, broadcast, scheduled restart, crash alerts. Full list on the pteropilot page.">
+        更多能力：电源控制、控制台指令、文件管理、备份、玩家在线、网络地址、数据库信息、批量操作、广播公告、定时重启、崩服告警。完整清单见 pteropilot 项目页。
       </p>
     </div>
   </section>

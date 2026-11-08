@@ -19,6 +19,15 @@ jobs:
       - name: Local checks (links / anchors / sitemap / SEO / JSON-LD)
         run: python scripts/check_site.py
 
+      - name: Changelog sync check (本站更新日志与开源版 CHANGELOG.md 是否一致)
+        # 需要开源仓库在场；CI 里没有时跳过（本地开发会真正比对）
+        run: |
+          if [ -f "../pteropilot/CHANGELOG.md" ]; then
+            python scripts/sync_changelog.py --check
+          else
+            echo "跳过：未检出同级 pteropilot 仓库（本地开发会校验）"
+          fi
+
       - name: Live check (deployed site)
         # 线上部署有延迟，push 后等一会儿；只做 HEAD 探测（带 3 次重试）
         run: |

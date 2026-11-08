@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pteropilot Pro 使用指南 — 安装 / 激活 / 连接面板 | telson.dev</title>
+<meta name="description" content="Pteropilot Pro 使用指南：下载安装标准版或 Lite、粘贴激活码、填写面板地址与 API 密钥、测试连接，以及激活失败/连接失败/换机解绑等常见问题排查。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="telson.dev">
+<meta property="og:title" content="Pteropilot Pro 使用指南 — 安装 / 激活 / 连接面板">
+<meta property="og:description" content="从下载到用起来：4 步上手 + 常见问题排查（激活失败、401/403/404 连接错误、换机解绑）">
+<meta property="og:image" content="https://telson.dev/assets/img/cover.jpg">
+<meta property="og:url" content="https://telson.dev/pro-guide.html">
+<meta name="theme-color" content="#06090f">
+<link rel="icon" href="assets/img/icon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/icon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="canonical" href="https://telson.dev/pro-guide.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Pteropilot Pro 使用指南","description":"安装、激活并连接面板的完整步骤","totalTime":"PT5M","step":[{"@type":"HowToStep","name":"下载与安装","text":"下载标准版安装包或 Lite 便携版，安装并启动。"},{"@type":"HowToStep","name":"激活","text":"在「许可证」卡片粘贴激活码，点激活。"},{"@type":"HowToStep","name":"连接面板","text":"填写面板地址与 API 密钥，点测试连接。"},{"@type":"HowToStep","name":"开始使用","text":"在服务器列表选一台服务器，查看状态、电源、文件、备份。"}]}</script>
+<link rel="stylesheet" href="assets/css/style.css?v=20261026e">
+</head>
+<body data-title-zh="Pteropilot Pro 使用指南 — 安装 / 激活 / 连接面板 | telson.dev" data-title-en="Pteropilot Pro Guide — Install / Activate / Connect | telson.dev">
+
+<div class="bg-field"></div>
+<div class="bg-grid"></div>
+<canvas class="grid-canvas" aria-hidden="true"></canvas>
+<div class="scroll-progress" aria-hidden="true"><i></i></div>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/mark.svg" alt="telson">
+      telson<span>.dev</span>
+    </a>
+    <button class="nav__toggle" type="button" aria-label="菜单" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav__links" id="nav-links" aria-label="主导航">
+      <a class="nav__link" href="index.html" data-zh="首页" data-en="Home">首页</a>
+      <a class="nav__link" href="projects.html" data-zh="作品" data-en="Work">作品</a>
+      <a class="nav__link" href="pteropilot.html">Pteropilot</a>
+      <a class="nav__link" href="pro.html" data-zh="Pteropilot Pro" data-en="Pteropilot Pro">Pteropilot Pro</a>
+      <div class="lang-toggle" role="group" aria-label="语言 / Language">
+        <button type="button" data-lang="zh" aria-pressed="true">中</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="nav__link nav__link--cta" href="services.html" data-zh="接单 · 找我干活" data-en="Hire me">接单 · 找我干活</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ page hero ============ -->
+  <section class="page-hero" id="top">
+    <div class="wrap">
+      <div class="link-row" style="justify-content:space-between;align-items:center;margin-bottom:26px">
+        <span class="page-hero__badge">
+          <span class="dot-live"></span>
+          <span data-zh="使用指南 · 约 5 分钟上手" data-en="Guide · ~5 minutes">使用指南 · 约 5 分钟上手</span>
+        </span>
+        <a class="btn btn--ghost" href="pro.html" data-zh="返回产品页" data-en="Back to product">返回产品页</a>
+      </div>
+      <p class="eyebrow" data-zh="Pteropilot Pro" data-en="PTEROPILOT PRO">Pteropilot Pro</p>
+      <h1 style="margin:14px 0 16px">
+        <span data-zh="从下载到用起来" data-en="From download to daily use">从下载到用起来</span>
+      </h1>
+      <p class="lead" style="max-width:680px"
+         data-zh="四步：安装 → 激活 → 连接面板 → 开始管理。卡在哪一步，直接看下面的对应章节或常见问题。"
+         data-en="Four steps: install → activate → connect → manage. Stuck anywhere? Jump to that section or the FAQ.">
+        四步：安装 → 激活 → 连接面板 → 开始管理。卡在哪一步，直接看下面的对应章节或常见问题。
+      </p>
+      <div class="link-row" style="margin-top:22px">
+        <a class="btn btn--primary" href="#step1" data-zh="① 安装" data-en="① Install">① 安装</a>
+        <a class="btn btn--ghost" href="#step2" data-zh="② 激活" data-en="② Activate">② 激活</a>
+        <a class="btn btn--ghost" href="#step3" data-zh="③ 连接面板" data-en="③ Connect">③ 连接面板</a>
+        <a class="btn btn--ghost" href="#faq" data-zh="常见问题" data-en="FAQ">常见问题</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ step 1 ============ -->
+  <section class="section section--tight" id="step1">
+    <div class="wrap" style="max-width:820px">
+      <p class="eyebrow" data-zh="第 1 步" data-en="STEP 1">第 1 步</p>
+      <h2 style="margin:14px 0 12px" data-zh="下载与安装" data-en="Download and install">下载与安装</h2>
+      <div class="grid grid--2" style="gap:16px">
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin:0 0 8px" data-zh="标准版（安装程序）" data-en="Desktop (installer)">标准版（安装程序）</h3>
+          <p class="muted" style="margin:0 0 12px" data-zh="约 97MB · Windows 10/11 64 位" data-en="~97 MB · Windows 10/11 x64">约 97MB · Windows 10/11 64 位</p>
+          <p class="muted" style="margin:0" data-zh="双击安装 → 桌面出现快捷方式 → 打开即可。想要托盘常驻、开机自启选这个。"
+             data-en="Double-click to install, then launch from the shortcut. Best for tray and auto-start.">双击安装 → 桌面出现快捷方式 → 打开即可。想要托盘常驻、开机自启选这个。</p>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin:0 0 8px" data-zh="Lite（便携版）" data-en="Lite (portable)">Lite（便携版）</h3>
+          <p class="muted" style="margin:0 0 12px" data-zh="约 32MB · 免安装单文件" data-en="~32 MB · single file, no install">约 32MB · 免安装单文件</p>
+          <p class="muted" style="margin:0" data-zh="下载后直接双击运行。U 盘、临时机器、不想改系统都适合。"
+             data-en="Just download and run. Great for USB drives or machines you don't want to modify.">下载后直接双击运行。U 盘、临时机器、不想改系统都适合。</p>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:16px"
+         data-zh="下载地址：面包多订单「已购内容」；标准版也可在产品页下载。首次打开若提示「未知发布者」（SmartScreen），点「更多信息 → 仍要运行」——这是未买代码签名证书的常规提示，不是病毒。"
+         data-en="Download from your Mbd order's purchased content, or the product page. If SmartScreen shows 'unknown publisher', click 'More info → Run anyway' — normal for apps without a code-signing certificate.">
+        下载地址：面包多订单「已购内容」；标准版也可在产品页下载。首次打开若提示「未知发布者」（SmartScreen），点「更多信息 → 仍要运行」——这是未买代码签名证书的常规提示，不是病毒。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ step 2 ============ -->
+  <section class="section section--tight" id="step2">
+    <div class="wrap" style="max-width:820px">
+      <p class="eyebrow" data-zh="第 2 步" data-en="STEP 2">第 2 步</p>
+      <h2 style="margin:14px 0 12px" data-zh="激活" data-en="Activate">激活</h2>
+      <div class="grid grid--2" style="gap:16px">
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin:0 0 8px" data-zh="粘贴激活码" data-en="Paste your key">粘贴激活码</h3>
+          <p class="muted" style="margin:0" data-zh="打开客户端 → 顶部「许可证」卡片 → 把购买得到的激活码整段粘贴（含 PTPRO1- 前缀，别漏字符）→ 点「激活」→ 显示「已激活 · 终身」即成功。"
+             data-en="Open the client → the License card → paste the whole key (including the PTPRO1- prefix) → click Activate → look for 'activated · lifetime'.">打开客户端 → 顶部「许可证」卡片 → 把购买得到的激活码整段粘贴（含 PTPRO1- 前缀，别漏字符）→ 点「激活」→ 显示「已激活 · 终身」即成功。</p>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin:0 0 8px" data-zh="先试用也行" data-en="Try first">先试用也行</h3>
+          <p class="muted" style="margin:0" data-zh="首次打开自带 7 天全功能试用，不激活也能用全部功能。觉得合适再买码激活，试用数据不会丢。"
+             data-en="A 7-day full trial starts on first launch — no key needed. Buy a key later; your data stays.">首次打开自带 7 天全功能试用，不激活也能用全部功能。觉得合适再买码激活，试用数据不会丢。</p>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:16px"
+         data-zh="换电脑：先在旧电脑点「解绑本设备」，名额释放后在新电脑粘贴同一个码激活（一份授权最多 2 台设备）。"
+         data-en="Switching machines: click 'Unbind this device' on the old one, then activate the same key on the new one (up to 2 devices).">
+        换电脑：先在旧电脑点「解绑本设备」，名额释放后在新电脑粘贴同一个码激活（一份授权最多 2 台设备）。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ step 3 ============ -->
+  <section class="section section--tight" id="step3">
+    <div class="wrap" style="max-width:820px">
+      <p class="eyebrow" data-zh="第 3 步" data-en="STEP 3">第 3 步</p>
+      <h2 style="margin:14px 0 12px" data-zh="连接面板" data-en="Connect your panel">连接面板</h2>
+      <div class="grid grid--2" style="gap:16px">
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin:0 0 8px" data-zh="填两个字段" data-en="Two fields">填两个字段</h3>
+          <p class="muted" style="margin:0" data-zh="① 面板地址：带 https:// 的完整域名（如 https://panel.example.com），末尾不加斜杠和路径。② API 密钥：在面板「账户 → API 凭据」新建一枚 Client 类型的密钥，复制整串 ptlc_ 开头的值。"
+             data-en="① Panel URL: full https:// domain, no trailing slash or path. ② API key: create a Client-type key under Account → API Credentials and copy the ptlc_ value.">① 面板地址：带 https:// 的完整域名（如 https://panel.example.com），末尾不加斜杠和路径。② API 密钥：在面板「账户 → API 凭据」新建一枚 Client 类型的密钥，复制整串 ptlc_ 开头的值。</p>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin:0 0 8px" data-zh="点「测试连接」" data-en="Click 'Test connection'">点「测试连接」</h3>
+          <p class="muted" style="margin:0" data-zh="设置卡片里有「测试连接」按钮：成功会显示可访问的服务器数量；失败会明确提示是密钥问题（401/403）还是地址问题（404/网络不可达），按提示改即可。"
+             data-en="The Settings card has a Test button: success shows how many servers are reachable; failure tells you whether it's the key (401/403) or the URL (404/unreachable).">设置卡片里有「测试连接」按钮：成功会显示可访问的服务器数量；失败会明确提示是密钥问题（401/403）还是地址问题（404/网络不可达），按提示改即可。</p>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:16px"
+         data-zh="只读模式：设置里打开「只读」后，客户端只能看不能改（电源/命令/文件写入全部禁用），适合给别人演示或临时借人用。"
+         data-en="Read-only mode: enabling it in Settings disables all writes (power, commands, file changes) — handy for demos or lending the app.">
+        只读模式：设置里打开「只读」后，客户端只能看不能改（电源/命令/文件写入全部禁用），适合给别人演示或临时借人用。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ step 4 ============ -->
+  <section class="section section--tight" id="step4">
+    <div class="wrap" style="max-width:820px">
+      <p class="eyebrow" data-zh="第 4 步" data-en="STEP 4">第 4 步</p>
+      <h2 style="margin:14px 0 12px" data-zh="开始用" data-en="Start using it">开始用</h2>
+      <div class="grid grid--2" style="gap:16px">
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin:0 0 8px" data-zh="选一台服务器" data-en="Pick a server">选一台服务器</h3>
+          <p class="muted" style="margin:0" data-zh="左侧列表选中服务器 → 右侧显示实时状态（CPU/内存/磁盘/在线玩家，5 秒刷新）。颜色标记异常态，一眼看出哪台不对劲。"
+             data-en="Select a server on the left → live status on the right (CPU/RAM/disk/players, 5s refresh). Colors flag abnormal states at a glance.">左侧列表选中服务器 → 右侧显示实时状态（CPU/内存/磁盘/在线玩家，5 秒刷新）。颜色标记异常态，一眼看出哪台不对劲。</p>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin:0 0 8px" data-zh="常用操作" data-en="Everyday actions">常用操作</h3>
+          <p class="muted" style="margin:0" data-zh="电源（启动/停止/重启/强杀，危险操作二次确认）、控制台看日志发指令、文件浏览上传、备份（手动 + 自动）、服务器地址与数据库查询、操作审计。"
+             data-en="Power (start/stop/restart/kill, with confirmations), console logs and commands, file browsing and uploads, backups (manual + auto), network/database info, audit log.">电源（启动/停止/重启/强杀，危险操作二次确认）、控制台看日志发指令、文件浏览上传、备份（手动 + 自动）、服务器地址与数据库查询、操作审计。</p>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin:0 0 8px" data-zh="AI 助手" data-en="AI assistant">AI 助手</h3>
+          <p class="muted" style="margin:0" data-zh="关于卡片里填 AI API key（默认 DeepSeek，也可换其它 OpenAI 兼容端点）→ 打开「AI 助手」面板直接对话：『哪个服内存快满了』『帮我重启 smp 服』，它会自己调面板接口。"
+             data-en="Put an AI API key in the About card (DeepSeek by default, any OpenAI-compatible endpoint works) → chat in the Assistant panel: 'which server is low on RAM?', 'restart smp for me'.">关于卡片里填 AI API key（默认 DeepSeek，也可换其它 OpenAI 兼容端点）→ 打开「AI 助手」面板直接对话：『哪个服内存快满了』『帮我重启 smp 服』，它会自己调面板接口。</p>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin:0 0 8px" data-zh="云同步与更新" data-en="Sync and updates">云同步与更新</h3>
+          <p class="muted" style="margin:0" data-zh="设置里可把配置（面板地址、每服调优、告警）一键备份到云端，换电脑一键恢复；新版本会自动提示更新。"
+             data-en="Back up your config (panel URL, per-server tuning, alerts) to the cloud and restore on another machine; new versions prompt to update.">设置里可把配置（面板地址、每服调优、告警）一键备份到云端，换电脑一键恢复；新版本会自动提示更新。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ faq ============ -->
+  <section class="section section--tight" id="faq">
+    <div class="wrap" style="max-width:820px">
+      <p class="eyebrow" data-zh="常见问题" data-en="FAQ">常见问题</p>
+      <h2 style="margin:14px 0 18px" data-zh="卡住了看这里" data-en="Troubleshooting">卡住了看这里</h2>
+      <div class="grid grid--2" style="gap:16px">
+        <div class="card reveal">
+          <h3 style="font-size:16px;margin:0 0 8px" data-zh="激活失败 / 提示码无效" data-en="Activation failed">激活失败 / 提示码无效</h3>
+          <p class="muted" style="margin:0" data-zh="① 确认整串码完整粘贴（PTPRO1- 开头很长，别断行、别漏字符）；② 确认复制时没带多余空格；③ 若提示「已被使用/设备数已满」，先在旧设备解绑；④ 仍不行把「复制诊断信息」结果发我。"
+             data-en="① Paste the whole key (it's long — no line breaks); ② no extra spaces; ③ if it says device limit reached, unbind the old device; ④ still stuck, send me the 'copy diagnostics' output.">① 确认整串码完整粘贴（PTPRO1- 开头很长，别断行、别漏字符）；② 确认复制时没带多余空格；③ 若提示「已被使用/设备数已满」，先在旧设备解绑；④ 仍不行把「复制诊断信息」结果发我。</p>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:16px;margin:0 0 8px" data-zh="连接面板 401 / 密钥无效" data-en="401 / invalid key">连接面板 401 / 密钥无效</h3>
+          <p class="muted" style="margin:0" data-zh="多半是密钥类型错了：要新建 Client 类型（不是 Application），或用错了别人的密钥。到面板「账户 → API 凭据」重新建一枚再贴。"
+             data-en="Usually the key type: create a Client key (not Application), or you pasted someone else's key. Recreate one under Account → API Credentials.">多半是密钥类型错了：要新建 Client 类型（不是 Application），或用错了别人的密钥。到面板「账户 → API 凭据」重新建一枚再贴。</p>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:16px;margin:0 0 8px" data-zh="403 / 角色不对" data-en="403 / wrong role">403 / 角色不对</h3>
+          <p class="muted" style="margin:0" data-zh="密钥能连上但权限不够：需要面板账号对该服务器有访问权限（子用户需要被分配服务器）。找面板管理员开权限。"
+             data-en="The key works but lacks permission: your panel account needs access to that server (sub-users must be assigned). Ask the panel admin.">密钥能连上但权限不够：需要面板账号对该服务器有访问权限（子用户需要被分配服务器）。找面板管理员开权限。</p>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:16px;margin:0 0 8px" data-zh="404 / 地址错误" data-en="404 / wrong URL">404 / 地址错误</h3>
+          <p class="muted" style="margin:0" data-zh="面板地址要填域名根路径：https://panel.example.com（不要加 /api、不要带具体页面路径、末尾不要斜杠）。"
+             data-en="Use the domain root: https://panel.example.com — no /api, no page path, no trailing slash.">面板地址要填域名根路径：https://panel.example.com（不要加 /api、不要带具体页面路径、末尾不要斜杠）。</p>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:16px;margin:0 0 8px" data-zh="连不上面板 / 超时" data-en="Unreachable / timeout">连不上面板 / 超时</h3>
+          <p class="muted" style="margin:0" data-zh="① 浏览器先试试能不能打开面板；② 面板若挂了 CDN/防护（Cloudflare 等），可能拦程序请求；③ 公司/学校网络可能封非 443 端口或异常 UA，换网络试试。"
+             data-en="① Can your browser open the panel? ② A CDN/WAF (Cloudflare etc.) may block API clients; ③ corporate/school networks may block it — try another network.">① 浏览器先试试能不能打开面板；② 面板若挂了 CDN/防护（Cloudflare 等），可能拦程序请求；③ 公司/学校网络可能封非 443 端口或异常 UA，换网络试试。</p>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:16px;margin:0 0 8px" data-zh="其他问题" data-en="Anything else">其他问题</h3>
+          <p class="muted" style="margin:0" data-zh="加 QQ 2361034217，把「复制诊断信息」的内容一起发来（不含密钥，可放心发），定位会快很多。"
+             data-en="Add QQ 2361034217 and paste the diagnostics output (no secrets inside — safe to share).">加 QQ 2361034217，把「复制诊断信息」的内容一起发来（不含密钥，可放心发），定位会快很多。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ cta ============ -->
+  <section class="section section--tight">
+    <div class="wrap" style="max-width:820px">
+      <div class="card reveal" style="text-align:center;padding:34px 24px">
+        <h2 style="margin:0 0 10px" data-zh="都搞定了？" data-en="All set?">都搞定了？</h2>
+        <p class="muted" style="margin:0 0 18px"
+           data-zh="想更省事也可以直接用开源版 Pteropilot（MCP + AI 客户端），完全免费。"
+           data-en="You can also use the free open-source Pteropilot (MCP + AI client).">
+          想更省事也可以直接用开源版 Pteropilot（MCP + AI 客户端），完全免费。
+        </p>
+        <div class="link-row" style="justify-content:center">
+          <a class="btn btn--primary" href="pro.html" data-zh="查看 Pteropilot Pro" data-en="See Pteropilot Pro">查看 Pteropilot Pro</a>
+          <a class="btn btn--ghost" href="tutorial.html" data-zh="开源版教程" data-en="Open-source tutorial">开源版教程</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <span>© <span data-year>2026</span> telson.dev · <a href="index.html" data-zh="首页" data-en="Home">首页</a></span>
+    <span>
+      <a href="projects.html" data-zh="作品" data-en="Work">作品</a> ·
+      <a href="pteropilot.html">Pteropilot</a> ·
+      <a href="pro.html">Pro</a> ·
+      <a href="pro-guide.html" data-zh="Pro 指南" data-en="Pro guide">Pro 指南</a> ·
+      <a href="services.html" data-zh="接单" data-en="Services">接单</a> ·
+      <a href="https://github.com/telson-dev" target="_blank" rel="noopener">GitHub</a>
+    </span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js?v=20261026e" defer></script>
+</body>
+</html>

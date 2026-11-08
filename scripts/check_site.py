@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+import time
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse
@@ -61,9 +62,28 @@ class PageParser(HTMLParser):
             self.title += data
 
 
+def read_with_retry(path: Path, attempts: int = 3, delay: float = 0.15) -> str:
+    """读取页面文本，容忍 Windows 上偶发的短时占用/杀软扫描导致的读取失败。
+
+    读取失败时明确抛出 ReadError，而不是返回空文本——否则会被当成
+    「缺少 <title>」这类 SEO 错误，产生难以复现的误报。
+    """
+    last: Exception | None = None
+    for i in range(attempts):
+        try:
+            text = path.read_text(encoding="utf-8")
+            if text.strip():
+                return text
+            last = ValueError(f"文件内容为空（{path.name}）")
+        except (OSError, ValueError, UnicodeDecodeError) as exc:  # noqa: PERF203
+            last = exc
+        time.sleep(delay * (i + 1))
+    raise SystemExit(f"[read] 无法读取 {path}（已重试 {attempts} 次）：{last}")
+
+
 def parse_page(path: Path) -> PageParser:
     p = PageParser()
-    p.feed(path.read_text(encoding="utf-8"))
+    p.feed(read_with_retry(path))
     p.close()
     return p
 
@@ -128,7 +148,7 @@ def main() -> int:
     # 3) sitemap 一致性
     sitemap = root / "sitemap.xml"
     if sitemap.exists():
-        sm = sitemap.read_text(encoding="utf-8")
+        sm = read_with_retry(sitemap)
         locs = re.findall(r"<loc>([^<]+)</loc>", sm)
         sm_paths = set()
         for loc in locs:

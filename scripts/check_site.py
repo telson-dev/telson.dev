@@ -62,6 +62,66 @@ class PageParser(HTMLParser):
             self.title += data
 
 
+REPO_OPEN = Path(r"D:\Projects\pteropilot")
+REPO_PRO = Path(r"D:\Projects\pteropilot-pro")
+
+
+def check_tool_counts(root: Path, pages: dict) -> list[str]:
+    """页面里手写的工具数必须与源码一致（源码仓库不在场时跳过）。
+
+    为什么需要：changelog.html 的计数由 sync_changelog.py 自动生成，但 pro.html /
+    index.html 等页面的数字是手写的——工具一多就容易漂移（曾出现站点写「15 个 AI 工具」而实际已 17 个）。
+    """
+    problems: list[str] = []
+
+    # 开源版：数 @mcp.tool() 装饰器
+    server_py = REPO_OPEN / "src" / "pteropilot" / "server.py"
+    open_count = None
+    if server_py.exists():
+        open_count = server_py.read_text(encoding="utf-8").count("@mcp.tool()")
+    # Pro：数 TOOL_HANDLERS 字典条目（更准，直接数 "key": _tool_）
+    pro_app = REPO_PRO / "app.py"
+    pro_count = None
+    if pro_app.exists():
+        text = pro_app.read_text(encoding="utf-8")
+        if "TOOL_HANDLERS" in text:
+            segment = text.split("TOOL_HANDLERS", 1)[1]
+            pro_count = segment.count(': _tool_')
+
+    checked = 0
+    for page, parsed in pages.items():
+        if page.name == "404.html":
+            continue
+        raw = read_with_retry(page)
+        if open_count is not None:
+            for m in re.finditer(r"([0-9]+) 个 MCP 工具", raw):
+                checked += 1
+                if int(m.group(1)) != open_count:
+                    problems.append(
+                        f"[数字] {page.name}: 写「{m.group(1)} 个 MCP 工具」，源码实为 {open_count}"
+                    )
+        if pro_count is not None:
+            for m in re.finditer(r"([0-9]+) 个 AI 工具", raw):
+                checked += 1
+                if int(m.group(1)) != pro_count:
+                    problems.append(
+                        f"[数字] {page.name}: 写「{m.group(1)} 个 AI 工具」，Pro 源码实为 {pro_count}"
+                    )
+        if open_count is not None:
+            for m in re.finditer(r"([0-9]+) 个面板工具", raw):
+                checked += 1
+                if int(m.group(1)) != pro_count:
+                    problems.append(
+                        f"[数字] {page.name}: 写「{m.group(1)} 个面板工具」，Pro 源码实为 {pro_count}"
+                    )
+
+    if open_count is None and pro_count is None:
+        print("   （跳过工具数一致性：未找到同级 pteropilot / pteropilot-pro 仓库）")
+    elif checked == 0:
+        print("   （未在页面中找到工具数表述，跳过）")
+    return problems
+
+
 def read_with_retry(path: Path, attempts: int = 3, delay: float = 0.15) -> str:
     """读取页面文本，容忍 Windows 上偶发的短时占用/杀软扫描导致的读取失败。
 
@@ -234,6 +294,9 @@ def main() -> int:
 
     for w in warnings:
         print(f"  ⚠️  {w}")
+
+
+    errors.extend(check_tool_counts(root, pages))
     if errors:
         print(f"\n❌ 发现 {len(errors)} 个问题：")
         for e in errors:

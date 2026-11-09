@@ -105,7 +105,13 @@ def resolve_local(root: Path, page: Path, url: str) -> tuple[Path | None, str]:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="telson.dev 站点自检")
-    ap.add_argument("--root", default=".", help="站点根目录（默认当前目录）")
+    # 默认根目录 = 脚本所在仓库（scripts/ 的上一级），而不是当前工作目录：
+    # 用 cwd 会随 shell 位置漂移，扫到别的仓库的 HTML 后产生「缺少 title」这类假报警。
+    ap.add_argument(
+        "--root",
+        default=str(Path(__file__).resolve().parent.parent),
+        help="站点根目录（默认脚本所在仓库根目录）",
+    )
     ap.add_argument("--live", action="store_true", help="额外检查线上部署（HEAD 每个页面）")
     ap.add_argument("--base-url", default="https://telson.dev", help="线上基础 URL")
     args = ap.parse_args()

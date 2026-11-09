@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pteropilot 更新日志 — 版本历史 | telson.dev</title>
-<meta name="description" content="Pteropilot 更新日志：从 v0.1.0 到 v0.2.22 的版本历史——40 个 MCP 工具、批量并发化、日志搜索、连接诊断、网络地址、玩家统计、计划重启、备份下载等，320+ 项测试。">
+<meta name="description" content="Pteropilot 更新日志：从 v0.1.0 到 v0.2.23 的版本历史——40 个 MCP 工具、批量并发化、日志搜索、连接诊断、网络地址、玩家统计、计划重启、备份下载等，320+ 项测试。">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="telson.dev">
 <meta property="og:title" content="Pteropilot 更新日志">
-<meta property="og:description" content="v0.1.0 → v0.2.22 · 40 个工具 · 300+ 测试">
+<meta property="og:description" content="v0.1.0 → v0.2.23 · 40 个工具 · 300+ 测试">
 <meta property="og:url" content="https://telson.dev/changelog.html">
 <meta name="theme-color" content="#06090f">
 <link rel="icon" href="assets/img/icon.svg" type="image/svg+xml">
@@ -56,9 +56,9 @@
       <span class="page-hero__badge"><span class="dot-live"></span><span data-version data-zh="Pteropilot · 更新日志 · MIT" data-en="Pteropilot · Changelog · MIT">Pteropilot · 更新日志 · MIT</span></span>
       <h1 style="margin:22px 0 16px">更新日志</h1>
       <p class="lead" style="font-size:clamp(18px,2.1vw,22px);color:var(--text);font-weight:700"
-         data-zh="从 v0.1.0 到 v0.2.22：40 个工具、300+ 项测试，持续迭代。"
-         data-en="From v0.1.0 to v0.2.22: 40 tools, 300+ tests, iterating steadily.">
-        从 v0.1.0 到 v0.2.22：40 个工具、300+ 项测试，持续迭代。
+         data-zh="从 v0.1.0 到 v0.2.23：40 个工具、300+ 项测试，持续迭代。"
+         data-en="From v0.1.0 to v0.2.23: 40 tools, 300+ tests, iterating steadily.">
+        从 v0.1.0 到 v0.2.23：40 个工具、300+ 项测试，持续迭代。
       </p>
       <p class="lead" style="max-width:640px;margin-top:10px"
          data-zh="完整记录见 GitHub CHANGELOG；这里只列对使用者有影响的变更。"
@@ -77,6 +77,17 @@
     <div class="wrap" style="max-width:820px">
 
       <!-- CHANGELOG:START（此区由 scripts/sync_changelog.py 自动生成，勿手工编辑） -->
+
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.23 <span class="muted" style="font-size:13px;font-weight:400">2026-11-09</span></h2>
+        <ul class="ticks">
+          <li data-zh="`scripts/sync_release_notes.py`：把 CHANGELOG 对应版本章节搬进 GitHub Release 描述（含安装指引与变更历史链接）——自动生成的 release notes 只有一行链接，用户看不出改了什么。" data-en="`scripts/sync_release_notes.py`：把 CHANGELOG 对应版本章节搬进 GitHub Release 描述（含安装指引与变更历史链接）——自动生成的 release notes 只有一行链接，用户看不出改了什么。">`scripts/sync_release_notes.py`：把 CHANGELOG 对应版本章节搬进 GitHub Release 描述（含安装指引与变更历史链接）——自动生成的 release notes 只有一行链接，用户看不出改了什么。</li>
+          <li data-zh="`pteropilot --version`（也支持 `-V`/`-v`）：打印版本与**当前工具数**，不校验面板配置、不启动 server。用于确认装的是不是最新版（PyPI 可能滞后于 GitHub Release）。" data-en="`pteropilot --version`（也支持 `-V`/`-v`）：打印版本与**当前工具数**，不校验面板配置、不启动 server。用于确认装的是不是最新版（PyPI 可能滞后于 GitHub Release）。">`pteropilot --version`（也支持 `-V`/`-v`）：打印版本与**当前工具数**，不校验面板配置、不启动 server。用于确认装的是不是最新版（PyPI 可能滞后于 GitHub Release）。</li>
+          <li data-zh="发布自动化 `scripts/release.py`：用 GitHub API 打 tag 触发 `release.yml` 自动构建并发布 Release（绕开被墙的 `git push --tags`）；内置三道检查——远端 pyproject 版本必须与本地一致（防止 tag 打出旧版包）、工作区必须干净、tag 不可重复。" data-en="发布自动化 `scripts/release.py`：用 GitHub API 打 tag 触发 `release.yml` 自动构建并发布 Release（绕开被墙的 `git push --tags`）；内置三道检查——远端 pyproject 版本必须与本地一致（防止 tag 打出旧版包）、工作区必须干净、tag 不可重复。">发布自动化 `scripts/release.py`：用 GitHub API 打 tag 触发 `release.yml` 自动构建并发布 Release（绕开被墙的 `git push --tags`）；内置三道检查——远端 pyproject 版本必须与本地一致（防止 tag 打出旧版包）、工作区必须干净、tag 不可重复。</li>
+          <li data-zh="`release.yml` 只上传 wheel 与 sdist：原来用 `dist/*` 会把 `uv build` 生成的 `.gitignore` 当成附件传到 Release。（Fixed）" data-en="`release.yml` 只上传 wheel 与 sdist：原来用 `dist/*` 会把 `uv build` 生成的 `.gitignore` 当成附件传到 Release。（Fixed）">`release.yml` 只上传 wheel 与 sdist：原来用 `dist/*` 会把 `uv build` 生成的 `.gitignore` 当成附件传到 Release。（Fixed）</li>
+          <li data-zh="修复 v0.2.22 Release 错版：远端 pyproject 版本曾停留在 0.2.7，导致 tag 指向的代码构建出旧版本包。（Fixed）" data-en="修复 v0.2.22 Release 错版：远端 pyproject 版本曾停留在 0.2.7，导致 tag 指向的代码构建出旧版本包。（Fixed）">修复 v0.2.22 Release 错版：远端 pyproject 版本曾停留在 0.2.7，导致 tag 指向的代码构建出旧版本包。（Fixed）</li>
+        </ul>
+      </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.22 <span class="muted" style="font-size:13px;font-weight:400">2026-11-09</span></h2>

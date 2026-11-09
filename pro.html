@@ -152,6 +152,62 @@
   </section>
 
   <!-- ============ pricing ============ -->
+  <!-- ============ 开源版 vs Pro 对比 ============ -->
+  <section class="section section--tight" id="compare">
+    <div class="wrap">
+      <p class="eyebrow" data-zh="怎么选" data-en="WHICH ONE">怎么选</p>
+      <h2 style="margin:14px 0 10px" data-zh="开源版 vs Pro" data-en="Open source vs Pro">开源版 vs Pro</h2>
+      <p class="muted" style="margin:0 0 20px;max-width:640px"
+         data-zh="开源版免费、给会配 AI 客户端的人；Pro 是给「想点点鼠标就管服务器」的人的图形客户端。"
+         data-en="The open-source server is free — bring your own AI client. Pro is for people who want to click and manage.">
+         开源版免费、给会配 AI 客户端的人；Pro 是给「想点点鼠标就管服务器」的人的图形客户端。
+      </p>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:560px">
+          <thead>
+            <tr>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.14);color:var(--muted,#9aa6b8);font-weight:500" data-zh="对比项" data-en="Item">对比项</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.14);font-weight:600" data-zh="开源版（免费）" data-en="Open source (free)">开源版（免费）</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.14);font-weight:600" data-zh="Pro（¥59.99 终身）" data-en="Pro (¥59.99 lifetime)">Pro（¥59.99 终身）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);color:var(--muted,#9aa6b8)">形态</td>
+              <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)" data-zh="MCP server（在 Claude / Cursor 里用）" data-en="MCP server (used inside Claude / Cursor)">MCP server（在 Claude / Cursor 里用）</td>
+              <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)" data-zh="Windows 桌面客户端（图形界面）" data-en="Windows desktop client (GUI)">Windows 桌面客户端（图形界面）</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);color:var(--muted,#9aa6b8)">需要 AI 客户端</td>
+              <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)" data-zh="需要（装 Claude / Cursor 并配 JSON）" data-en="Yes (install Claude / Cursor and configure JSON)">需要（装 Claude / Cursor 并配 JSON）</td>
+              <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)" data-zh="不需要，内置 AI 助手（自己填 API key）" data-en="No — built-in AI assistant (bring your own API key)">不需要，内置 AI 助手（自己填 API key）</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);color:var(--muted,#9aa6b8)">能力覆盖</td>
+              <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)" data-zh="41 个 MCP 工具（状态/电源/文件/备份/玩家/数据库/审计/定时任务…）" data-en="41 MCP tools (status / power / files / backups / players / DB / audit / schedules)">41 个 MCP 工具（状态/电源/文件/备份/玩家/数据库/审计/定时任务…）</td>
+              <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)" data-zh="图形界面全套 + 15 个 AI 工具" data-en="Full GUI plus 15 AI tools">图形界面全套 + 15 个 AI 工具</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);color:var(--muted,#9aa6b8)">崩服告警</td>
+              <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)" data-zh="webhook / 邮件，需自己配 cron 或计划任务" data-en="Webhook / e-mail — you set up cron or Task Scheduler">webhook / 邮件，需自己配 cron 或计划任务</td>
+              <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)" data-zh="内置轮询：界面提示 + 可选 webhook 推送，一键测试" data-en="Built-in polling: in-app alerts plus optional webhook push, one-click test">内置轮询：界面提示 + 可选 webhook 推送，一键测试</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);color:var(--muted,#9aa6b8)">安装门槛</td>
+              <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)" data-zh="Python 环境 + 改配置" data-en="Python environment plus config edits">Python 环境 + 改配置</td>
+              <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)" data-zh="下载即用（标准版 / Lite 便携版）" data-en="Download and run (desktop or portable Lite)">下载即用（标准版 / Lite 便携版）</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 12px;color:var(--muted,#9aa6b8)">云同步 · 自动更新</td>
+              <td style="padding:10px 12px" data-zh="无" data-en="None">无</td>
+              <td style="padding:10px 12px" data-zh="有（配置备份、版本提示）" data-en="Yes (config backup, update prompts)">有（配置备份、版本提示）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <section class="section section--tight" id="buy">
     <div class="wrap">
       <div class="contact-band reveal" style="text-align:center">

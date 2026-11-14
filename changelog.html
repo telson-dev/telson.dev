@@ -18,7 +18,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Pteropilot 更新日志","description":"Pteropilot 从 v0.1.0 到 v0.2.14 的版本历史","url":"https://telson.dev/changelog.html","author":{"@type":"Person","name":"telson"}}</script>
 <link rel="stylesheet" href="assets/css/style.css?v=20261026e">
 </head>
-<body data-title-zh="Pteropilot 更新日志 — 版本历史 | telson.dev" data-title-en="Pteropilot Changelog — Version History | telson.dev">
+<body data-title-zh="Pteropilot 更新日志 — 版本历史 | telson.dev" data-title-tw="Pteropilot 更新日誌 — 版本歷史 | telson.dev" data-title-en="Pteropilot Changelog — Version History | telson.dev">
 
 <div class="bg-field"></div>
 <div class="bg-grid"></div>
@@ -35,15 +35,16 @@
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
     <nav class="nav__links" id="nav-links" aria-label="主导航">
-      <a class="nav__link" href="index.html" data-zh="首页" data-en="Home">首页</a>
+      <a class="nav__link" href="index.html" data-zh="首页" data-zh-tw="首頁" data-en="Home">首页</a>
       <a class="nav__link" href="projects.html" data-zh="作品" data-en="Work">作品</a>
       <a class="nav__link" href="pteropilot.html">Pteropilot</a>
       <a class="nav__link" href="tutorial.html" data-zh="教程" data-en="Tutorial">教程</a>
       <div class="lang-toggle" role="group" aria-label="语言 / Language">
         <button type="button" data-lang="zh" aria-pressed="true">中</button>
+        <button type="button" data-lang="zh-TW" aria-pressed="false">繁</button>
         <button type="button" data-lang="en" aria-pressed="false">EN</button>
       </div>
-      <a class="nav__link nav__link--cta" href="services.html" data-zh="接单 · 找我干活" data-en="Hire me">接单 · 找我干活</a>
+      <a class="nav__link nav__link--cta" href="services.html" data-zh="接单 · 找我干活" data-zh-tw="接單 · 找我幹活" data-en="Hire me">接单 · 找我干活</a>
     </nav>
   </div>
 </header>
@@ -53,21 +54,21 @@
   <!-- ============ page hero ============ -->
   <section class="page-hero">
     <div class="wrap">
-      <span class="page-hero__badge"><span class="dot-live"></span><span data-version data-zh="Pteropilot · 更新日志 · MIT" data-en="Pteropilot · Changelog · MIT">Pteropilot · 更新日志 · MIT</span></span>
+      <span class="page-hero__badge"><span class="dot-live"></span><span data-version data-zh="Pteropilot · 更新日志 · MIT" data-zh-tw="Pteropilot · 更新日誌 · MIT" data-en="Pteropilot · Changelog · MIT">Pteropilot · 更新日志 · MIT</span></span>
       <h1 style="margin:22px 0 16px">更新日志</h1>
       <p class="lead" style="font-size:clamp(18px,2.1vw,22px);color:var(--text);font-weight:700"
-         data-zh="从 v0.1.0 到 v0.2.27：43 个工具、300+ 项测试，持续迭代。"
+         data-zh="从 v0.1.0 到 v0.2.27：43 个工具、300+ 项测试，持续迭代。" data-zh-tw="從 v0.1.0 到 v0.2.27：43 個工具、300+ 項測試，持續迭代。"
          data-en="From v0.1.0 to v0.2.27: 43 tools, 300+ tests, iterating steadily.">
         从 v0.1.0 到 v0.2.27：43 个工具、300+ 项测试，持续迭代。
       </p>
       <p class="lead" style="max-width:640px;margin-top:10px"
-         data-zh="完整记录见 GitHub CHANGELOG；这里只列对使用者有影响的变更。"
+         data-zh="完整记录见 GitHub CHANGELOG；这里只列对使用者有影响的变更。" data-zh-tw="完整記錄見 GitHub CHANGELOG；這裡只列對使用者有影響的變更。"
          data-en="Full history lives in the GitHub CHANGELOG; only user-facing changes are listed here.">
         完整记录见 GitHub CHANGELOG；这里只列对使用者有影响的变更。
       </p>
       <div class="btn-row" style="margin-top:24px">
-        <a class="btn btn--primary" href="pteropilot.html" data-zh="回到项目页" data-en="Project page">回到项目页</a>
-        <a class="btn btn--ghost" href="https://github.com/telson-dev/pteropilot/blob/main/CHANGELOG.md" target="_blank" rel="noopener" data-zh="GitHub 完整记录 ↗" data-en="Full changelog on GitHub ↗">GitHub 完整记录 ↗</a>
+        <a class="btn btn--primary" href="pteropilot.html" data-zh="回到项目页" data-zh-tw="回到專案頁" data-en="Project page">回到项目页</a>
+        <a class="btn btn--ghost" href="https://github.com/telson-dev/pteropilot/blob/main/CHANGELOG.md" target="_blank" rel="noopener" data-zh="GitHub 完整记录 ↗" data-zh-tw="GitHub 完整記錄 ↗" data-en="Full changelog on GitHub ↗">GitHub 完整记录 ↗</a>
       </div>
     </div>
   </section>
@@ -81,226 +82,226 @@
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.27 <span class="muted" style="font-size:13px;font-weight:400">2026-11-12</span></h2>
         <ul class="ticks">
-          <li data-zh="`pteropilot --doctor` 环境自检：检查 Python 版本、面板配置、地址规范化（带 `/api` 会提示已剥掉）、密钥前缀角色（`ptla_` 用错会指出）、面板连通（401/403/404 分别给出含义与修法）、告警渠道；输出**不含密钥**，可整段贴给他人排查。配套 `--no-network` 只查配置不联网" data-en="`pteropilot --doctor` 环境自检：检查 Python 版本、面板配置、地址规范化（带 `/api` 会提示已剥掉）、密钥前缀角色（`ptla_` 用错会指出）、面板连通（401/403/404 分别给出含义与修法）、告警渠道；输出**不含密钥**，可整段贴给他人排查。配套 `--no-network` 只查配置不联网">`pteropilot --doctor` 环境自检：检查 Python 版本、面板配置、地址规范化（带 `/api` 会提示已剥掉）、密钥前缀角色（`ptla_` 用错会指出）、面板连通（401/403/404 分别给出含义与修法）、告警渠道；输出**不含密钥**，可整段贴给他人排查。配套 `--no-network` 只查配置不联网</li>
-          <li data-zh="`list_mounts` 挂载点查看工具（第 43 个）：列出服务器的额外存储挂载——名称、`source → target` 路径、只读/可写、是否用户可自行挂载。排查「我上传的文件怎么看不到」（挂载没配或只读）。只读。" data-en="`list_mounts` 挂载点查看工具（第 43 个）：列出服务器的额外存储挂载——名称、`source → target` 路径、只读/可写、是否用户可自行挂载。排查「我上传的文件怎么看不到」（挂载没配或只读）。只读。">`list_mounts` 挂载点查看工具（第 43 个）：列出服务器的额外存储挂载——名称、`source → target` 路径、只读/可写、是否用户可自行挂载。排查「我上传的文件怎么看不到」（挂载没配或只读）。只读。</li>
-          <li data-zh="**告警推送失败不再伪装成「查询失败」**：webhook/邮件发送失败时单独归入 `send_failed` / `send_errors`，输出醒目警告并让进程**退出码 3**（此前混在查询错误里、退出码仍 0——服务器真挂了、告警又没发出去时，用户会以为有监控实际没人收到，属最危险的静默失败）；一条都没发出时也不推进冷却状态，下次扫描会重试（Fixed）" data-en="**告警推送失败不再伪装成「查询失败」**：webhook/邮件发送失败时单独归入 `send_failed` / `send_errors`，输出醒目警告并让进程**退出码 3**（此前混在查询错误里、退出码仍 0——服务器真挂了、告警又没发出去时，用户会以为有监控实际没人收到，属最危险的静默失败）；一条都没发出时也不推进冷却状态，下次扫描会重试（Fixed）">**告警推送失败不再伪装成「查询失败」**：webhook/邮件发送失败时单独归入 `send_failed` / `send_errors`，输出醒目警告并让进程**退出码 3**（此前混在查询错误里、退出码仍 0——服务器真挂了、告警又没发出去时，用户会以为有监控实际没人收到，属最危险的静默失败）；一条都没发出时也不推进冷却状态，下次扫描会重试（Fixed）</li>
-          <li data-zh="`pteropilot-alerts --reset`：清空冷却/连续确认状态（调完灵敏度想立刻验证、或服务器已修好但还卡在冷却期时用）；只动状态文件、不碰按服务器配置，支持 `--dry-run` 与 `--json`" data-en="`pteropilot-alerts --reset`：清空冷却/连续确认状态（调完灵敏度想立刻验证、或服务器已修好但还卡在冷却期时用）；只动状态文件、不碰按服务器配置，支持 `--dry-run` 与 `--json`">`pteropilot-alerts --reset`：清空冷却/连续确认状态（调完灵敏度想立刻验证、或服务器已修好但还卡在冷却期时用）；只动状态文件、不碰按服务器配置，支持 `--dry-run` 与 `--json`</li>
-          <li data-zh="发布脚本（`scripts/release.py`、`scripts/sync_release_notes.py`）的 GitHub API 调用加入**指数退避重试**：网络抖动（RemoteDisconnected / 超时 / 连接错误）自动重试 3 次，HTTP 4xx/5xx 仍立即失败——曾因一次连接中断导致打 tag 半途失败（Changed）" data-en="发布脚本（`scripts/release.py`、`scripts/sync_release_notes.py`）的 GitHub API 调用加入**指数退避重试**：网络抖动（RemoteDisconnected / 超时 / 连接错误）自动重试 3 次，HTTP 4xx/5xx 仍立即失败——曾因一次连接中断导致打 tag 半途失败（Changed）">发布脚本（`scripts/release.py`、`scripts/sync_release_notes.py`）的 GitHub API 调用加入**指数退避重试**：网络抖动（RemoteDisconnected / 超时 / 连接错误）自动重试 3 次，HTTP 4xx/5xx 仍立即失败——曾因一次连接中断导致打 tag 半途失败（Changed）</li>
+          <li data-zh="`pteropilot --doctor` 环境自检：检查 Python 版本、面板配置、地址规范化（带 `/api` 会提示已剥掉）、密钥前缀角色（`ptla_` 用错会指出）、面板连通（401/403/404 分别给出含义与修法）、告警渠道；输出**不含密钥**，可整段贴给他人排查。配套 `--no-network` 只查配置不联网" data-zh-tw="`pteropilot --doctor` 環境自檢：檢查 Python 版本、面板配置、地址規範化（帶 `/api` 會提示已剝掉）、金鑰字首角色（`ptla_` 用錯會指出）、面板連通（401/403/404 分別給出含義與修法）、告警渠道；輸出**不含金鑰**，可整段貼給他人排查。配套 `--no-network` 只查配置不聯網" data-en="`pteropilot --doctor` 环境自检：检查 Python 版本、面板配置、地址规范化（带 `/api` 会提示已剥掉）、密钥前缀角色（`ptla_` 用错会指出）、面板连通（401/403/404 分别给出含义与修法）、告警渠道；输出**不含密钥**，可整段贴给他人排查。配套 `--no-network` 只查配置不联网">`pteropilot --doctor` 环境自检：检查 Python 版本、面板配置、地址规范化（带 `/api` 会提示已剥掉）、密钥前缀角色（`ptla_` 用错会指出）、面板连通（401/403/404 分别给出含义与修法）、告警渠道；输出**不含密钥**，可整段贴给他人排查。配套 `--no-network` 只查配置不联网</li>
+          <li data-zh="`list_mounts` 挂载点查看工具（第 43 个）：列出服务器的额外存储挂载——名称、`source → target` 路径、只读/可写、是否用户可自行挂载。排查「我上传的文件怎么看不到」（挂载没配或只读）。只读。" data-zh-tw="`list_mounts` 掛載點檢視工具（第 43 個）：列出伺服器的額外儲存掛載——名稱、`source → target` 路徑、只讀/可寫、是否使用者可自行掛載。排查「我上傳的檔案怎麼看不到」（掛載沒配或只讀）。只讀。" data-en="`list_mounts` 挂载点查看工具（第 43 个）：列出服务器的额外存储挂载——名称、`source → target` 路径、只读/可写、是否用户可自行挂载。排查「我上传的文件怎么看不到」（挂载没配或只读）。只读。">`list_mounts` 挂载点查看工具（第 43 个）：列出服务器的额外存储挂载——名称、`source → target` 路径、只读/可写、是否用户可自行挂载。排查「我上传的文件怎么看不到」（挂载没配或只读）。只读。</li>
+          <li data-zh="**告警推送失败不再伪装成「查询失败」**：webhook/邮件发送失败时单独归入 `send_failed` / `send_errors`，输出醒目警告并让进程**退出码 3**（此前混在查询错误里、退出码仍 0——服务器真挂了、告警又没发出去时，用户会以为有监控实际没人收到，属最危险的静默失败）；一条都没发出时也不推进冷却状态，下次扫描会重试（Fixed）" data-zh-tw="**告警推送失敗不再偽裝成「查詢失敗」**：webhook/郵件傳送失敗時單獨歸入 `send_failed` / `send_errors`，輸出醒目警告並讓程序**退出碼 3**（此前混在查詢錯誤裡、退出碼仍 0——伺服器真掛了、告警又沒發出去時，使用者會以為有監控實際沒人收到，屬最危險的靜默失敗）；一條都沒發出時也不推進冷卻狀態，下次掃描會重試（Fixed）" data-en="**告警推送失败不再伪装成「查询失败」**：webhook/邮件发送失败时单独归入 `send_failed` / `send_errors`，输出醒目警告并让进程**退出码 3**（此前混在查询错误里、退出码仍 0——服务器真挂了、告警又没发出去时，用户会以为有监控实际没人收到，属最危险的静默失败）；一条都没发出时也不推进冷却状态，下次扫描会重试（Fixed）">**告警推送失败不再伪装成「查询失败」**：webhook/邮件发送失败时单独归入 `send_failed` / `send_errors`，输出醒目警告并让进程**退出码 3**（此前混在查询错误里、退出码仍 0——服务器真挂了、告警又没发出去时，用户会以为有监控实际没人收到，属最危险的静默失败）；一条都没发出时也不推进冷却状态，下次扫描会重试（Fixed）</li>
+          <li data-zh="`pteropilot-alerts --reset`：清空冷却/连续确认状态（调完灵敏度想立刻验证、或服务器已修好但还卡在冷却期时用）；只动状态文件、不碰按服务器配置，支持 `--dry-run` 与 `--json`" data-zh-tw="`pteropilot-alerts --reset`：清空冷卻/連續確認狀態（調完靈敏度想立刻驗證、或伺服器已修好但還卡在冷卻期時用）；只動狀態檔案、不碰按伺服器配置，支援 `--dry-run` 與 `--json`" data-en="`pteropilot-alerts --reset`：清空冷却/连续确认状态（调完灵敏度想立刻验证、或服务器已修好但还卡在冷却期时用）；只动状态文件、不碰按服务器配置，支持 `--dry-run` 与 `--json`">`pteropilot-alerts --reset`：清空冷却/连续确认状态（调完灵敏度想立刻验证、或服务器已修好但还卡在冷却期时用）；只动状态文件、不碰按服务器配置，支持 `--dry-run` 与 `--json`</li>
+          <li data-zh="发布脚本（`scripts/release.py`、`scripts/sync_release_notes.py`）的 GitHub API 调用加入**指数退避重试**：网络抖动（RemoteDisconnected / 超时 / 连接错误）自动重试 3 次，HTTP 4xx/5xx 仍立即失败——曾因一次连接中断导致打 tag 半途失败（Changed）" data-zh-tw="釋出指令碼（`scripts/release.py`、`scripts/sync_release_notes.py`）的 GitHub API 呼叫加入**指數退避重試**：網路抖動（RemoteDisconnected / 超時 / 連線錯誤）自動重試 3 次，HTTP 4xx/5xx 仍立即失敗——曾因一次連線中斷導致打 tag 半途失敗（Changed）" data-en="发布脚本（`scripts/release.py`、`scripts/sync_release_notes.py`）的 GitHub API 调用加入**指数退避重试**：网络抖动（RemoteDisconnected / 超时 / 连接错误）自动重试 3 次，HTTP 4xx/5xx 仍立即失败——曾因一次连接中断导致打 tag 半途失败（Changed）">发布脚本（`scripts/release.py`、`scripts/sync_release_notes.py`）的 GitHub API 调用加入**指数退避重试**：网络抖动（RemoteDisconnected / 超时 / 连接错误）自动重试 3 次，HTTP 4xx/5xx 仍立即失败——曾因一次连接中断导致打 tag 半途失败（Changed）</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.26 <span class="muted" style="font-size:13px;font-weight:400">2026-11-11</span></h2>
         <ul class="ticks">
-          <li data-zh="`pteropilot --version` 在工具数明显偏少（&lt;30）时额外提示「可能装到了旧版本（PyPI 发布可能滞后）」，避免用户以为功能缺失（Changed）" data-en="`pteropilot --version` 在工具数明显偏少（&lt;30）时额外提示「可能装到了旧版本（PyPI 发布可能滞后）」，避免用户以为功能缺失（Changed）">`pteropilot --version` 在工具数明显偏少（&lt;30）时额外提示「可能装到了旧版本（PyPI 发布可能滞后）」，避免用户以为功能缺失（Changed）</li>
-          <li data-zh="README 安装章节：补国内 PyPI 镜像（清华源）命令与 `--version` 自检方法；把国内常不可用的 git+GitHub 安装方式换成 GitHub Release 下载 `.whl`，并明确说明本项目不提供代理方案（Changed）" data-en="README 安装章节：补国内 PyPI 镜像（清华源）命令与 `--version` 自检方法；把国内常不可用的 git+GitHub 安装方式换成 GitHub Release 下载 `.whl`，并明确说明本项目不提供代理方案（Changed）">README 安装章节：补国内 PyPI 镜像（清华源）命令与 `--version` 自检方法；把国内常不可用的 git+GitHub 安装方式换成 GitHub Release 下载 `.whl`，并明确说明本项目不提供代理方案（Changed）</li>
-          <li data-zh="**面板地址自动规范化**：`PANEL_URL` 填成 `https://panel.example.com/api`（面板文档常见写法）时，原来会拼出 `/api/api/client` → 404，看着像密钥错；现在自动剥掉 `/api`、`/api/client`、`/api/application` 后缀与尾斜杠，真实子路径（如 `/pterodactyl`）保持不变。（Fixed）" data-en="**面板地址自动规范化**：`PANEL_URL` 填成 `https://panel.example.com/api`（面板文档常见写法）时，原来会拼出 `/api/api/client` → 404，看着像密钥错；现在自动剥掉 `/api`、`/api/client`、`/api/application` 后缀与尾斜杠，真实子路径（如 `/pterodactyl`）保持不变。（Fixed）">**面板地址自动规范化**：`PANEL_URL` 填成 `https://panel.example.com/api`（面板文档常见写法）时，原来会拼出 `/api/api/client` → 404，看着像密钥错；现在自动剥掉 `/api`、`/api/client`、`/api/application` 后缀与尾斜杠，真实子路径（如 `/pterodactyl`）保持不变。（Fixed）</li>
+          <li data-zh="`pteropilot --version` 在工具数明显偏少（&lt;30）时额外提示「可能装到了旧版本（PyPI 发布可能滞后）」，避免用户以为功能缺失（Changed）" data-zh-tw="`pteropilot --version` 在工具數明顯偏少（&lt;30）時額外提示「可能裝到了舊版本（PyPI 釋出可能滯後）」，避免使用者以為功能缺失（Changed）" data-en="`pteropilot --version` 在工具数明显偏少（&lt;30）时额外提示「可能装到了旧版本（PyPI 发布可能滞后）」，避免用户以为功能缺失（Changed）">`pteropilot --version` 在工具数明显偏少（&lt;30）时额外提示「可能装到了旧版本（PyPI 发布可能滞后）」，避免用户以为功能缺失（Changed）</li>
+          <li data-zh="README 安装章节：补国内 PyPI 镜像（清华源）命令与 `--version` 自检方法；把国内常不可用的 git+GitHub 安装方式换成 GitHub Release 下载 `.whl`，并明确说明本项目不提供代理方案（Changed）" data-zh-tw="README 安裝章節：補國內 PyPI 映象（清華源）命令與 `--version` 自檢方法；把國內常不可用的 git+GitHub 安裝方式換成 GitHub Release 下載 `.whl`，並明確說明本專案不提供代理方案（Changed）" data-en="README 安装章节：补国内 PyPI 镜像（清华源）命令与 `--version` 自检方法；把国内常不可用的 git+GitHub 安装方式换成 GitHub Release 下载 `.whl`，并明确说明本项目不提供代理方案（Changed）">README 安装章节：补国内 PyPI 镜像（清华源）命令与 `--version` 自检方法；把国内常不可用的 git+GitHub 安装方式换成 GitHub Release 下载 `.whl`，并明确说明本项目不提供代理方案（Changed）</li>
+          <li data-zh="**面板地址自动规范化**：`PANEL_URL` 填成 `https://panel.example.com/api`（面板文档常见写法）时，原来会拼出 `/api/api/client` → 404，看着像密钥错；现在自动剥掉 `/api`、`/api/client`、`/api/application` 后缀与尾斜杠，真实子路径（如 `/pterodactyl`）保持不变。（Fixed）" data-zh-tw="**面板地址自動規範化**：`PANEL_URL` 填成 `https://panel.example.com/api`（面板文件常見寫法）時，原來會拼出 `/api/api/client` → 404，看著像金鑰錯；現在自動剝掉 `/api`、`/api/client`、`/api/application` 字尾與尾斜槓，真實子路徑（如 `/pterodactyl`）保持不變。（Fixed）" data-en="**面板地址自动规范化**：`PANEL_URL` 填成 `https://panel.example.com/api`（面板文档常见写法）时，原来会拼出 `/api/api/client` → 404，看着像密钥错；现在自动剥掉 `/api`、`/api/client`、`/api/application` 后缀与尾斜杠，真实子路径（如 `/pterodactyl`）保持不变。（Fixed）">**面板地址自动规范化**：`PANEL_URL` 填成 `https://panel.example.com/api`（面板文档常见写法）时，原来会拼出 `/api/api/client` → 404，看着像密钥错；现在自动剥掉 `/api`、`/api/client`、`/api/application` 后缀与尾斜杠，真实子路径（如 `/pterodactyl`）保持不变。（Fixed）</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.25 <span class="muted" style="font-size:13px;font-weight:400">2026-11-10</span></h2>
         <ul class="ticks">
-          <li data-zh="`list_server_users` 子用户权限查看工具（第 42 个）：列出能管理该服务器的子用户——邮箱/用户名 + 被授予的权限项数与权限大类，回答「谁能动我的服」。只读。" data-en="`list_server_users` 子用户权限查看工具（第 42 个）：列出能管理该服务器的子用户——邮箱/用户名 + 被授予的权限项数与权限大类，回答「谁能动我的服」。只读。">`list_server_users` 子用户权限查看工具（第 42 个）：列出能管理该服务器的子用户——邮箱/用户名 + 被授予的权限项数与权限大类，回答「谁能动我的服」。只读。</li>
+          <li data-zh="`list_server_users` 子用户权限查看工具（第 42 个）：列出能管理该服务器的子用户——邮箱/用户名 + 被授予的权限项数与权限大类，回答「谁能动我的服」。只读。" data-zh-tw="`list_server_users` 子使用者許可權檢視工具（第 42 個）：列出能管理該伺服器的子使用者——郵箱/使用者名稱 + 被授予的許可權項數與許可權大類，回答「誰能動我的服」。只讀。" data-en="`list_server_users` 子用户权限查看工具（第 42 个）：列出能管理该服务器的子用户——邮箱/用户名 + 被授予的权限项数与权限大类，回答「谁能动我的服」。只读。">`list_server_users` 子用户权限查看工具（第 42 个）：列出能管理该服务器的子用户——邮箱/用户名 + 被授予的权限项数与权限大类，回答「谁能动我的服」。只读。</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.24 <span class="muted" style="font-size:13px;font-weight:400">2026-11-09</span></h2>
         <ul class="ticks">
-          <li data-zh="`analyze_player_activity` 玩家活跃分析工具（第 41 个）：分析最近控制台日志里的加入/退出事件——活跃玩家排行（进/退次数）、高峰时段、日志末尾仍在线的人。只读，回答「谁最常来」「什么时候人多」；`top` 1-20 默认 10，并明确标注统计窗口受日志长度限制。" data-en="`analyze_player_activity` 玩家活跃分析工具（第 41 个）：分析最近控制台日志里的加入/退出事件——活跃玩家排行（进/退次数）、高峰时段、日志末尾仍在线的人。只读，回答「谁最常来」「什么时候人多」；`top` 1-20 默认 10，并明确标注统计窗口受日志长度限制。">`analyze_player_activity` 玩家活跃分析工具（第 41 个）：分析最近控制台日志里的加入/退出事件——活跃玩家排行（进/退次数）、高峰时段、日志末尾仍在线的人。只读，回答「谁最常来」「什么时候人多」；`top` 1-20 默认 10，并明确标注统计窗口受日志长度限制。</li>
-          <li data-zh="`scripts/release.py` 整棵树一致性检查：本地 HEAD tree 必须等于远端 main tree，任何漏推文件都会在打 tag 前被拦下。" data-en="`scripts/release.py` 整棵树一致性检查：本地 HEAD tree 必须等于远端 main tree，任何漏推文件都会在打 tag 前被拦下。">`scripts/release.py` 整棵树一致性检查：本地 HEAD tree 必须等于远端 main tree，任何漏推文件都会在打 tag 前被拦下。</li>
+          <li data-zh="`analyze_player_activity` 玩家活跃分析工具（第 41 个）：分析最近控制台日志里的加入/退出事件——活跃玩家排行（进/退次数）、高峰时段、日志末尾仍在线的人。只读，回答「谁最常来」「什么时候人多」；`top` 1-20 默认 10，并明确标注统计窗口受日志长度限制。" data-zh-tw="`analyze_player_activity` 玩家活躍分析工具（第 41 個）：分析最近控制檯日誌裡的加入/退出事件——活躍玩家排行（進/退次數）、高峰時段、日誌末尾仍線上的人。只讀，回答「誰最常來」「什麼時候人多」；`top` 1-20 預設 10，並明確標註統計視窗受日誌長度限制。" data-en="`analyze_player_activity` 玩家活跃分析工具（第 41 个）：分析最近控制台日志里的加入/退出事件——活跃玩家排行（进/退次数）、高峰时段、日志末尾仍在线的人。只读，回答「谁最常来」「什么时候人多」；`top` 1-20 默认 10，并明确标注统计窗口受日志长度限制。">`analyze_player_activity` 玩家活跃分析工具（第 41 个）：分析最近控制台日志里的加入/退出事件——活跃玩家排行（进/退次数）、高峰时段、日志末尾仍在线的人。只读，回答「谁最常来」「什么时候人多」；`top` 1-20 默认 10，并明确标注统计窗口受日志长度限制。</li>
+          <li data-zh="`scripts/release.py` 整棵树一致性检查：本地 HEAD tree 必须等于远端 main tree，任何漏推文件都会在打 tag 前被拦下。" data-zh-tw="`scripts/release.py` 整棵樹一致性檢查：本地 HEAD tree 必須等於遠端 main tree，任何漏推檔案都會在打 tag 前被攔下。" data-en="`scripts/release.py` 整棵树一致性检查：本地 HEAD tree 必须等于远端 main tree，任何漏推文件都会在打 tag 前被拦下。">`scripts/release.py` 整棵树一致性检查：本地 HEAD tree 必须等于远端 main tree，任何漏推文件都会在打 tag 前被拦下。</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.23 <span class="muted" style="font-size:13px;font-weight:400">2026-11-09</span></h2>
         <ul class="ticks">
-          <li data-zh="`scripts/sync_release_notes.py`：把 CHANGELOG 对应版本章节搬进 GitHub Release 描述（含安装指引与变更历史链接）——自动生成的 release notes 只有一行链接，用户看不出改了什么。" data-en="`scripts/sync_release_notes.py`：把 CHANGELOG 对应版本章节搬进 GitHub Release 描述（含安装指引与变更历史链接）——自动生成的 release notes 只有一行链接，用户看不出改了什么。">`scripts/sync_release_notes.py`：把 CHANGELOG 对应版本章节搬进 GitHub Release 描述（含安装指引与变更历史链接）——自动生成的 release notes 只有一行链接，用户看不出改了什么。</li>
-          <li data-zh="`pteropilot --version`（也支持 `-V`/`-v`）：打印版本与**当前工具数**，不校验面板配置、不启动 server。用于确认装的是不是最新版（PyPI 可能滞后于 GitHub Release）。" data-en="`pteropilot --version`（也支持 `-V`/`-v`）：打印版本与**当前工具数**，不校验面板配置、不启动 server。用于确认装的是不是最新版（PyPI 可能滞后于 GitHub Release）。">`pteropilot --version`（也支持 `-V`/`-v`）：打印版本与**当前工具数**，不校验面板配置、不启动 server。用于确认装的是不是最新版（PyPI 可能滞后于 GitHub Release）。</li>
-          <li data-zh="发布自动化 `scripts/release.py`：用 GitHub API 打 tag 触发 `release.yml` 自动构建并发布 Release（绕开被墙的 `git push --tags`）；内置三道检查——远端 pyproject 版本必须与本地一致（防止 tag 打出旧版包）、工作区必须干净、tag 不可重复。" data-en="发布自动化 `scripts/release.py`：用 GitHub API 打 tag 触发 `release.yml` 自动构建并发布 Release（绕开被墙的 `git push --tags`）；内置三道检查——远端 pyproject 版本必须与本地一致（防止 tag 打出旧版包）、工作区必须干净、tag 不可重复。">发布自动化 `scripts/release.py`：用 GitHub API 打 tag 触发 `release.yml` 自动构建并发布 Release（绕开被墙的 `git push --tags`）；内置三道检查——远端 pyproject 版本必须与本地一致（防止 tag 打出旧版包）、工作区必须干净、tag 不可重复。</li>
-          <li data-zh="`release.yml` 只上传 wheel 与 sdist：原来用 `dist/*` 会把 `uv build` 生成的 `.gitignore` 当成附件传到 Release。（Fixed）" data-en="`release.yml` 只上传 wheel 与 sdist：原来用 `dist/*` 会把 `uv build` 生成的 `.gitignore` 当成附件传到 Release。（Fixed）">`release.yml` 只上传 wheel 与 sdist：原来用 `dist/*` 会把 `uv build` 生成的 `.gitignore` 当成附件传到 Release。（Fixed）</li>
-          <li data-zh="修复 v0.2.22 Release 错版：远端 pyproject 版本曾停留在 0.2.7，导致 tag 指向的代码构建出旧版本包。（Fixed）" data-en="修复 v0.2.22 Release 错版：远端 pyproject 版本曾停留在 0.2.7，导致 tag 指向的代码构建出旧版本包。（Fixed）">修复 v0.2.22 Release 错版：远端 pyproject 版本曾停留在 0.2.7，导致 tag 指向的代码构建出旧版本包。（Fixed）</li>
+          <li data-zh="`scripts/sync_release_notes.py`：把 CHANGELOG 对应版本章节搬进 GitHub Release 描述（含安装指引与变更历史链接）——自动生成的 release notes 只有一行链接，用户看不出改了什么。" data-zh-tw="`scripts/sync_release_notes.py`：把 CHANGELOG 對應版本章節搬進 GitHub Release 描述（含安裝指引與變更歷史連結）——自動生成的 release notes 只有一行連結，使用者看不出改了什麼。" data-en="`scripts/sync_release_notes.py`：把 CHANGELOG 对应版本章节搬进 GitHub Release 描述（含安装指引与变更历史链接）——自动生成的 release notes 只有一行链接，用户看不出改了什么。">`scripts/sync_release_notes.py`：把 CHANGELOG 对应版本章节搬进 GitHub Release 描述（含安装指引与变更历史链接）——自动生成的 release notes 只有一行链接，用户看不出改了什么。</li>
+          <li data-zh="`pteropilot --version`（也支持 `-V`/`-v`）：打印版本与**当前工具数**，不校验面板配置、不启动 server。用于确认装的是不是最新版（PyPI 可能滞后于 GitHub Release）。" data-zh-tw="`pteropilot --version`（也支援 `-V`/`-v`）：列印版本與**當前工具數**，不校驗面板配置、不啟動 server。用於確認裝的是不是最新版（PyPI 可能滯後於 GitHub Release）。" data-en="`pteropilot --version`（也支持 `-V`/`-v`）：打印版本与**当前工具数**，不校验面板配置、不启动 server。用于确认装的是不是最新版（PyPI 可能滞后于 GitHub Release）。">`pteropilot --version`（也支持 `-V`/`-v`）：打印版本与**当前工具数**，不校验面板配置、不启动 server。用于确认装的是不是最新版（PyPI 可能滞后于 GitHub Release）。</li>
+          <li data-zh="发布自动化 `scripts/release.py`：用 GitHub API 打 tag 触发 `release.yml` 自动构建并发布 Release（绕开被墙的 `git push --tags`）；内置三道检查——远端 pyproject 版本必须与本地一致（防止 tag 打出旧版包）、工作区必须干净、tag 不可重复。" data-zh-tw="釋出自動化 `scripts/release.py`：用 GitHub API 打 tag 觸發 `release.yml` 自動構建併發布 Release（繞開被牆的 `git push --tags`）；內建三道檢查——遠端 pyproject 版本必須與本地一致（防止 tag 打出舊版包）、工作區必須乾淨、tag 不可重複。" data-en="发布自动化 `scripts/release.py`：用 GitHub API 打 tag 触发 `release.yml` 自动构建并发布 Release（绕开被墙的 `git push --tags`）；内置三道检查——远端 pyproject 版本必须与本地一致（防止 tag 打出旧版包）、工作区必须干净、tag 不可重复。">发布自动化 `scripts/release.py`：用 GitHub API 打 tag 触发 `release.yml` 自动构建并发布 Release（绕开被墙的 `git push --tags`）；内置三道检查——远端 pyproject 版本必须与本地一致（防止 tag 打出旧版包）、工作区必须干净、tag 不可重复。</li>
+          <li data-zh="`release.yml` 只上传 wheel 与 sdist：原来用 `dist/*` 会把 `uv build` 生成的 `.gitignore` 当成附件传到 Release。（Fixed）" data-zh-tw="`release.yml` 只上傳 wheel 與 sdist：原來用 `dist/*` 會把 `uv build` 生成的 `.gitignore` 當成附件傳到 Release。（Fixed）" data-en="`release.yml` 只上传 wheel 与 sdist：原来用 `dist/*` 会把 `uv build` 生成的 `.gitignore` 当成附件传到 Release。（Fixed）">`release.yml` 只上传 wheel 与 sdist：原来用 `dist/*` 会把 `uv build` 生成的 `.gitignore` 当成附件传到 Release。（Fixed）</li>
+          <li data-zh="修复 v0.2.22 Release 错版：远端 pyproject 版本曾停留在 0.2.7，导致 tag 指向的代码构建出旧版本包。（Fixed）" data-zh-tw="修復 v0.2.22 Release 錯版：遠端 pyproject 版本曾停留在 0.2.7，導致 tag 指向的程式碼構建出舊版本包。（Fixed）" data-en="修复 v0.2.22 Release 错版：远端 pyproject 版本曾停留在 0.2.7，导致 tag 指向的代码构建出旧版本包。（Fixed）">修复 v0.2.22 Release 错版：远端 pyproject 版本曾停留在 0.2.7，导致 tag 指向的代码构建出旧版本包。（Fixed）</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.22 <span class="muted" style="font-size:13px;font-weight:400">2026-11-09</span></h2>
         <ul class="ticks">
-          <li data-zh="`list_schedules` 定时任务查看工具（第 40 个）：列出服务器在面板里配置的计划任务——cron 表达式、是否启用、仅在线时执行、上次/下次运行时间、每任务步骤数。只读，回答「自动重启配好了吗」「这个服有哪些定时任务」。" data-en="`list_schedules` 定时任务查看工具（第 40 个）：列出服务器在面板里配置的计划任务——cron 表达式、是否启用、仅在线时执行、上次/下次运行时间、每任务步骤数。只读，回答「自动重启配好了吗」「这个服有哪些定时任务」。">`list_schedules` 定时任务查看工具（第 40 个）：列出服务器在面板里配置的计划任务——cron 表达式、是否启用、仅在线时执行、上次/下次运行时间、每任务步骤数。只读，回答「自动重启配好了吗」「这个服有哪些定时任务」。</li>
-          <li data-zh="`pteropilot-alerts --test` 通道自检：发一条测试消息验证 webhook/邮件配置是否正确（不读服务器、不写状态），失败时列出常见原因并以退出码 1 返回（便于脚本判断）。配置告警时先跑它，别等真崩服才发现没收到。" data-en="`pteropilot-alerts --test` 通道自检：发一条测试消息验证 webhook/邮件配置是否正确（不读服务器、不写状态），失败时列出常见原因并以退出码 1 返回（便于脚本判断）。配置告警时先跑它，别等真崩服才发现没收到。">`pteropilot-alerts --test` 通道自检：发一条测试消息验证 webhook/邮件配置是否正确（不读服务器、不写状态），失败时列出常见原因并以退出码 1 返回（便于脚本判断）。配置告警时先跑它，别等真崩服才发现没收到。</li>
-          <li data-zh="Windows 一键装告警计划任务：`scripts/install_alerts_task.ps1`——一条命令建计划任务（默认每 5 分钟），自动生成包装脚本（面板凭据写进去，后台运行不依赖环境变量；中文日志 UTF-8 正常）、日志落 `~/.pteropilot/alerts.log`，支持 `-Status` / `-Remove` / `-DryRun` / `-Exe` 与邮件通道。解决 README 只有 cron 示例、Windows 服主不会配的问题。" data-en="Windows 一键装告警计划任务：`scripts/install_alerts_task.ps1`——一条命令建计划任务（默认每 5 分钟），自动生成包装脚本（面板凭据写进去，后台运行不依赖环境变量；中文日志 UTF-8 正常）、日志落 `~/.pteropilot/alerts.log`，支持 `-Status` / `-Remove` / `-DryRun` / `-Exe` 与邮件通道。解决 README 只有 cron 示例、Windows 服主不会配的问题。">Windows 一键装告警计划任务：`scripts/install_alerts_task.ps1`——一条命令建计划任务（默认每 5 分钟），自动生成包装脚本（面板凭据写进去，后台运行不依赖环境变量；中文日志 UTF-8 正常）、日志落 `~/.pteropilot/alerts.log`，支持 `-Status` / `-Remove` / `-DryRun` / `-Exe` 与邮件通道。解决 README 只有 cron 示例、Windows 服主不会配的问题。</li>
+          <li data-zh="`list_schedules` 定时任务查看工具（第 40 个）：列出服务器在面板里配置的计划任务——cron 表达式、是否启用、仅在线时执行、上次/下次运行时间、每任务步骤数。只读，回答「自动重启配好了吗」「这个服有哪些定时任务」。" data-zh-tw="`list_schedules` 定時任務檢視工具（第 40 個）：列出伺服器在面板裡配置的計劃任務——cron 表示式、是否啟用、僅線上時執行、上次/下次執行時間、每任務步驟數。只讀，回答「自動重啟配好了嗎」「這個服有哪些定時任務」。" data-en="`list_schedules` 定时任务查看工具（第 40 个）：列出服务器在面板里配置的计划任务——cron 表达式、是否启用、仅在线时执行、上次/下次运行时间、每任务步骤数。只读，回答「自动重启配好了吗」「这个服有哪些定时任务」。">`list_schedules` 定时任务查看工具（第 40 个）：列出服务器在面板里配置的计划任务——cron 表达式、是否启用、仅在线时执行、上次/下次运行时间、每任务步骤数。只读，回答「自动重启配好了吗」「这个服有哪些定时任务」。</li>
+          <li data-zh="`pteropilot-alerts --test` 通道自检：发一条测试消息验证 webhook/邮件配置是否正确（不读服务器、不写状态），失败时列出常见原因并以退出码 1 返回（便于脚本判断）。配置告警时先跑它，别等真崩服才发现没收到。" data-zh-tw="`pteropilot-alerts --test` 通道自檢：發一條測試訊息驗證 webhook/郵件配置是否正確（不讀伺服器、不寫狀態），失敗時列出常見原因並以退出碼 1 返回（便於指令碼判斷）。配置告警時先跑它，別等真崩服才發現沒收到。" data-en="`pteropilot-alerts --test` 通道自检：发一条测试消息验证 webhook/邮件配置是否正确（不读服务器、不写状态），失败时列出常见原因并以退出码 1 返回（便于脚本判断）。配置告警时先跑它，别等真崩服才发现没收到。">`pteropilot-alerts --test` 通道自检：发一条测试消息验证 webhook/邮件配置是否正确（不读服务器、不写状态），失败时列出常见原因并以退出码 1 返回（便于脚本判断）。配置告警时先跑它，别等真崩服才发现没收到。</li>
+          <li data-zh="Windows 一键装告警计划任务：`scripts/install_alerts_task.ps1`——一条命令建计划任务（默认每 5 分钟），自动生成包装脚本（面板凭据写进去，后台运行不依赖环境变量；中文日志 UTF-8 正常）、日志落 `~/.pteropilot/alerts.log`，支持 `-Status` / `-Remove` / `-DryRun` / `-Exe` 与邮件通道。解决 README 只有 cron 示例、Windows 服主不会配的问题。" data-zh-tw="Windows 一鍵裝告警計劃任務：`scripts/install_alerts_task.ps1`——一條命令建計劃任務（預設每 5 分鐘），自動生成包裝指令碼（面板憑據寫進去，後臺執行不依賴環境變數；中文日誌 UTF-8 正常）、日誌落 `~/.pteropilot/alerts.log`，支援 `-Status` / `-Remove` / `-DryRun` / `-Exe` 與郵件通道。解決 README 只有 cron 示例、Windows 服主不會配的問題。" data-en="Windows 一键装告警计划任务：`scripts/install_alerts_task.ps1`——一条命令建计划任务（默认每 5 分钟），自动生成包装脚本（面板凭据写进去，后台运行不依赖环境变量；中文日志 UTF-8 正常）、日志落 `~/.pteropilot/alerts.log`，支持 `-Status` / `-Remove` / `-DryRun` / `-Exe` 与邮件通道。解决 README 只有 cron 示例、Windows 服主不会配的问题。">Windows 一键装告警计划任务：`scripts/install_alerts_task.ps1`——一条命令建计划任务（默认每 5 分钟），自动生成包装脚本（面板凭据写进去，后台运行不依赖环境变量；中文日志 UTF-8 正常）、日志落 `~/.pteropilot/alerts.log`，支持 `-Status` / `-Remove` / `-DryRun` / `-Exe` 与邮件通道。解决 README 只有 cron 示例、Windows 服主不会配的问题。</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.21 <span class="muted" style="font-size:13px;font-weight:400">2026-11-08</span></h2>
         <ul class="ticks">
-          <li data-zh="新增 get_server_activity 操作审计日志：查谁在什么时候重启了服务器、删了哪个文件、建了备份（面板事件流，系统/计划任务触发会标注）——第 39 个工具" data-en="New get_server_activity audit log: who restarted / deleted / backed up what and when — 39th tool">新增 get_server_activity 操作审计日志：查谁在什么时候重启了服务器、删了哪个文件、建了备份（面板事件流，系统/计划任务触发会标注）——第 39 个工具</li>
-          <li data-zh="参数 limit 1-100（默认 20 条），只读不改任何设置" data-en="limit 1-100 (default 20), read-only">参数 limit 1-100（默认 20 条），只读不改任何设置</li>
+          <li data-zh="新增 get_server_activity 操作审计日志：查谁在什么时候重启了服务器、删了哪个文件、建了备份（面板事件流，系统/计划任务触发会标注）——第 39 个工具" data-zh-tw="新增 get_server_activity 操作審計日誌：查誰在什麼時候重啟了伺服器、刪了哪個檔案、建了備份（面板事件流，系統/計劃任務觸發會標註）——第 39 個工具" data-en="New get_server_activity audit log: who restarted / deleted / backed up what and when — 39th tool">新增 get_server_activity 操作审计日志：查谁在什么时候重启了服务器、删了哪个文件、建了备份（面板事件流，系统/计划任务触发会标注）——第 39 个工具</li>
+          <li data-zh="参数 limit 1-100（默认 20 条），只读不改任何设置" data-zh-tw="引數 limit 1-100（預設 20 條），只讀不改任何設定" data-en="limit 1-100 (default 20), read-only">参数 limit 1-100（默认 20 条），只读不改任何设置</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.20 <span class="muted" style="font-size:13px;font-weight:400">2026-11-07</span></h2>
         <ul class="ticks">
-          <li data-zh="文档口径补全（endpoint 矩阵 / 路线图），无新功能（与 v0.2.19 功能一致）" data-en="Docs only: endpoint matrix and roadmap synced; no new features">文档口径补全（endpoint 矩阵 / 路线图），无新功能（与 v0.2.19 功能一致）</li>
+          <li data-zh="文档口径补全（endpoint 矩阵 / 路线图），无新功能（与 v0.2.19 功能一致）" data-zh-tw="文件口徑補全（endpoint 矩陣 / 路線圖），無新功能（與 v0.2.19 功能一致）" data-en="Docs only: endpoint matrix and roadmap synced; no new features">文档口径补全（endpoint 矩阵 / 路线图），无新功能（与 v0.2.19 功能一致）</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.19 <span class="muted" style="font-size:13px;font-weight:400">2026-11-07</span></h2>
         <ul class="ticks">
-          <li data-zh="新增 list_databases 数据库查看：面板里已分配的数据库主机/库名/用户名/来源限制（配 LuckPerms、CoreProtect 等 MySQL 插件时直接用）——第 38 个工具" data-en="New list_databases: panel-assigned database host/name/user/access rules — 38th tool">新增 list_databases 数据库查看：面板里已分配的数据库主机/库名/用户名/来源限制（配 LuckPerms、CoreProtect 等 MySQL 插件时直接用）——第 38 个工具</li>
-          <li data-zh="说明：数据库密码不在面板 API 返回范围内，工具会提示去面板网页端查看" data-en="Note: DB passwords are not exposed by the panel API; the tool points you to the panel UI">说明：数据库密码不在面板 API 返回范围内，工具会提示去面板网页端查看</li>
+          <li data-zh="新增 list_databases 数据库查看：面板里已分配的数据库主机/库名/用户名/来源限制（配 LuckPerms、CoreProtect 等 MySQL 插件时直接用）——第 38 个工具" data-zh-tw="新增 list_databases 資料庫檢視：面板裡已分配的資料庫主機/庫名/使用者名稱/來源限制（配 LuckPerms、CoreProtect 等 MySQL 外掛時直接用）——第 38 個工具" data-en="New list_databases: panel-assigned database host/name/user/access rules — 38th tool">新增 list_databases 数据库查看：面板里已分配的数据库主机/库名/用户名/来源限制（配 LuckPerms、CoreProtect 等 MySQL 插件时直接用）——第 38 个工具</li>
+          <li data-zh="说明：数据库密码不在面板 API 返回范围内，工具会提示去面板网页端查看" data-zh-tw="說明：資料庫密碼不在面板 API 返回範圍內，工具會提示去面板網頁端檢視" data-en="Note: DB passwords are not exposed by the panel API; the tool points you to the panel UI">说明：数据库密码不在面板 API 返回范围内，工具会提示去面板网页端查看</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.18 <span class="muted" style="font-size:13px;font-weight:400">2026-11-07</span></h2>
         <ul class="ticks">
-          <li data-zh="告警命令 pteropilot-alerts 增强：--dry-run 演练（只打印将通知谁，不发送）、--json 机器可读输出（便于 cron/监控脚本解析）" data-en="pteropilot-alerts gains --dry-run rehearsal and --json machine-readable output (for cron/monitoring scripts)">告警命令 pteropilot-alerts 增强：--dry-run 演练（只打印将通知谁，不发送）、--json 机器可读输出（便于 cron/监控脚本解析）</li>
-          <li data-zh="面板不可达/密钥错误时不再抛一堆堆栈，改为输出可读错误原因" data-en="Unreachable panel or bad key now yields a readable error instead of a stack trace">面板不可达/密钥错误时不再抛一堆堆栈，改为输出可读错误原因</li>
+          <li data-zh="告警命令 pteropilot-alerts 增强：--dry-run 演练（只打印将通知谁，不发送）、--json 机器可读输出（便于 cron/监控脚本解析）" data-zh-tw="告警命令 pteropilot-alerts 增強：--dry-run 演練（只列印將通知誰，不傳送）、--json 機器可讀輸出（便於 cron/監控指令碼解析）" data-en="pteropilot-alerts gains --dry-run rehearsal and --json machine-readable output (for cron/monitoring scripts)">告警命令 pteropilot-alerts 增强：--dry-run 演练（只打印将通知谁，不发送）、--json 机器可读输出（便于 cron/监控脚本解析）</li>
+          <li data-zh="面板不可达/密钥错误时不再抛一堆堆栈，改为输出可读错误原因" data-zh-tw="面板不可達/金鑰錯誤時不再拋一堆堆疊，改為輸出可讀錯誤原因" data-en="Unreachable panel or bad key now yields a readable error instead of a stack trace">面板不可达/密钥错误时不再抛一堆堆栈，改为输出可读错误原因</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.17 <span class="muted" style="font-size:13px;font-weight:400">2026-11-07</span></h2>
         <ul class="ticks">
-          <li data-zh="新增 get_server_network 网络分配查看：服务器 IP/端口（主地址 ⭐ 标记、附加端口、备注，支持 ip_alias 域名）——第 37 个工具" data-en="New get_server_network: server IP/port allocations (primary marked, extra ports, notes, ip_alias domain) — 37th tool">新增 get_server_network 网络分配查看：服务器 IP/端口（主地址 ⭐ 标记、附加端口、备注，支持 ip_alias 域名）——第 37 个工具</li>
+          <li data-zh="新增 get_server_network 网络分配查看：服务器 IP/端口（主地址 ⭐ 标记、附加端口、备注，支持 ip_alias 域名）——第 37 个工具" data-zh-tw="新增 get_server_network 網路分配檢視：伺服器 IP/埠（主地址 ⭐ 標記、附加埠、備註，支援 ip_alias 域名）——第 37 個工具" data-en="New get_server_network: server IP/port allocations (primary marked, extra ports, notes, ip_alias domain) — 37th tool">新增 get_server_network 网络分配查看：服务器 IP/端口（主地址 ⭐ 标记、附加端口、备注，支持 ip_alias 域名）——第 37 个工具</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.16 <span class="muted" style="font-size:13px;font-weight:400">2026-11-06</span></h2>
         <ul class="ticks">
-          <li data-zh="写操作批量工具 batch_power / batch_backup 支持「全部服务器」通配：作用于全部服务器时任何电源信号都强制二次确认（防误操作）" data-en="Write batch tools accept all-servers wildcard; any power signal over all servers requires confirmation">写操作批量工具 batch_power / batch_backup 支持「全部服务器」通配：作用于全部服务器时任何电源信号都强制二次确认（防误操作）</li>
+          <li data-zh="写操作批量工具 batch_power / batch_backup 支持「全部服务器」通配：作用于全部服务器时任何电源信号都强制二次确认（防误操作）" data-zh-tw="寫操作批次工具 batch_power / batch_backup 支援「全部伺服器」通配：作用於全部伺服器時任何電源訊號都強制二次確認（防誤操作）" data-en="Write batch tools accept all-servers wildcard; any power signal over all servers requires confirmation">写操作批量工具 batch_power / batch_backup 支持「全部服务器」通配：作用于全部服务器时任何电源信号都强制二次确认（防误操作）</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.15 <span class="muted" style="font-size:13px;font-weight:400">2026-11-06</span></h2>
         <ul class="ticks">
-          <li data-zh="批量读工具 batch_list_players / batch_get_console_log 支持「全部服务器」通配——查所有服的在线玩家/日志一句话搞定" data-en="Batch read tools accept all-servers wildcard: online players / logs across every server in one call">批量读工具 batch_list_players / batch_get_console_log 支持「全部服务器」通配——查所有服的在线玩家/日志一句话搞定</li>
+          <li data-zh="批量读工具 batch_list_players / batch_get_console_log 支持「全部服务器」通配——查所有服的在线玩家/日志一句话搞定" data-zh-tw="批次讀工具 batch_list_players / batch_get_console_log 支援「全部伺服器」通配——查所有服的線上玩家/日誌一句話搞定" data-en="Batch read tools accept all-servers wildcard: online players / logs across every server in one call">批量读工具 batch_list_players / batch_get_console_log 支持「全部服务器」通配——查所有服的在线玩家/日志一句话搞定</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.14 <span class="muted" style="font-size:13px;font-weight:400">2026-11-05</span></h2>
         <ul class="ticks">
-          <li data-zh="batch_get_status 并发化：多台服务器状态并发拉取（保序、单台失败不阻断）" data-en="batch_get_status is now concurrent (order kept, per-server failures tolerated)">batch_get_status 并发化：多台服务器状态并发拉取（保序、单台失败不阻断）</li>
+          <li data-zh="batch_get_status 并发化：多台服务器状态并发拉取（保序、单台失败不阻断）" data-zh-tw="batch_get_status 併發化：多臺伺服器狀態併發拉取（保序、單臺失敗不阻斷）" data-en="batch_get_status is now concurrent (order kept, per-server failures tolerated)">batch_get_status 并发化：多台服务器状态并发拉取（保序、单台失败不阻断）</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.13 <span class="muted" style="font-size:13px;font-weight:400">2026-11-05</span></h2>
         <ul class="ticks">
-          <li data-zh="新增 check_panel_connection 连接诊断：验证地址/密钥，401/403/404 给出可操作提示" data-en="New check_panel_connection: validates URL/key, actionable hints for 401/403/404">新增 check_panel_connection 连接诊断：验证地址/密钥，401/403/404 给出可操作提示</li>
+          <li data-zh="新增 check_panel_connection 连接诊断：验证地址/密钥，401/403/404 给出可操作提示" data-zh-tw="新增 check_panel_connection 連線診斷：驗證地址/金鑰，401/403/404 給出可操作提示" data-en="New check_panel_connection: validates URL/key, actionable hints for 401/403/404">新增 check_panel_connection 连接诊断：验证地址/密钥，401/403/404 给出可操作提示</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.12 <span class="muted" style="font-size:13px;font-weight:400">2026-11-05</span></h2>
         <ul class="ticks">
-          <li data-zh="新增 search_server_logs 日志搜索：关键字搜索（不区分大小写、带行号、末尾 5000 行）" data-en="New search_server_logs: case-insensitive keyword search with line numbers (last 5000 lines)">新增 search_server_logs 日志搜索：关键字搜索（不区分大小写、带行号、末尾 5000 行）</li>
+          <li data-zh="新增 search_server_logs 日志搜索：关键字搜索（不区分大小写、带行号、末尾 5000 行）" data-zh-tw="新增 search_server_logs 日誌搜尋：關鍵字搜尋（不區分大小寫、帶行號、末尾 5000 行）" data-en="New search_server_logs: case-insensitive keyword search with line numbers (last 5000 lines)">新增 search_server_logs 日志搜索：关键字搜索（不区分大小写、带行号、末尾 5000 行）</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.11 <span class="muted" style="font-size:13px;font-weight:400">2026-11-05</span></h2>
         <ul class="ticks">
-          <li data-zh="batch_backup_status 显示备份总大小 + 多台并发；get_server_status 网络流量人类可读" data-en="batch_backup_status shows total size and runs concurrently; human-readable network traffic in get_server_status">batch_backup_status 显示备份总大小 + 多台并发；get_server_status 网络流量人类可读</li>
+          <li data-zh="batch_backup_status 显示备份总大小 + 多台并发；get_server_status 网络流量人类可读" data-zh-tw="batch_backup_status 顯示備份總大小 + 多臺併發；get_server_status 網路流量人類可讀" data-en="batch_backup_status shows total size and runs concurrently; human-readable network traffic in get_server_status">batch_backup_status 显示备份总大小 + 多台并发；get_server_status 网络流量人类可读</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.10 <span class="muted" style="font-size:13px;font-weight:400">2026-11-04</span></h2>
         <ul class="ticks">
-          <li data-zh="list_backups / list_files 大小人类可读（1048576 → 1.0 MB），备份显示创建日期" data-en="Human-readable sizes in list_backups/list_files (1048576 → 1.0 MB); backup creation dates">list_backups / list_files 大小人类可读（1048576 → 1.0 MB），备份显示创建日期</li>
+          <li data-zh="list_backups / list_files 大小人类可读（1048576 → 1.0 MB），备份显示创建日期" data-zh-tw="list_backups / list_files 大小人類可讀（1048576 → 1.0 MB），備份顯示建立日期" data-en="Human-readable sizes in list_backups/list_files (1048576 → 1.0 MB); backup creation dates">list_backups / list_files 大小人类可读（1048576 → 1.0 MB），备份显示创建日期</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.9 <span class="muted" style="font-size:13px;font-weight:400">2026-11-04</span></h2>
         <ul class="ticks">
-          <li data-zh="get_server_status 显示内存/磁盘上限；在线时长格式化为人类可读（1 天 1 小时 1 分 1 秒）" data-en="Resource limits shown in get_server_status; uptime formatted as human-readable">get_server_status 显示内存/磁盘上限；在线时长格式化为人类可读（1 天 1 小时 1 分 1 秒）</li>
+          <li data-zh="get_server_status 显示内存/磁盘上限；在线时长格式化为人类可读（1 天 1 小时 1 分 1 秒）" data-zh-tw="get_server_status 顯示記憶體/磁碟上限；線上時長格式化為人類可讀（1 天 1 小時 1 分 1 秒）" data-en="Resource limits shown in get_server_status; uptime formatted as human-readable">get_server_status 显示内存/磁盘上限；在线时长格式化为人类可读（1 天 1 小时 1 分 1 秒）</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.8 <span class="muted" style="font-size:13px;font-weight:400">2026-11-03</span></h2>
         <ul class="ticks">
-          <li data-zh="新增 batch_list_players 批量在线玩家；get_server_status 增加在线玩家数（日志推断）" data-en="New batch_list_players; online player count in get_server_status (log-inferred)">新增 batch_list_players 批量在线玩家；get_server_status 增加在线玩家数（日志推断）</li>
+          <li data-zh="新增 batch_list_players 批量在线玩家；get_server_status 增加在线玩家数（日志推断）" data-zh-tw="新增 batch_list_players 批次線上玩家；get_server_status 增加線上玩家數（日誌推斷）" data-en="New batch_list_players; online player count in get_server_status (log-inferred)">新增 batch_list_players 批量在线玩家；get_server_status 增加在线玩家数（日志推断）</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.7 <span class="muted" style="font-size:13px;font-weight:400">2026-11-02</span></h2>
         <ul class="ticks">
-          <li data-zh="新增 get_backup_download（备份下载链接）、get_server_startup（启动命令与变量）、batch_get_console_log（批量日志）" data-en="New get_backup_download, get_server_startup, batch_get_console_log">新增 get_backup_download（备份下载链接）、get_server_startup（启动命令与变量）、batch_get_console_log（批量日志）</li>
-          <li data-zh="list_my_servers 支持 with_status 状态列与 status 过滤（如只看 running）" data-en="list_my_servers supports with_status and status filters (e.g. running only)">list_my_servers 支持 with_status 状态列与 status 过滤（如只看 running）</li>
-          <li data-zh="批量工具并发化：广播/批量电源/批量备份，多台耗时从 N× 降到 ≈1×" data-en="Batch tools parallelized: broadcast/power/backup now ~1x latency instead of Nx">批量工具并发化：广播/批量电源/批量备份，多台耗时从 N× 降到 ≈1×</li>
+          <li data-zh="新增 get_backup_download（备份下载链接）、get_server_startup（启动命令与变量）、batch_get_console_log（批量日志）" data-zh-tw="新增 get_backup_download（備份下載連結）、get_server_startup（啟動命令與變數）、batch_get_console_log（批次日誌）" data-en="New get_backup_download, get_server_startup, batch_get_console_log">新增 get_backup_download（备份下载链接）、get_server_startup（启动命令与变量）、batch_get_console_log（批量日志）</li>
+          <li data-zh="list_my_servers 支持 with_status 状态列与 status 过滤（如只看 running）" data-zh-tw="list_my_servers 支援 with_status 狀態列與 status 過濾（如只看 running）" data-en="list_my_servers supports with_status and status filters (e.g. running only)">list_my_servers 支持 with_status 状态列与 status 过滤（如只看 running）</li>
+          <li data-zh="批量工具并发化：广播/批量电源/批量备份，多台耗时从 N× 降到 ≈1×" data-zh-tw="批次工具併發化：廣播/批次電源/批次備份，多臺耗時從 N× 降到 ≈1×" data-en="Batch tools parallelized: broadcast/power/backup now ~1x latency instead of Nx">批量工具并发化：广播/批量电源/批量备份，多台耗时从 N× 降到 ≈1×</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.6 <span class="muted" style="font-size:13px;font-weight:400">2026-11-02</span></h2>
         <ul class="ticks">
-          <li data-zh="新增 broadcast_message（批量广播公告）、read_server_logs（日志排查）、player_history_stats（玩家活跃统计）、schedule_restart（公告 + 定时重启）" data-en="New broadcast_message, read_server_logs, player_history_stats, schedule_restart">新增 broadcast_message（批量广播公告）、read_server_logs（日志排查）、player_history_stats（玩家活跃统计）、schedule_restart（公告 + 定时重启）</li>
+          <li data-zh="新增 broadcast_message（批量广播公告）、read_server_logs（日志排查）、player_history_stats（玩家活跃统计）、schedule_restart（公告 + 定时重启）" data-zh-tw="新增 broadcast_message（批次廣播公告）、read_server_logs（日誌排查）、player_history_stats（玩家活躍統計）、schedule_restart（公告 + 定時重啟）" data-en="New broadcast_message, read_server_logs, player_history_stats, schedule_restart">新增 broadcast_message（批量广播公告）、read_server_logs（日志排查）、player_history_stats（玩家活跃统计）、schedule_restart（公告 + 定时重启）</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.5 <span class="muted" style="font-size:13px;font-weight:400">2026-10-28</span></h2>
         <ul class="ticks">
-          <li data-zh="真实面板实测工具 scripts/live_smoke.py（只读端到端探测，不触发写操作）" data-en="Real-panel live smoke tool (read-only end-to-end probing)">真实面板实测工具 scripts/live_smoke.py（只读端到端探测，不触发写操作）</li>
-          <li data-zh="diagnose_crash 扩充：看门狗超时、原生崩溃信号；密钥脱敏加固" data-en="diagnose_crash: watchdog timeouts, native crash signals; secret redaction hardening">diagnose_crash 扩充：看门狗超时、原生崩溃信号；密钥脱敏加固</li>
+          <li data-zh="真实面板实测工具 scripts/live_smoke.py（只读端到端探测，不触发写操作）" data-zh-tw="真實面板實測工具 scripts/live_smoke.py（只讀端到端探測，不觸發寫操作）" data-en="Real-panel live smoke tool (read-only end-to-end probing)">真实面板实测工具 scripts/live_smoke.py（只读端到端探测，不触发写操作）</li>
+          <li data-zh="diagnose_crash 扩充：看门狗超时、原生崩溃信号；密钥脱敏加固" data-zh-tw="diagnose_crash 擴充：看門狗超時、原生崩潰訊號；金鑰脫敏加固" data-en="diagnose_crash: watchdog timeouts, native crash signals; secret redaction hardening">diagnose_crash 扩充：看门狗超时、原生崩溃信号；密钥脱敏加固</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.4 <span class="muted" style="font-size:13px;font-weight:400">2026-10-28</span></h2>
         <ul class="ticks">
-          <li data-zh="新增 pteropilot-alerts 崩服告警命令：钉钉/企业微信 webhook + 邮件双通道、冷却去重、连续确认阈值、按服务器配置与路由" data-en="New pteropilot-alerts command: webhook + email channels, cooldowns, confirmation thresholds, per-server routing">新增 pteropilot-alerts 崩服告警命令：钉钉/企业微信 webhook + 邮件双通道、冷却去重、连续确认阈值、按服务器配置与路由</li>
-          <li data-zh="新增 batch_backup_status / batch_backup 批量备份；双面板兼容（PANEL_APP_KEY + 密钥角色诊断）" data-en="New batch backup tools; dual-panel support (PANEL_APP_KEY + key-role diagnostics)">新增 batch_backup_status / batch_backup 批量备份；双面板兼容（PANEL_APP_KEY + 密钥角色诊断）</li>
+          <li data-zh="新增 pteropilot-alerts 崩服告警命令：钉钉/企业微信 webhook + 邮件双通道、冷却去重、连续确认阈值、按服务器配置与路由" data-zh-tw="新增 pteropilot-alerts 崩服告警命令：釘釘/企業微信 webhook + 郵件雙通道、冷卻去重、連續確認閾值、按伺服器配置與路由" data-en="New pteropilot-alerts command: webhook + email channels, cooldowns, confirmation thresholds, per-server routing">新增 pteropilot-alerts 崩服告警命令：钉钉/企业微信 webhook + 邮件双通道、冷却去重、连续确认阈值、按服务器配置与路由</li>
+          <li data-zh="新增 batch_backup_status / batch_backup 批量备份；双面板兼容（PANEL_APP_KEY + 密钥角色诊断）" data-zh-tw="新增 batch_backup_status / batch_backup 批次備份；雙面板相容（PANEL_APP_KEY + 金鑰角色診斷）" data-en="New batch backup tools; dual-panel support (PANEL_APP_KEY + key-role diagnostics)">新增 batch_backup_status / batch_backup 批量备份；双面板兼容（PANEL_APP_KEY + 密钥角色诊断）</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.3 <span class="muted" style="font-size:13px;font-weight:400">2026-10-26</span></h2>
         <ul class="ticks">
-          <li data-zh="新增 diagnose_crash 崩溃诊断（内存不足 / JVM 崩溃 / 反复崩溃循环）与 batch_power 批量电源" data-en="New diagnose_crash and batch_power">新增 diagnose_crash 崩溃诊断（内存不足 / JVM 崩溃 / 反复崩溃循环）与 batch_power 批量电源</li>
+          <li data-zh="新增 diagnose_crash 崩溃诊断（内存不足 / JVM 崩溃 / 反复崩溃循环）与 batch_power 批量电源" data-zh-tw="新增 diagnose_crash 崩潰診斷（記憶體不足 / JVM 崩潰 / 反覆崩潰迴圈）與 batch_power 批次電源" data-en="New diagnose_crash and batch_power">新增 diagnose_crash 崩溃诊断（内存不足 / JVM 崩溃 / 反复崩溃循环）与 batch_power 批量电源</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.2 <span class="muted" style="font-size:13px;font-weight:400">2026-10-24</span></h2>
         <ul class="ticks">
-          <li data-zh="新增 list_players、check_server_health、batch_get_status；MCP 握手真实版本号；面板错误中文化" data-en="New list_players, check_server_health, batch_get_status; real version in MCP handshake; localized panel errors">新增 list_players、check_server_health、batch_get_status；MCP 握手真实版本号；面板错误中文化</li>
+          <li data-zh="新增 list_players、check_server_health、batch_get_status；MCP 握手真实版本号；面板错误中文化" data-zh-tw="新增 list_players、check_server_health、batch_get_status；MCP 握手真實版本號；面板錯誤中文化" data-en="New list_players, check_server_health, batch_get_status; real version in MCP handshake; localized panel errors">新增 list_players、check_server_health、batch_get_status；MCP 握手真实版本号；面板错误中文化</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.1 <span class="muted" style="font-size:13px;font-weight:400">2026-10-18</span></h2>
         <ul class="ticks">
-          <li data-zh="新增 `get_console_log` 工具：读取服务器控制台最近日志，补全「发指令 → 看回馈」闭环。" data-en="新增 `get_console_log` 工具：读取服务器控制台最近日志，补全「发指令 → 看回馈」闭环。">新增 `get_console_log` 工具：读取服务器控制台最近日志，补全「发指令 → 看回馈」闭环。</li>
-          <li data-zh="`stop` 电源操作纳入二次确认（与 restart/kill 一致；start 免确认）。（Changed）" data-en="`stop` 电源操作纳入二次确认（与 restart/kill 一致；start 免确认）。（Changed）">`stop` 电源操作纳入二次确认（与 restart/kill 一致；start 免确认）。（Changed）</li>
-          <li data-zh="`PANEL_READONLY` 容错增强：`1/true/yes/on`（大小写、空格不敏感）均能开启只读模式。（Changed）" data-en="`PANEL_READONLY` 容错增强：`1/true/yes/on`（大小写、空格不敏感）均能开启只读模式。（Changed）">`PANEL_READONLY` 容错增强：`1/true/yes/on`（大小写、空格不敏感）均能开启只读模式。（Changed）</li>
-          <li data-zh="修复 SECURITY.md 漏洞报告链接的相对路径 404。（Fixed）" data-en="修复 SECURITY.md 漏洞报告链接的相对路径 404。（Fixed）">修复 SECURITY.md 漏洞报告链接的相对路径 404。（Fixed）</li>
+          <li data-zh="新增 `get_console_log` 工具：读取服务器控制台最近日志，补全「发指令 → 看回馈」闭环。" data-zh-tw="新增 `get_console_log` 工具：讀取伺服器控制檯最近日誌，補全「發指令 → 看回饋」閉環。" data-en="新增 `get_console_log` 工具：读取服务器控制台最近日志，补全「发指令 → 看回馈」闭环。">新增 `get_console_log` 工具：读取服务器控制台最近日志，补全「发指令 → 看回馈」闭环。</li>
+          <li data-zh="`stop` 电源操作纳入二次确认（与 restart/kill 一致；start 免确认）。（Changed）" data-zh-tw="`stop` 電源操作納入二次確認（與 restart/kill 一致；start 免確認）。（Changed）" data-en="`stop` 电源操作纳入二次确认（与 restart/kill 一致；start 免确认）。（Changed）">`stop` 电源操作纳入二次确认（与 restart/kill 一致；start 免确认）。（Changed）</li>
+          <li data-zh="`PANEL_READONLY` 容错增强：`1/true/yes/on`（大小写、空格不敏感）均能开启只读模式。（Changed）" data-zh-tw="`PANEL_READONLY` 容錯增強：`1/true/yes/on`（大小寫、空格不敏感）均能開啟只讀模式。（Changed）" data-en="`PANEL_READONLY` 容错增强：`1/true/yes/on`（大小写、空格不敏感）均能开启只读模式。（Changed）">`PANEL_READONLY` 容错增强：`1/true/yes/on`（大小写、空格不敏感）均能开启只读模式。（Changed）</li>
+          <li data-zh="修复 SECURITY.md 漏洞报告链接的相对路径 404。（Fixed）" data-zh-tw="修復 SECURITY.md 漏洞報告連結的相對路徑 404。（Fixed）" data-en="修复 SECURITY.md 漏洞报告链接的相对路径 404。（Fixed）">修复 SECURITY.md 漏洞报告链接的相对路径 404。（Fixed）</li>
         </ul>
       </article>
 
       <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.0 <span class="muted" style="font-size:13px;font-weight:400">2026-09-30</span></h2>
         <ul class="ticks">
-          <li data-zh="Pelican 兼容性验证；新增 upload_file / download_file / create_folder / rename_file 四个文件工具；修复状态与分页问题" data-en="Pelican compatibility; four new file tools; status and pagination fixes">Pelican 兼容性验证；新增 upload_file / download_file / create_folder / rename_file 四个文件工具；修复状态与分页问题</li>
+          <li data-zh="Pelican 兼容性验证；新增 upload_file / download_file / create_folder / rename_file 四个文件工具；修复状态与分页问题" data-zh-tw="Pelican 相容性驗證；新增 upload_file / download_file / create_folder / rename_file 四個檔案工具；修復狀態與分頁問題" data-en="Pelican compatibility; four new file tools; status and pagination fixes">Pelican 兼容性验证；新增 upload_file / download_file / create_folder / rename_file 四个文件工具；修复状态与分页问题</li>
         </ul>
       </article>
 
       <article class="card reveal">
         <h2 style="margin:0 0 6px;font-size:20px">v0.1.0 <span class="muted" style="font-size:13px;font-weight:400">2026-09-27</span></h2>
         <ul class="ticks">
-          <li data-zh="首个版本：服务器列表/状态/电源/指令/文件/备份、只读模式、高危二次确认、中英双语 README" data-en="First release: servers/status/power/commands/files/backups, read-only mode, confirmations, bilingual README">首个版本：服务器列表/状态/电源/指令/文件/备份、只读模式、高危二次确认、中英双语 README</li>
+          <li data-zh="首个版本：服务器列表/状态/电源/指令/文件/备份、只读模式、高危二次确认、中英双语 README" data-zh-tw="首個版本：伺服器列表/狀態/電源/指令/檔案/備份、只讀模式、高危二次確認、中英雙語 README" data-en="First release: servers/status/power/commands/files/backups, read-only mode, confirmations, bilingual README">首个版本：服务器列表/状态/电源/指令/文件/备份、只读模式、高危二次确认、中英双语 README</li>
         </ul>
       </article>
 
@@ -313,7 +314,7 @@
 
 <footer class="footer">
   <div class="wrap footer__inner">
-    <span>© <span data-year>2026</span> telson.dev · <a href="index.html" data-zh="首页" data-en="Home">首页</a></span>
+    <span>© <span data-year>2026</span> telson.dev · <a href="index.html" data-zh="首页" data-zh-tw="首頁" data-en="Home">首页</a></span>
     <span>
       <a href="projects.html" data-zh="作品" data-en="Work">作品</a> ·
       <a href="pteropilot.html">Pteropilot</a> ·

@@ -929,9 +929,19 @@
     fetch('assets/splashes.txt', { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.text() : ''; })
       .then(function (txt) {
+        // 每行可以是「简体|繁体」；按当前语言取对应写法（没有 | 就原样用）
+        var curLang = null;
+        try { curLang = localStorage.getItem('telson.lang'); } catch (e) {}
+        var useTw = curLang === 'zh-TW';
         SPLASHES = txt.split(/\r?\n/)
           .map(function (s) { return s.trim(); })
-          .filter(function (s) { return s && s.charAt(0) !== '#'; });
+          .filter(function (s) { return s && s.charAt(0) !== '#'; })
+          .map(function (s) {
+            var parts = s.split('|');
+            if (parts.length >= 2) return (useTw ? parts[1] : parts[0]).trim();
+            return s;
+          })
+          .filter(function (s) { return !!s; });
         if (!SPLASHES.length) return;
         pick();
         el.addEventListener('click', pick);

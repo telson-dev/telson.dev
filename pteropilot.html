@@ -38,7 +38,7 @@
     </button>
     <nav class="nav__links" id="nav-links" aria-label="主导航">
       <a class="nav__link" href="index.html" data-zh="首页" data-zh-tw="首頁" data-en="Home">首页</a>
-      <a class="nav__link" href="projects.html" data-zh="作品" data-en="Work">作品</a>
+      <a class="nav__link" href="projects.html" data-zh="作品" data-zh-tw="作品" data-en="Work">作品</a>
       <a class="nav__link" href="pteropilot.html" aria-current="page">Pteropilot</a>
       <a class="nav__link" href="pro.html">Pteropilot Pro <span class="nav-new">新</span></a>
       <div class="lang-toggle" role="group" aria-label="语言 / Language">
@@ -101,7 +101,7 @@
 
       <dl class="specs reveal" style="margin-top:clamp(32px,5vw,56px)">
         <div class="spec">
-          <dt data-zh="版本" data-en="VERSION">版本</dt>
+          <dt data-zh="版本" data-zh-tw="版本" data-en="VERSION">版本</dt>
           <dd data-version>v0.2.3</dd>
         </div>
         <div class="spec">
@@ -124,7 +124,7 @@
   <section class="section section--tight" id="demo">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow" data-zh="30 秒看完" data-en="30-second film">30 秒看完</p>
+        <p class="eyebrow" data-zh="30 秒看完" data-zh-tw="30 秒看完" data-en="30-second film">30 秒看完</p>
         <h2 data-zh="AI 接管面板，只要一句话" data-zh-tw="AI 接管面板，只要一句話" data-en="One sentence and the panel is handled">AI 接管面板，只要一句话</h2>
       </div>
       <div class="video reveal">
@@ -187,7 +187,7 @@
   <section class="section section--tight">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow" data-zh="能力" data-en="CAPABILITIES">能力</p>
+        <p class="eyebrow" data-zh="能力" data-zh-tw="能力" data-en="CAPABILITIES">能力</p>
         <h2 data-zh="能做什么" data-zh-tw="能做什麼" data-en="What it does">能做什么</h2>
       </div>
 
@@ -319,8 +319,8 @@
           <div class="card" style="margin-top:18px;padding:20px 22px">
             <h3 style="font-size:16px;margin-bottom:14px" data-zh="环境变量" data-zh-tw="環境變數" data-en="Environment variables">环境变量</h3>
             <ul class="ticks" style="font-size:14px">
-              <li><code>PANEL_URL</code> — <span data-zh="你的面板地址" data-en="your panel URL">你的面板地址</span></li>
-              <li><code>PANEL_API_KEY</code> — <span data-zh="面板 API Key" data-en="panel API key">面板 API Key</span></li>
+              <li><code>PANEL_URL</code> — <span data-zh="你的面板地址" data-zh-tw="你的面板位址" data-en="your panel URL">你的面板地址</span></li>
+              <li><code>PANEL_API_KEY</code> — <span data-zh="面板 API Key" data-zh-tw="面板 API Key" data-en="panel API key">面板 API Key</span></li>
               <li><code>PANEL_READONLY</code> — <span data-zh="设为 1 进入只读模式" data-zh-tw="設為 1 進入只讀模式" data-en="set to 1 for read-only mode">设为 1 进入只读模式</span></li>
             </ul>
           </div>
@@ -333,7 +333,7 @@
   <section class="section section--tight">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow" data-zh="用法" data-en="USAGE">用法</p>
+        <p class="eyebrow" data-zh="用法" data-zh-tw="用法" data-en="USAGE">用法</p>
         <h2 data-zh="配好之后，直接说人话" data-zh-tw="配好之後，直接說人話" data-en="Then just talk normally">配好之后，直接说人话</h2>
       </div>
       <div class="grid grid--3">
@@ -350,12 +350,96 @@
     </div>
   </section>
 
+  <!-- ============ CLI: broadcast + power ============ -->
+  <section class="section section--tight" id="cli">
+    <div class="wrap">
+      <div style="max-width:720px">
+        <p class="eyebrow" data-zh="命令行" data-zh-tw="命令列" data-en="CLI">命令行</p>
+        <h2 data-zh="不想开 AI？直接命令行也一样" data-zh-tw="不想開 AI？直接命令列也一樣" data-en="No AI needed — same thing from the shell">不想开 AI？直接命令行也一样</h2>
+        <p class="lead" style="margin-top:14px"
+           data-zh="广播通知、批量重启这些事，写进 cron 或计划任务就行。不用起 MCP 客户端，跑一条就退出。"
+           data-zh-tw="廣播通知、批次重啟這些事，寫進 cron 或計畫任務就行。不用起 MCP 使用者端，跑一條就退出。"
+           data-en="Notifications and batch restarts belong in cron. No MCP client needed — one command, then exit.">
+          广播通知、批量重启这些事，写进 cron 或计划任务就行。不用起 MCP 客户端，跑一条就退出。
+        </p>
+      </div>
+
+      <div class="grid grid--2" style="margin-top:clamp(28px,4vw,44px);gap:clamp(20px,3vw,32px)">
+        <div class="reveal">
+          <div class="code__head">
+            <span class="code__label" data-zh="广播一条指令" data-zh-tw="廣播一條指令" data-en="BROADCAST">广播一条指令</span>
+            <button class="copy" type="button"
+                    data-copy='pteropilot --broadcast "say 服务器 5 分钟后重启"'
+                    data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
+          </div>
+          <pre class="code"><span class="c"># 只发给 running 的服务器</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --broadcast <span class="s">"say 服务器 5 分钟后重启"</span>
+
+<span class="c"># 普通指令免确认；高危指令要 --confirm</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --broadcast <span class="s">"whitelist add Steve"</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --broadcast <span class="s">"stop"</span> --confirm
+
+<span class="c"># 给脚本看的结果</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --broadcast <span class="s">"say hi"</span> --json</pre>
+          <p class="hint" style="margin-top:12px"
+             data-zh="高危指令（stop / kill / op / ban / whitelist off 等）不带 --confirm 会被直接拒掉。退出码：0 全部发出、1 有失败、2 用法错、3 被拦截。"
+             data-zh-tw="高危指令（stop / kill / op / ban / whitelist off 等）不帶 --confirm 會被直接拒掉。退出碼：0 全部發出、1 有失敗、2 用法錯、3 被攔截。"
+             data-en="Dangerous commands (stop / kill / op / ban / whitelist off …) are refused without --confirm. Exit codes: 0 all sent, 1 some failed, 2 bad usage, 3 refused.">
+            高危指令（stop / kill / op / ban / whitelist off 等）不带 --confirm 会被直接拒掉。退出码：0 全部发出、1 有失败、2 用法错、3 被拦截。
+          </p>
+        </div>
+
+        <div class="reveal">
+          <div class="code__head">
+            <span class="code__label" data-zh="批量电源" data-zh-tw="批次電源" data-en="POWER">批量电源</span>
+            <button class="copy" type="button"
+                    data-copy='pteropilot --power restart --servers smp,creative --confirm'
+                    data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
+          </div>
+          <pre class="code"><span class="c"># start 免确认</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --power start --servers <span class="n">smp,creative</span>
+
+<span class="c"># stop / restart / kill 要 --confirm</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --power restart --servers <span class="n">smp</span> --confirm
+
+<span class="c"># "*" = 全部服务器，这种也要确认</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --power stop --servers <span class="s">"*"</span> --confirm</pre>
+          <p class="hint" style="margin-top:12px"
+             data-zh="--servers 必填。电源是写操作，它不会替你猜范围——避免「以为只发一台、结果发了全部」。"
+             data-zh-tw="--servers 必填。電源是寫操作，它不會替你猜範圍——避免「以為只發一台、結果發了全部」。"
+             data-en="--servers is required. A power signal is a write; it will not guess the scope for you.">
+            --servers 必填。电源是写操作，它不会替你猜范围——避免「以为只发一台、结果发了全部」。
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top:clamp(28px,4vw,40px)">
+        <div class="code__head">
+          <span class="code__label" data-zh="放进 cron：每晚 3 点重启" data-zh-tw="放進 cron：每晚 3 點重啟" data-en="IN CRON: RESTART AT 3AM">放进 cron：每晚 3 点重启</span>
+          <button class="copy" type="button"
+                  data-copy='55 2 * * *  pteropilot --broadcast "say 5 分钟后重启"
+0 3 * * *    pteropilot --power restart --servers "*" --confirm'
+                  data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
+        </div>
+        <pre class="code"><span class="c"># 提前 5 分钟喊话，整点重启</span>
+<span class="n">55 2 * * *</span>  pteropilot --broadcast <span class="s">"say 5 分钟后重启"</span>
+<span class="n">0 3 * * *</span>   pteropilot --power restart --servers <span class="s">"*"</span> --confirm</pre>
+        <p class="hint" style="margin-top:12px"
+           data-zh="面板地址和 Key 走环境变量（PANEL_URL / PANEL_API_KEY），cron 里记得带上；或者写进 ~/.config/pteropilot/。"
+           data-zh-tw="面板位址和 Key 走環境變數（PANEL_URL / PANEL_API_KEY），cron 裡記得帶上；或者寫進 ~/.config/pteropilot/。"
+           data-en="The panel URL and key come from PANEL_URL / PANEL_API_KEY — make sure cron has them, or put them in ~/.config/pteropilot/.">
+          面板地址和 Key 走环境变量（PANEL_URL / PANEL_API_KEY），cron 里记得带上；或者写进 ~/.config/pteropilot/。
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ security + faq ============ -->
   <section class="section section--tight">
     <div class="wrap">
       <div class="grid grid--2" style="gap:clamp(28px,5vw,60px);align-items:start">
         <div class="reveal">
-          <p class="eyebrow" data-zh="安全" data-en="SECURITY">安全</p>
+          <p class="eyebrow" data-zh="安全" data-zh-tw="安全" data-en="SECURITY">安全</p>
           <h2 style="margin:14px 0 20px" data-zh="Key 不出本机" data-zh-tw="Key 不出本機" data-en="The key stays local">Key 不出本机</h2>
           <ul class="ticks">
             <li data-zh="API Key 只保存在你本机的客户端配置里，仅用于直接请求你的面板，不经过任何第三方服务器。" data-zh-tw="API Key 只儲存在你本機的客戶端配置裡，僅用於直接請求你的面板，不經過任何第三方伺服器。"
@@ -432,9 +516,9 @@
           <a class="btn btn--ghost" href="services.html" data-zh="顺便看看接单服务" data-zh-tw="順便看看接單服務" data-en="Also: services">顺便看看接单服务</a>
         </div>
         <div class="link-row" style="margin-top:20px">
-          <a class="textlink" href="tutorial.html" data-zh="使用教程 →" data-en="Tutorial →">使用教程 →</a>
+          <a class="textlink" href="tutorial.html" data-zh="使用教程 →" data-zh-tw="使用教學 →" data-en="Tutorial →">使用教程 →</a>
           <a class="textlink textlink--muted" href="changelog.html" data-zh="更新日志 →" data-zh-tw="更新日誌 →" data-en="Changelog →">更新日志 →</a>
-          <a class="textlink textlink--muted" href="https://github.com/telson-dev/pteropilot/blob/main/CHANGELOG.md" target="_blank" rel="noopener" data-zh="GitHub CHANGELOG ↗" data-en="GitHub CHANGELOG ↗">GitHub CHANGELOG ↗</a>
+          <a class="textlink textlink--muted" href="https://github.com/telson-dev/pteropilot/blob/main/CHANGELOG.md" target="_blank" rel="noopener" data-zh="GitHub CHANGELOG ↗" data-zh-tw="GitHub CHANGELOG ↗" data-en="GitHub CHANGELOG ↗">GitHub CHANGELOG ↗</a>
           <a class="textlink textlink--muted" href="https://github.com/telson-dev/pteropilot/blob/main/ROADMAP.md" target="_blank" rel="noopener" data-zh="路线图 ↗" data-zh-tw="路線圖 ↗" data-en="Roadmap ↗">路线图 ↗</a>
           <a class="textlink textlink--muted" href="https://github.com/telson-dev/pteropilot/tree/main/docs" target="_blank" rel="noopener" data-zh="完整文档 ↗" data-zh-tw="完整文件 ↗" data-en="Docs ↗">完整文档 ↗</a>
         </div>
@@ -448,7 +532,7 @@
   <div class="wrap footer__inner">
     <span>© <span data-year>2026</span> telson.dev · <a href="index.html" data-zh="首页" data-zh-tw="首頁" data-en="Home">首页</a></span>
     <span>
-      <a href="projects.html" data-zh="作品" data-en="Work">作品</a> ·
+      <a href="projects.html" data-zh="作品" data-zh-tw="作品" data-en="Work">作品</a> ·
       <a href="pteropilot.html">Pteropilot</a> ·
       <a href="pro.html">Pro</a> ·
       <a href="services.html" data-zh="接单" data-zh-tw="接單" data-en="Services">接单</a> ·

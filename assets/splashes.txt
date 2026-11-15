@@ -5,10 +5,10 @@ kskbl
 sixseven！
 synb666
 by telson-dev
-welcome!
+Welcome!
 78916713
 buy Pteropilot Pro!
-support us!
+Support us!
 One sentence, whole fleet.
 No panel login required.
 Your API key stays on your machine.
@@ -24,3 +24,5 @@ Two-step confirm, even for restart.
 43 tools, zero SSH.
 Works with Pterodactyl v1 and Pelican.
 Also try Pteropilot!
+Hello world!
+URL:telson.dev

@@ -478,6 +478,35 @@ pteropilot --status --json'
 
       <div class="reveal" style="margin-top:clamp(28px,4vw,40px)">
         <div class="code__head">
+          <span class="code__label" data-zh="玩家活跃趋势 · 断网也能看" data-zh-tw="玩家活躍趨勢 · 斷網也能看" data-en="PLAYER TRENDS · WORKS OFFLINE">玩家活跃趋势 · 断网也能看</span>
+          <button class="copy" type="button"
+                  data-copy='pteropilot --players
+pteropilot --players smp
+pteropilot --players smp --days 30
+pteropilot --players smp --json'
+                  data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
+        </div>
+        <pre class="code"><span class="c"># 本机哪些服务器有采样记录</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --players
+
+<span class="c"># 单台：近 7 天在线时长排行 + 各时段活跃度</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --players <span class="n">smp</span>
+
+<span class="c"># 换窗口（1–365 天）与排行长度（1–100）</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --players <span class="n">smp</span> --days 30 --top 20
+
+<span class="c"># 机器可读，方便接 Grafana / 自建面板</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --players <span class="n">smp</span> --json</pre>
+        <p class="hint" style="margin-top:12px"
+           data-zh="数据来自本机采样文件（每次 list_players 记一条），不经过面板 API——所以不需要配置、不需要联网，面板挂了也能看历史。还没有采样时退出码是 1，方便 cron 区分「没数据」和「出故障」。"
+           data-zh-tw="資料來自主機採樣檔案（每次 list_players 記一條），不經過面板 API——所以不需要設定、不需要連網，面板掛了也能看歷史。還沒有採樣時退出碼是 1，方便 cron 區分「沒資料」和「出故障」。"
+           data-en="Reads local sample files (one write per list_players call), never the panel API — so no config and no network are needed, and history survives a panel outage. Exit code 1 means no samples yet, so cron can tell that apart from a real failure.">
+          数据来自本机采样文件（每次 list_players 记一条），不经过面板 API——所以不需要配置、不需要联网，面板挂了也能看历史。还没有采样时退出码是 1，方便 cron 区分「没数据」和「出故障」。
+        </p>
+      </div>
+
+      <div class="reveal" style="margin-top:clamp(28px,4vw,40px)">
+        <div class="code__head">
           <span class="code__label" data-zh="放进 cron：每晚 3 点重启" data-zh-tw="放進 cron：每晚 3 點重啟" data-en="IN CRON: RESTART AT 3AM">放进 cron：每晚 3 点重启</span>
           <button class="copy" type="button"
                   data-copy='55 2 * * *  pteropilot --broadcast "say 5 分钟后重启"

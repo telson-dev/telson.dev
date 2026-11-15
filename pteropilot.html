@@ -524,6 +524,9 @@ pteropilot --log smp --grep Started --json'
 <span class="c"># 只看报错行（不区分大小写）</span>
 <span class="prompt">$</span> <span class="n">pteropilot</span> --log <span class="n">smp</span> --grep error
 
+<span class="c"># 多台一起看：* 是全部，也可以写 a,b</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --log <span class="s">"*"</span> --grep error
+
 <span class="c"># 机器可读；grep 命中 0 行时退出码 1，可写等待脚本</span>
 <span class="prompt">$</span> <span class="n">pteropilot</span> --log <span class="n">smp</span> --grep Started --json</pre>
         <p class="hint" style="margin-top:12px"

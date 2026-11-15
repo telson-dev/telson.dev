@@ -36,9 +36,9 @@
     </button>
     <nav class="nav__links" id="nav-links" aria-label="主导航">
       <a class="nav__link" href="index.html" data-zh="首页" data-zh-tw="首頁" data-en="Home">首页</a>
-      <a class="nav__link" href="projects.html" data-zh="作品" data-en="Work">作品</a>
+      <a class="nav__link" href="projects.html" data-zh="作品" data-zh-tw="作品" data-en="Work">作品</a>
       <a class="nav__link" href="pteropilot.html">Pteropilot</a>
-      <a class="nav__link" href="tutorial.html" aria-current="page" data-zh="教程" data-en="Tutorial">教程</a>
+      <a class="nav__link" href="tutorial.html" aria-current="page" data-zh="教程" data-zh-tw="教程" data-en="Tutorial">教程</a>
       <div class="lang-toggle" role="group" aria-label="语言 / Language">
         <button type="button" data-lang="zh" aria-pressed="true">中</button>
         <button type="button" data-lang="zh-TW" aria-pressed="false">繁</button>
@@ -92,7 +92,7 @@
     <div class="wrap" style="max-width:820px">
       <p class="eyebrow" data-zh="第 2 步 · 配置客户端" data-zh-tw="第 2 步 · 配置客戶端" data-en="STEP 2 · CONFIGURE">第 2 步 · 配置客户端</p>
       <h2 style="margin:14px 0 12px">把 pteropilot 加进你的 AI 客户端</h2>
-      <p class="lead" data-zh="在 Claude Desktop / Cursor 的 MCP 配置里加一段（面板地址和 API Key 也一起填）：" data-en="Add this snippet to your MCP config in Claude Desktop / Cursor (panel URL and API key included):">
+      <p class="lead" data-zh="在 Claude Desktop / Cursor 的 MCP 配置里加一段（面板地址和 API Key 也一起填）：" data-zh-tw="在 Claude Desktop / Cursor 的 MCP 設定裡加一段（面板位址和 API Key 也一起填）：" data-en="Add this snippet to your MCP config in Claude Desktop / Cursor (panel URL and API key included):">
         在 Claude Desktop / Cursor 的 MCP 配置里加一段（面板地址和 API Key 也一起填）：
       </p>
       <div class="code" style="margin-top:14px;white-space:pre">{
@@ -161,6 +161,98 @@
     </div>
   </section>
 
+
+  <!-- ============ step 5 troubleshooting ============ -->
+  <section class="section section--tight">
+    <div class="wrap" style="max-width:920px">
+      <p class="eyebrow" data-zh="第 5 步 · 出问题先看这里" data-zh-tw="第 5 步 · 出問題先看這裡" data-en="STEP 5 · WHEN IT DOESN'T WORK">第 5 步 · 出问题先看这里</p>
+      <h2 style="margin:14px 0 12px">连不上？先自检</h2>
+      <p class="lead" style="max-width:720px"
+         data-zh="配好之后先跑一条命令，它会告诉你哪一步没通——输出不含密钥本身，可以直接贴给别人看。"
+         data-zh-tw="配好之後先跑一條命令，它會告訴你哪一步沒通——輸出不含金鑰本身，可以直接貼給別人看。"
+         data-en="Run one command after wiring it up; it tells you which step failed. It never prints the key itself, so you can paste the output anywhere.">
+        配好之后先跑一条命令，它会告诉你哪一步没通——输出不含密钥本身，可以直接贴给别人看。
+      </p>
+
+      <pre class="code" style="margin-top:20px"><span class="prompt">$</span> <span class="n">pteropilot</span> --doctor</pre>
+
+      <p class="lead" style="max-width:720px;margin-top:16px"
+         data-zh="全部正常时退出码是 0，有问题 1；加 <code>--no-network</code> 只查配置不联网。"
+         data-zh-tw="全部正常時退出碼是 0，有問題 1；加 <code>--no-network</code> 只查設定不連網。"
+         data-en="Exit code 0 when everything is fine, 1 otherwise. Add <code>--no-network</code> to check config without touching the network.">
+        全部正常时退出码是 0，有问题 1；加 <code>--no-network</code> 只查配置不联网。
+      </p>
+
+      <h3 style="margin:36px 0 10px;font-size:20px"
+          data-zh="常见报错对照表" data-zh-tw="常見報錯對照表" data-en="COMMON ERRORS">常见报错对照表</h3>
+      <p class="lead" style="max-width:720px;margin-bottom:18px"
+         data-zh="下面这些是工具本身会打出来的原文，对着表找即可。"
+         data-zh-tw="下面這些是工具本身會打出來的原文，對著表找即可。"
+         data-en="These are the messages the tool actually prints — match against them.">
+        下面这些是工具本身会打出来的原文，对着表找即可。
+      </p>
+
+      <div style="overflow-x:auto">
+        <table class="tbl" style="width:100%;border-collapse:collapse;font-size:15px">
+          <thead>
+            <tr>
+              <th style="text-align:left;padding:10px 12px;white-space:nowrap" data-zh="现象" data-zh-tw="現象" data-en="SYMPTOM">现象</th>
+              <th style="text-align:left;padding:10px 12px" data-zh="原因" data-zh-tw="原因" data-en="CAUSE">原因</th>
+              <th style="text-align:left;padding:10px 12px" data-zh="怎么办" data-zh-tw="怎麼辦" data-en="FIX">怎么办</th>
+            </tr>
+          </thead>
+          <tbody>
+        <tr>
+          <td data-zh="连不上面板" data-zh-tw="連不上面板" data-en="连不上面板">连不上面板</td>
+          <td data-zh="PANEL_URL 写错——最常见的是漏了 <code>https://</code>，或填了带路径的地址" data-zh-tw="PANEL_URL 寫錯——最常見的是漏了 <code>https://</code>，或填了帶路徑的地址" data-en="PANEL_URL 写错——最常见的是漏了 <code>https://</code>，或填了带路径的地址">PANEL_URL 写错——最常见的是漏了 <code>https://</code>，或填了带路径的地址</td>
+          <td data-zh="用面板根地址，如 <code>https://panel.example.com</code>；<code>--doctor</code> 会显示规范化后的地址" data-zh-tw="用面板根地址，如 <code>https://panel.example.com</code>；<code>--doctor</code> 會顯示規範化後的地址" data-en="用面板根地址，如 <code>https://panel.example.com</code>；<code>--doctor</code> 会显示规范化后的地址">用面板根地址，如 <code>https://panel.example.com</code>；<code>--doctor</code> 会显示规范化后的地址</td>
+        </tr>
+        <tr>
+          <td data-zh="401" data-zh-tw="401" data-en="401">401</td>
+          <td data-zh="API Key 无效或已被撤销" data-zh-tw="API Key 無效或已被撤銷" data-en="API Key 无效或已被撤销">API Key 无效或已被撤销</td>
+          <td data-zh="检查 <code>PANEL_API_KEY</code> 是否复制完整、是否已在面板里删掉" data-zh-tw="檢查 <code>PANEL_API_KEY</code> 是否複製完整、是否已在面板裡刪掉" data-en="检查 <code>PANEL_API_KEY</code> 是否复制完整、是否已在面板里删掉">检查 <code>PANEL_API_KEY</code> 是否复制完整、是否已在面板里删掉</td>
+        </tr>
+        <tr>
+          <td data-zh="403 · 核心工具" data-zh-tw="403 · 核心工具" data-en="403 · 核心工具">403 · 核心工具</td>
+          <td data-zh="把应用密钥（<code>ptla_</code> / <code>papp_</code>）当成了 <code>PANEL_API_KEY</code>" data-zh-tw="把應用金鑰（<code>ptla_</code> / <code>papp_</code>）當成了 <code>PANEL_API_KEY</code>" data-en="把应用密钥（<code>ptla_</code> / <code>papp_</code>）当成了 <code>PANEL_API_KEY</code>">把应用密钥（<code>ptla_</code> / <code>papp_</code>）当成了 <code>PANEL_API_KEY</code></td>
+          <td data-zh="电源、控制台、文件、备份走客户端 API，请改用客户端密钥（<code>ptlc_</code> / <code>pacc_</code>）" data-zh-tw="電源、控制檯、檔案、備份走客戶端 API，請改用客戶端金鑰（<code>ptlc_</code> / <code>pacc_</code>）" data-en="电源、控制台、文件、备份走客户端 API，请改用客户端密钥（<code>ptlc_</code> / <code>pacc_</code>）">电源、控制台、文件、备份走客户端 API，请改用客户端密钥（<code>ptlc_</code> / <code>pacc_</code>）</td>
+        </tr>
+        <tr>
+          <td data-zh="403 · list_nodes / list_users" data-zh-tw="403 · list_nodes / list_users" data-en="403 · list_nodes / list_users">403 · list_nodes / list_users</td>
+          <td data-zh="没设 <code>PANEL_APP_KEY</code>" data-zh-tw="沒設 <code>PANEL_APP_KEY</code>" data-en="没设 <code>PANEL_APP_KEY</code>">没设 <code>PANEL_APP_KEY</code></td>
+          <td data-zh="这几个工具走应用 API，需要另外配应用密钥" data-zh-tw="這幾個工具走應用 API，需要另外配應用金鑰" data-en="这几个工具走应用 API，需要另外配应用密钥">这几个工具走应用 API，需要另外配应用密钥</td>
+        </tr>
+        <tr>
+          <td data-zh="404" data-zh-tw="404" data-en="404">404</td>
+          <td data-zh="<code>PANEL_URL</code> 或服务器标识不对" data-zh-tw="<code>PANEL_URL</code> 或伺服器標識不對" data-en="<code>PANEL_URL</code> 或服务器标识不对"><code>PANEL_URL</code> 或服务器标识不对</td>
+          <td data-zh="常见于地址里带了 <code>/api</code>——会自动剥掉后缀；但仍建议填根地址" data-zh-tw="常見於地址裡帶了 <code>/api</code>——會自動剝掉字尾；但仍建議填根地址" data-en="常见于地址里带了 <code>/api</code>——会自动剥掉后缀；但仍建议填根地址">常见于地址里带了 <code>/api</code>——会自动剥掉后缀；但仍建议填根地址</td>
+        </tr>
+        <tr>
+          <td data-zh="429" data-zh-tw="429" data-en="429">429</td>
+          <td data-zh="请求过于频繁被限流" data-zh-tw="請求過於頻繁被限流" data-en="请求过于频繁被限流">请求过于频繁被限流</td>
+          <td data-zh="等一会儿再试，或减少并发工具调用" data-zh-tw="等一會兒再試，或減少併發工具呼叫" data-en="等一会儿再试，或减少并发工具调用">等一会儿再试，或减少并发工具调用</td>
+        </tr>
+        <tr>
+          <td data-zh="响应超时（30 秒）" data-zh-tw="響應超時（30 秒）" data-en="响应超时（30 秒）">响应超时（30 秒）</td>
+          <td data-zh="面板负载过高或网络不稳" data-zh-tw="面板負載過高或網路不穩" data-en="面板负载过高或网络不稳">面板负载过高或网络不稳</td>
+          <td data-zh="稍后重试；面板本身卡住时工具也会一起超时" data-zh-tw="稍後重試；面板本身卡住時工具也會一起超時" data-en="稍后重试；面板本身卡住时工具也会一起超时">稍后重试；面板本身卡住时工具也会一起超时</td>
+        </tr>
+        <tr>
+          <td data-zh="工具数比文档少" data-zh-tw="工具數比文件少" data-en="工具数比文档少">工具数比文档少</td>
+          <td data-zh="装到了旧版本" data-zh-tw="裝到了舊版本" data-en="装到了旧版本">装到了旧版本</td>
+          <td data-zh="<code>pteropilot --version</code> 看版本；最新 wheel 在 GitHub Releases" data-zh-tw="<code>pteropilot --version</code> 看版本；最新 wheel 在 GitHub Releases" data-en="<code>pteropilot --version</code> 看版本；最新 wheel 在 GitHub Releases"><code>pteropilot --version</code> 看版本；最新 wheel 在 GitHub Releases</td>
+        </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ul class="ticks" style="margin-top:26px">
+        <li data-zh="密钥前缀决定它能干什么：<code>ptlc_</code> / <code>pacc_</code> 是客户端密钥（管单台服务器），<code>ptla_</code> / <code>papp_</code> 是应用密钥（管整个面板）。" data-zh-tw="金鑰前綴決定它能幹什麼：<code>ptlc_</code> / <code>pacc_</code> 是客戶端金鑰（管單臺伺服器），<code>ptla_</code> / <code>papp_</code> 是應用金鑰（管整個面板）。" data-en="The prefix decides what the key can do: <code>ptlc_</code> / <code>pacc_</code> are client keys (one server), <code>ptla_</code> / <code>papp_</code> are application keys (whole panel).">密钥前缀决定它能干什么：<code>ptlc_</code> / <code>pacc_</code> 是客户端密钥（管单台服务器），<code>ptla_</code> / <code>papp_</code> 是应用密钥（管整个面板）。</li>
+        <li data-zh="面板地址带 <code>/api</code> 会被自动剥掉，但真实子路径（如 <code>/pterodactyl</code>）会保留。" data-zh-tw="面板地址帶 <code>/api</code> 會被自動剝掉，但真實子路徑（如 <code>/pterodactyl</code>）會保留。" data-en="An <code>/api</code> suffix on the panel URL is stripped automatically, but a real sub-path such as <code>/pterodactyl</code> is kept.">面板地址带 <code>/api</code> 会被自动剥掉，但真实子路径（如 <code>/pterodactyl</code>）会保留。</li>
+      </ul>
+    </div>
+  </section>
+
   <!-- ============ pro pointer ============ -->
   <section class="section section--tight">
     <div class="wrap">
@@ -186,7 +278,7 @@
   <div class="wrap footer__inner">
     <span>© <span data-year>2026</span> telson.dev · <a href="index.html" data-zh="首页" data-zh-tw="首頁" data-en="Home">首页</a></span>
     <span>
-      <a href="projects.html" data-zh="作品" data-en="Work">作品</a> ·
+      <a href="projects.html" data-zh="作品" data-zh-tw="作品" data-en="Work">作品</a> ·
       <a href="pteropilot.html">Pteropilot</a> ·
       <a href="tutorial.html">教程</a> ·
       <a href="pro.html">Pro</a> ·

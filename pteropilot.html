@@ -469,7 +469,10 @@ pteropilot --status --json'
 <span class="prompt">$</span> <span class="n">pteropilot</span> --status <span class="n">smp</span>
 
 <span class="c"># 全部健康才返回 0，否则 1 —— 可直接当 cron 健康检查</span>
-<span class="prompt">$</span> <span class="n">pteropilot</span> --status --json</pre>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --status --json
+
+<span class="c"># 盯着看：只在状态/健康/人数变化时刷屏，CPU 内存抖动不算</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --status --watch --interval 10</pre>
         <p class="hint" style="margin-top:12px"
            data-zh="输出是一张表：标识、名称、🟢/🟡/🔴 健康度、CPU、内存。单台查询失败显示 ⚠ 且不盖住其他服务器；玩家数拿不到就显示 -，不编数字。"
            data-zh-tw="輸出是一張表：識別碼、名稱、🟢/🟡/🔴 健康度、CPU、記憶體。單台查詢失敗顯示 ⚠ 且不蓋住其他伺服器；玩家數拿不到就顯示 -，不編數字。"

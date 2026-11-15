@@ -18,27 +18,20 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-# 明显过时 / 容易说错的词
-SUSPECT = {
-    "面包多": "旧的收款平台",
-    "afdian": "旧的收款平台",
-    "爱发电": "旧的收款平台",
-    "三语版本": "指向可能不存在的下载",
-    "见下面的下载页": "指路可能不成立",
-    "4K60 三语": "指路可能不成立",
-    "v0.2.0": "过期版本号",
-    "v0.2.3": "过期版本号",
-    "0.2.0": "过期版本号",
-    "v0.1.0": "过期版本号",
-    "v0.1.2": "可能过期",
-    "最多 2 台": "已废弃的设备限制说法",
-    "敬请期待": "占位文案",
-    "TODO": "占位",
-    "FIXME": "占位",
-    "localhost": "本地地址",
-    "127.0.0.1": "本地地址",
-    "example.com": "示例地址",
-}
+# 明显过时 / 容易说错的词。
+# 每条都是**正则**。早先用纯字符串匹配，`v0.2.3` 会命中 `v0.2.33` 里面，
+# `爱发电`（当前正确平台）和 `example.com`（文档示例）也被当成问题，
+# 一屏 40 多条误报，等于没有。这里只留真正的风险类别。
+SUSPECT: list[tuple[str, str]] = [
+    (r"面包多|mianbaoduo", "旧收款平台（现为爱发电）"),
+    (r"最多\s*2\s*台|2\s*台设备", "已废弃的设备限制说法"),
+    (r"三语版本见|见下面的下载页", "假指路（下载页未必有该文件）"),
+    (r"敬请期待|待补充|TODO|FIXME", "占位文案"),
+    (r"localhost|127\.0\.0\.1", "本地地址，不该出现在说明里"),
+    (r"43 个 MCP 工具", "工具数已过时（当前 45）"),
+    (r"320\+ 项测试|300\+ 测试", "测试数已过时（当前 545）"),
+    (r"v0\.2\.0（?已发布|当前版本 v0\.2\.0", "版本号已过时"),
+]
 
 
 def pages() -> list[Path]:
@@ -126,15 +119,17 @@ def main() -> None:
     hits = 0
     for name in sorted(bodies):
         lines = bodies[name].splitlines()
-        for kw, why in SUSPECT.items():
+        for pattern, why in SUSPECT:
+            rx = re.compile(pattern)
             for i, line in enumerate(lines, 1):
-                if kw in line:
+                if rx.search(line):
                     hits += 1
                     snippet = line.strip()
                     if len(snippet) > 150:
-                        idx = snippet.find(kw)
+                        mo = rx.search(snippet)
+                        idx = mo.start() if mo else 0
                         snippet = "…" + snippet[max(0, idx - 50):idx + 100] + "…"
-                    print(f"  {name}:{i}  [{kw} · {why}]")
+                    print(f"  {name}:{i}  [{pattern} · {why}]")
                     print(f"      {snippet}")
     if not hits:
         print("  未命中")
@@ -152,6 +147,71 @@ def main() -> None:
         if name != "index.html" and items != [b.split("#")[0] for b in base if b.split("#")[0].endswith(".html")]:
             diff = "  ← 与首页不同"
         print(f"{name:<22} {' / '.join(items)}{diff}")
+
+    # ---------- 5. 命令块里的 pteropilot flag ----------
+    # 站点上写错一个 flag，用户照着敲就会报错，而页面看起来完全正常。
+    # 允许清单直接从 pteropilot 源码里抓字符串字面量，避免二次维护一份清单。
+    print()
+    print("=" * 78)
+    print("5) 命令示例里的 pteropilot flag")
+    print("=" * 78)
+    src_file = Path(r"D:\Projects\pteropilot\src\pteropilot\server.py")
+    if not src_file.exists():
+        print("  跳过（找不到 pteropilot 源码）")
+    else:
+        known = set(re.findall(r'"(--[a-z][a-z-]*)"', src_file.read_text(encoding="utf-8")))
+        known |= {"--version", "--doctor", "--help"}
+        bad = []
+        for name in sorted(bodies):
+            for flag in sorted(set(re.findall(r"pteropilot\s+(--[a-z][a-z-]*)", bodies[name]))):
+                if flag not in known:
+                    bad.append((name, flag))
+        if bad:
+            for name, flag in bad:
+                print(f"  ✗ {name}: {flag}  在 pteropilot 源码里不存在")
+        else:
+            print(f"  全部存在（源码里有 {len(known)} 个 flag 字面量）")
+
+    # ---------- 6. JSON-LD 可解析 ----------
+    print()
+    print("=" * 78)
+    print("6) JSON-LD 结构数据")
+    print("=" * 78)
+    import json as _json
+
+    ld_bad = 0
+    for name in sorted(bodies):
+        for i, block in enumerate(re.findall(
+            r'<script type="application/ld\+json">([\s\S]*?)</script>', bodies[name]
+        ), 1):
+            try:
+                _json.loads(block)
+            except Exception as exc:  # noqa: BLE001
+                ld_bad += 1
+                print(f"  ✗ {name} 第 {i} 块: {type(exc).__name__}: {exc}")
+    print("  全部可解析" if not ld_bad else f"  {ld_bad} 块有问题")
+
+    # ---------- 7. 图片 / 媒体资源存在性 ----------
+    print()
+    print("=" * 78)
+    print("7) 页面引用的图片与媒体")
+    print("=" * 78)
+    missing = []
+    for name in sorted(bodies):
+        for attr in ("src", "poster"):
+            for ref in re.findall(rf'{attr}="([^"]+)"', bodies[name]):
+                if ref.startswith(("http://", "https://", "data:", "//")):
+                    continue
+                if ref.startswith("#"):
+                    continue
+                p = ROOT / ref.split("?")[0]
+                if not p.exists():
+                    missing.append((name, ref))
+    if missing:
+        for name, ref in missing:
+            print(f"  ✗ {name}: {ref}  文件不存在")
+    else:
+        print("  全部存在")
 
 
 if __name__ == "__main__":

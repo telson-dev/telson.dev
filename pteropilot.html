@@ -499,6 +499,35 @@ pteropilot --players smp --json'
 
 <span class="c"># 机器可读，方便接 Grafana / 自建面板</span>
 <span class="prompt">$</span> <span class="n">pteropilot</span> --players <span class="n">smp</span> --json</pre>
+
+      <div class="reveal" style="margin-top:clamp(28px,4vw,40px)">
+        <div class="code__head">
+          <span class="code__label" data-zh="看控制台 · 崩了先看这里" data-zh-tw="看控制台 · 崩了先看這裡" data-en="CONSOLE · WHEN IT BREAKS">看控制台 · 崩了先看这里</span>
+          <button class="copy" type="button"
+                  data-copy='pteropilot --log smp
+pteropilot --log smp --lines 300
+pteropilot --log smp --grep error
+pteropilot --log smp --grep Started --json'
+                  data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
+        </div>
+        <pre class="code"><span class="c"># 末 80 行控制台输出</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --log <span class="n">smp</span>
+
+<span class="c"># 往前翻更多（1–2000 行）</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --log <span class="n">smp</span> --lines 300
+
+<span class="c"># 只看报错行（不区分大小写）</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --log <span class="n">smp</span> --grep error
+
+<span class="c"># 机器可读；grep 命中 0 行时退出码 1，可写等待脚本</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --log <span class="n">smp</span> --grep Started --json</pre>
+        <p class="hint" style="margin-top:12px"
+           data-zh="输出前会清掉 ANSI 颜色和回车符，管道或粘贴都不会乱。没有内容可显示时退出码 1（空控制台 / grep 没命中），参数写错是 2。"
+           data-zh-tw="輸出前會清掉 ANSI 顏色和回車符，管線或貼上都不會亂。沒有內容可顯示時退出碼 1（空控制台 / grep 沒命中），參數寫錯是 2。"
+           data-en="ANSI colours and carriage returns are stripped first, so piping and pasting stay clean. Exit code 1 means nothing to show (empty console, or --grep matched nothing); 2 means a bad argument.">
+          输出前会清掉 ANSI 颜色和回车符，管道或粘贴都不会乱。没有内容可显示时退出码 1（空控制台 / grep 没命中），参数写错是 2。
+        </p>
+      </div>
         <p class="hint" style="margin-top:12px"
            data-zh="数据来自本机采样文件（每次 list_players 记一条），不经过面板 API——所以不需要配置、不需要联网，面板挂了也能看历史。还没有采样时退出码是 1，方便 cron 区分「没数据」和「出故障」。"
            data-zh-tw="資料來自主機採樣檔案（每次 list_players 記一條），不經過面板 API——所以不需要設定、不需要連網，面板掛了也能看歷史。還沒有採樣時退出碼是 1，方便 cron 區分「沒資料」和「出故障」。"

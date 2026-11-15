@@ -276,10 +276,31 @@
 <span class="prompt">$</span> <span class="n">uvx</span> pteropilot</pre>
 
           <p class="hint" style="margin-top:12px"
-             data-zh='先看一眼版本：<code>pteropilot --version</code> 会打印「v0.2.33 (45 MCP tools)」。工具数比上面的清单少，说明装到了旧版——PyPI 上的包有时滞后，最新 wheel 在 <a class="textlink" href="https://github.com/telson-dev/pteropilot/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>，下下来 <code>uv tool install &lt;文件&gt;.whl</code> 即可。'
-             data-zh-tw='先看一眼版本：<code>pteropilot --version</code> 會印出「v0.2.33 (45 MCP tools)」。工具數比上面的清單少，說明裝到了舊版——PyPI 上的套件有時滯後，最新 wheel 在 <a class="textlink" href="https://github.com/telson-dev/pteropilot/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>，下下來 <code>uv tool install &lt;檔案&gt;.whl</code> 即可。'
-             data-en='Check the version first: <code>pteropilot --version</code> prints "v0.2.33 (45 MCP tools)". Fewer tools than listed above means an old build — PyPI can lag behind, and the newest wheel lives in <a class="textlink" href="https://github.com/telson-dev/pteropilot/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>; download it and run <code>uv tool install &lt;file&gt;.whl</code>.'>
-            先看一眼版本：<code>pteropilot --version</code> 会打印「v0.2.33 (45 MCP tools)」。工具数比上面的清单少，说明装到了旧版——PyPI 上的包有时滞后，最新 wheel 在 GitHub Releases，下下来 <code>uv tool install &lt;文件&gt;.whl</code> 即可。
+             data-zh='先看一眼版本：<code>pteropilot --version</code> 会打印「pteropilot v0.2.33（45 个 MCP 工具）」。工具数比上面的清单少，说明装到了旧版——PyPI 上的包有时滞后，最新 wheel 在 <a class="textlink" href="https://github.com/telson-dev/pteropilot/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>，下下来 <code>uv tool install &lt;文件&gt;.whl</code> 即可。'
+             data-zh-tw='先看一眼版本：<code>pteropilot --version</code> 會印出「pteropilot v0.2.33（45 個 MCP 工具）」。工具數比上面的清單少，說明裝到了舊版——PyPI 上的套件有時滯後，最新 wheel 在 <a class="textlink" href="https://github.com/telson-dev/pteropilot/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>，下下來 <code>uv tool install &lt;檔案&gt;.whl</code> 即可。'
+             data-en='Check the version first: <code>pteropilot --version</code> prints "pteropilot v0.2.33（45 個 MCP 工具）". Fewer tools than listed above means an old build — PyPI can lag behind, and the newest wheel lives in <a class="textlink" href="https://github.com/telson-dev/pteropilot/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>; download it and run <code>uv tool install &lt;file&gt;.whl</code>.'>
+            先看一眼版本：<code>pteropilot --version</code> 会打印「pteropilot v0.2.33（45 个 MCP 工具）」。工具数比上面的清单少，说明装到了旧版——PyPI 上的包有时滞后，最新 wheel 在 GitHub Releases，下下来 <code>uv tool install &lt;文件&gt;.whl</code> 即可。
+          </p>
+
+          <div class="code__head" style="margin-top:22px">
+            <span class="code__label" data-zh="连不上？先自检" data-zh-tw="連不上？先自檢" data-en="NOT CONNECTING? RUN A SELF-CHECK">连不上？先自检</span>
+            <button class="copy" type="button" data-copy="pteropilot --doctor" data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
+          </div>
+          <pre class="code"><span class="prompt">$</span> <span class="n">pteropilot</span> --doctor
+
+<span class="c">pteropilot v0.2.33（45 个 MCP 工具）</span>
+<span class="c">Python 3.12.7　Linux x86_64</span>
+
+<span class="c">结论：配置不完整，先补齐下面的项：</span>
+<span class="c">  ✗ 未设置 PANEL_URL</span>
+<span class="c">  ✗ 未设置 PANEL_API_KEY</span>
+<span class="c">  · 面板「账户 → API 凭证」生成客户端密钥（ptlc_ / pacc_）</span></pre>
+
+          <p class="hint" style="margin-top:12px"
+             data-zh='一条命令查完：版本与工具数、Python 版本、<code>PANEL_URL</code> 有没有被自动规范化、密钥前缀与长度、面板连不连得上。输出不含密钥本身，可以直接贴到 issue 里。加 <code>--no-network</code> 只查配置不联网；全部正常时退出码 <code>0</code>，有问题 <code>1</code>。'
+             data-zh-tw='一條命令查完：版本與工具數、Python 版本、<code>PANEL_URL</code> 有沒有被自動規範化、金鑰前綴與長度、面板連不連得上。輸出不含金鑰本身，可以直接貼到 issue 裡。加 <code>--no-network</code> 只查設定不連網；全部正常時退出碼 <code>0</code>，有問題 <code>1</code>。'
+             data-en='One command checks it all: version and tool count, Python version, whether <code>PANEL_URL</code> was auto-normalized, the key prefix and length, and whether the panel is reachable. It never prints the key itself, so you can paste the output straight into an issue. Add <code>--no-network</code> to skip the connectivity check; exit code <code>0</code> when everything is fine, <code>1</code> otherwise.'>
+            一条命令查完：版本与工具数、Python 版本、<code>PANEL_URL</code> 有没有被自动规范化、密钥前缀与长度、面板连不连得上。输出不含密钥本身，可以直接贴到 issue 里。加 <code>--no-network</code> 只查配置不联网；全部正常时退出码 <code>0</code>，有问题 <code>1</code>。
           </p>
 
           <ul class="ticks" style="margin-top:24px">

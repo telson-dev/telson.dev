@@ -6,3 +6,6 @@ Thumbs.db
 
 # 大体积下载文件（Lite 镜像等）只放远端（API 推送），本地不入库
 assets/downloads/*.exe
+# Python 生成物（一次性脚本留下的字节码，不该进仓库）
+__pycache__/
+*.pyc

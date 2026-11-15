@@ -59,7 +59,7 @@
       <div class="link-row" style="justify-content:space-between;align-items:center;margin-bottom:26px">
         <span class="page-hero__badge">
           <span class="dot-live"></span>
-          <span data-version data-zh="v0.2.3 · MIT · 已发布" data-zh-tw="v0.2.3 · MIT · 已釋出" data-en="v0.2.3 · MIT · released">v0.2.3 · MIT · 已发布</span>
+          <span data-version data-zh="v0.2.33 · MIT · 已发布" data-zh-tw="v0.2.33 · MIT · 已釋出" data-en="v0.2.33 · MIT · released">v0.2.33 · MIT · 已发布</span>
         </span>
 
       </div>
@@ -102,7 +102,7 @@
       <dl class="specs reveal" style="margin-top:clamp(32px,5vw,56px)">
         <div class="spec">
           <dt data-zh="版本" data-zh-tw="版本" data-en="VERSION">版本</dt>
-          <dd data-version>v0.2.3</dd>
+          <dd data-version>v0.2.33</dd>
         </div>
         <div class="spec">
           <dt data-zh="许可" data-zh-tw="許可" data-en="LICENSE">许可</dt>
@@ -369,7 +369,9 @@
           <div class="code__head">
             <span class="code__label" data-zh="广播一条指令" data-zh-tw="廣播一條指令" data-en="BROADCAST">广播一条指令</span>
             <button class="copy" type="button"
-                    data-copy='pteropilot --broadcast "say 服务器 5 分钟后重启"'
+                    data-copy='pteropilot --broadcast "say 服务器 5 分钟后重启"
+pteropilot --broadcast "say 马上回来" --in 5m
+pteropilot --broadcast "say 关门了" --at 03:00'
                     data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
           </div>
           <pre class="code"><span class="c"># 只发给 running 的服务器</span>
@@ -378,6 +380,10 @@
 <span class="c"># 普通指令免确认；高危指令要 --confirm</span>
 <span class="prompt">$</span> <span class="n">pteropilot</span> --broadcast <span class="s">"whitelist add Steve"</span>
 <span class="prompt">$</span> <span class="n">pteropilot</span> --broadcast <span class="s">"stop"</span> --confirm
+
+<span class="c"># 等到点再发（cron 表达不了「先等一会儿」时用）</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --broadcast <span class="s">"say 马上回来"</span> --in 5m
+<span class="prompt">$</span> <span class="n">pteropilot</span> --broadcast <span class="s">"say 关门了"</span> --at 03:00
 
 <span class="c"># 给脚本看的结果</span>
 <span class="prompt">$</span> <span class="n">pteropilot</span> --broadcast <span class="s">"say hi"</span> --json</pre>
@@ -393,7 +399,8 @@
           <div class="code__head">
             <span class="code__label" data-zh="批量电源" data-zh-tw="批次電源" data-en="POWER">批量电源</span>
             <button class="copy" type="button"
-                    data-copy='pteropilot --power restart --servers smp,creative --confirm'
+                    data-copy='pteropilot --power restart --servers smp,creative --confirm
+pteropilot --power restart --servers smp --confirm --at 03:00'
                     data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
           </div>
           <pre class="code"><span class="c"># start 免确认</span>
@@ -403,7 +410,10 @@
 <span class="prompt">$</span> <span class="n">pteropilot</span> --power restart --servers <span class="n">smp</span> --confirm
 
 <span class="c"># "*" = 全部服务器，这种也要确认</span>
-<span class="prompt">$</span> <span class="n">pteropilot</span> --power stop --servers <span class="s">"*"</span> --confirm</pre>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --power stop --servers <span class="s">"*"</span> --confirm
+
+<span class="c"># 等到 3 点再重启（< 24 小时）</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --power restart --servers <span class="n">smp</span> --confirm --at 03:00</pre>
           <p class="hint" style="margin-top:12px"
              data-zh="--servers 必填。电源是写操作，它不会替你猜范围——避免「以为只发一台、结果发了全部」。"
              data-zh-tw="--servers 必填。電源是寫操作，它不會替你猜範圍——避免「以為只發一台、結果發了全部」。"
@@ -411,6 +421,31 @@
             --servers 必填。电源是写操作，它不会替你猜范围——避免「以为只发一台、结果发了全部」。
           </p>
         </div>
+      </div>
+
+      <div class="reveal" style="margin-top:clamp(28px,4vw,40px)">
+        <div class="code__head">
+          <span class="code__label" data-zh="看状态 · 不开 AI" data-zh-tw="看狀態 · 不開 AI" data-en="STATUS · NO AI NEEDED">看状态 · 不开 AI</span>
+          <button class="copy" type="button"
+                  data-copy='pteropilot --status
+pteropilot --status smp
+pteropilot --status --json'
+                  data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
+        </div>
+        <pre class="code"><span class="c"># 全部服务器：状态 / 健康度 / CPU / 内存</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --status
+
+<span class="c"># 单台：额外读日志推断在线玩家数</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --status <span class="n">smp</span>
+
+<span class="c"># 全部健康才返回 0，否则 1 —— 可直接当 cron 健康检查</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --status --json</pre>
+        <p class="hint" style="margin-top:12px"
+           data-zh="输出是一张表：标识、名称、🟢/🟡/🔴 健康度、CPU、内存。单台查询失败显示 ⚠ 且不盖住其他服务器；玩家数拿不到就显示 -，不编数字。"
+           data-zh-tw="輸出是一張表：識別碼、名稱、🟢/🟡/🔴 健康度、CPU、記憶體。單台查詢失敗顯示 ⚠ 且不蓋住其他伺服器；玩家數拿不到就顯示 -，不編數字。"
+           data-en="Prints a table: id, name, 🟢/🟡/🔴 health, CPU, memory. One failing server shows ⚠ without hiding the rest; a missing player count shows - rather than a guess.">
+          输出是一张表：标识、名称、🟢/🟡/🔴 健康度、CPU、内存。单台查询失败显示 ⚠ 且不盖住其他服务器；玩家数拿不到就显示 -，不编数字。
+        </p>
       </div>
 
       <div class="reveal" style="margin-top:clamp(28px,4vw,40px)">
@@ -429,6 +464,23 @@
            data-zh-tw="面板位址和 Key 走環境變數（PANEL_URL / PANEL_API_KEY），cron 裡記得帶上；或者寫進 ~/.config/pteropilot/。"
            data-en="The panel URL and key come from PANEL_URL / PANEL_API_KEY — make sure cron has them, or put them in ~/.config/pteropilot/.">
           面板地址和 Key 走环境变量（PANEL_URL / PANEL_API_KEY），cron 里记得带上；或者写进 ~/.config/pteropilot/。
+        </p>
+      </div>
+
+      <div class="reveal" style="margin-top:clamp(28px,4vw,40px)">
+        <div class="code__head">
+          <span class="code__label" data-zh="告警：活着但快撑不住也通知" data-zh-tw="告警：活著但快撐不住也通知" data-en="ALERTS: STILL UP, ALREADY STRUGGLING">告警：活着但快撑不住也通知</span>
+          <button class="copy" type="button"
+                  data-copy='pteropilot-alerts --webhook "https://..." --cpu 85 --memory 90'
+                  data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
+        </div>
+        <pre class="code"><span class="c"># 原来只看「在不在线」；一台 running 但 CPU 打满的服务器它不会叫</span>
+<span class="prompt">$</span> <span class="n">pteropilot-alerts</span> --webhook <span class="s">"https://..."</span> --cpu 85 --memory 90</pre>
+        <p class="hint" style="margin-top:12px"
+           data-zh="CPU 是绝对值百分比；内存是使用率（memory_bytes / memory_limit），面板不限额的服务器自动跳过该项，不会拿 0 当分母算出假百分比。等于阈值就告警（到 85 就叫，不是超过 85）。默认 0 = 关闭。"
+           data-zh-tw="CPU 是絕對值百分比；記憶體是使用率（memory_bytes / memory_limit），面板不限額的伺服器自動跳過該項，不會拿 0 當分母算出假百分比。等於閾值就告警（到 85 就叫，不是超過 85）。預設 0 = 關閉。"
+           data-en="CPU is an absolute percentage; memory is a usage ratio (memory_bytes / memory_limit) — servers without a limit are skipped rather than scored against zero. Hitting the threshold exactly alerts. Default 0 = off.">
+          CPU 是绝对值百分比；内存是使用率（memory_bytes / memory_limit），面板不限额的服务器自动跳过该项，不会拿 0 当分母算出假百分比。等于阈值就告警（到 85 就叫，不是超过 85）。默认 0 = 关闭。
         </p>
       </div>
     </div>

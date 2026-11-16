@@ -472,7 +472,7 @@ pteropilot --status --backups --backup-days 7'
 <span class="c"># 单台：额外读日志推断在线玩家数</span>
 <span class="prompt">$</span> <span class="n">pteropilot</span> --status <span class="n">smp</span>
 
-<span class="c"># 全部健康才返回 0，否则 1 —— 可直接当 cron 健康检查</span>
+<span class="c"># 退出码分流：0 全部健康 / 1 有服务器异常 / 2 参数错 / 3 配置错 / 4 面板不可达</span>
 <span class="prompt">$</span> <span class="n">pteropilot</span> --status --json
 
 <span class="c"># 盯着看：只在状态/健康/人数变化时刷屏，CPU 内存抖动不算</span>

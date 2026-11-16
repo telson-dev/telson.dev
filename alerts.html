@@ -84,7 +84,7 @@ pteropilot-alerts --webhook "https://..." --disk 85
 
 <span class="c"># 3. 挂到 cron，每 5 分钟看一次</span>
 */5 * * * * <span class="n">pteropilot-alerts</span> --webhook <span class="s">"https://..."</span> --cpu 85 --memory 90 --disk 85 --backup-days 7</pre>
-      <p class="hint" style="margin-top:12px" data-zh="它装在 Pteropilot 旁边，装 Pteropilot 就有：pip install pteropilot 之后同时得到 pteropilot 和 pteropilot-alerts 两个命令。只读运行，不会重启、不会改文件。" data-zh-tw="它裝在 Pteropilot 旁邊，裝 Pteropilot 就有：pip install pteropilot 之後同時得到 pteropilot 和 pteropilot-alerts 兩個命令。唯讀執行，不會重啟、不會改檔案。" data-en="It ships with Pteropilot: installing Pteropilot gives you both the pteropilot and pteropilot-alerts commands. It runs read-only — it never restarts anything or edits files.">
+      <p class="hint" style="margin-top:12px" data-zh="它装在 Pteropilot 旁边，装 Pteropilot 就有：pip install pteropilot 之后同时得到 pteropilot 和 pteropilot-alerts 两个命令。只读运行，不会重启、不会改文件（想强制锁死写操作可以设 <code>PANEL_READONLY=1</code>）。" data-zh-tw="它裝在 Pteropilot 旁邊，裝 Pteropilot 就有：pip install pteropilot 之後同時得到 pteropilot 和 pteropilot-alerts 兩個命令。唯讀執行，不會重啟、不會改檔案。" data-en="It ships with Pteropilot: installing Pteropilot gives you both the pteropilot and pteropilot-alerts commands. It runs read-only — it never restarts anything or edits files.">
         它装在 Pteropilot 旁边，装 Pteropilot 就有：<code>pip install pteropilot</code> 之后同时得到 <code>pteropilot</code> 和 <code>pteropilot-alerts</code> 两个命令。只读运行，不会重启、不会改文件。
       </p>
     </div>

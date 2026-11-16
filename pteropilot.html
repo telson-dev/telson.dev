@@ -495,7 +495,8 @@ pteropilot --status --backups --backup-days 7'
                   data-copy='pteropilot --players
 pteropilot --players smp
 pteropilot --players smp --days 30
-pteropilot --players smp --json'
+pteropilot --players smp --json
+pteropilot --players --record'
                   data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
         </div>
         <pre class="code"><span class="c"># 本机哪些服务器有采样记录</span>
@@ -508,7 +509,10 @@ pteropilot --players smp --json'
 <span class="prompt">$</span> <span class="n">pteropilot</span> --players <span class="n">smp</span> --days 30 --top 20
 
 <span class="c"># 机器可读，方便接 Grafana / 自建面板</span>
-<span class="prompt">$</span> <span class="n">pteropilot</span> --players <span class="n">smp</span> --json</pre>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --players <span class="n">smp</span> --json
+
+<span class="c"># 只用命令行也想攒历史：现在就采一条（可挂 cron）</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --players --record</pre>
 
       <div class="reveal" style="margin-top:clamp(28px,4vw,40px)">
         <div class="code__head">

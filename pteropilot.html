@@ -461,7 +461,9 @@ pteropilot --power restart --servers smp --confirm --at 03:00'
           <button class="copy" type="button"
                   data-copy='pteropilot --status
 pteropilot --status smp
-pteropilot --status --json'
+pteropilot --status --json
+pteropilot --status --watch --interval 10
+pteropilot --status --backups --backup-days 7'
                   data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
         </div>
         <pre class="code"><span class="c"># 全部服务器：状态 / 健康度 / CPU / 内存</span>
@@ -474,7 +476,10 @@ pteropilot --status --json'
 <span class="prompt">$</span> <span class="n">pteropilot</span> --status --json
 
 <span class="c"># 盯着看：只在状态/健康/人数变化时刷屏，CPU 内存抖动不算</span>
-<span class="prompt">$</span> <span class="n">pteropilot</span> --status --watch --interval 10</pre>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --status --watch --interval 10
+
+<span class="c"># 备份是崩了之后才会想起来的东西：多一列「最新备份」，过期的单独点名</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --status --backups --backup-days 7</pre>
         <p class="hint" style="margin-top:12px"
            data-zh="输出是一张表：标识、名称、🟢/🟡/🔴 健康度、CPU、内存。单台查询失败显示 ⚠ 且不盖住其他服务器；玩家数拿不到就显示 -，不编数字。"
            data-zh-tw="輸出是一張表：識別碼、名稱、🟢/🟡/🔴 健康度、CPU、記憶體。單台查詢失敗顯示 ⚠ 且不蓋住其他伺服器；玩家數拿不到就顯示 -，不編數字。"
@@ -567,11 +572,19 @@ pteropilot --log smp --grep Started --json'
         <div class="code__head">
           <span class="code__label" data-zh="告警：活着但快撑不住也通知" data-zh-tw="告警：活著但快撐不住也通知" data-en="ALERTS: STILL UP, ALREADY STRUGGLING">告警：活着但快撑不住也通知</span>
           <button class="copy" type="button"
-                  data-copy='pteropilot-alerts --webhook "https://..." --cpu 85 --memory 90'
+                  data-copy='pteropilot-alerts --webhook "https://..." --cpu 85 --memory 90
+pteropilot-alerts --webhook "https://..." --backup-days 7'
                   data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
         </div>
         <pre class="code"><span class="c"># 原来只看「在不在线」；一台 running 但 CPU 打满的服务器它不会叫</span>
-<span class="prompt">$</span> <span class="n">pteropilot-alerts</span> --webhook <span class="s">"https://..."</span> --cpu 85 --memory 90</pre>
+<span class="prompt">$</span> <span class="n">pteropilot-alerts</span> --webhook <span class="s">"https://..."</span> --cpu 85 --memory 90
+
+<span class="c"># 备份超过 7 天没更新（或从来没有）也推一条——这个不打没人会主动看</span>
+<span class="prompt">$</span> <span class="n">pteropilot-alerts</span> --webhook <span class="s">"https://..."</span> --backup-days 7
+
+<span class="c"># 三个阈值都能按服务器单独调（~/.pteropilot/alerts.json）</span>
+<span class="c">#   "servers": { "heavy-pack": { "cpu_threshold": 97 },</span>
+<span class="c">#                "tiny-lobby": { "cpu_threshold": 60, "backup_days": 2 } }</span></pre>
         <p class="hint" style="margin-top:12px"
            data-zh="CPU 是绝对值百分比；内存是使用率（memory_bytes / memory_limit），面板不限额的服务器自动跳过该项，不会拿 0 当分母算出假百分比。等于阈值就告警（到 85 就叫，不是超过 85）。默认 0 = 关闭。"
            data-zh-tw="CPU 是絕對值百分比；記憶體是使用率（memory_bytes / memory_limit），面板不限額的伺服器自動跳過該項，不會拿 0 當分母算出假百分比。等於閾值就告警（到 85 就叫，不是超過 85）。預設 0 = 關閉。"

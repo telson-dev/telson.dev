@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pteropilot 更新日志 — 版本历史 | telson.dev</title>
-<meta name="description" content="Pteropilot 更新日志：从 v0.1.0 到 v0.2.33 的版本历史——45 个 MCP 工具、批量并发化、日志搜索、连接诊断、网络地址、玩家统计、计划重启、备份下载等，545 项测试。">
+<meta name="description" content="Pteropilot 更新日志：从 v0.1.0 到 v0.2.34 的版本历史——45 个 MCP 工具、批量并发化、日志搜索、连接诊断、网络地址、玩家统计、计划重启、备份下载等，782 项测试。">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="telson.dev">
 <meta property="og:title" content="Pteropilot 更新日志">
-<meta property="og:description" content="v0.1.0 → v0.2.33 · 45 个工具 · 545 测试">
+<meta property="og:description" content="v0.1.0 → v0.2.34 · 45 个工具 · 545 测试">
 <meta property="og:url" content="https://telson.dev/changelog.html">
 <meta name="theme-color" content="#06090f">
 <link rel="icon" href="assets/img/icon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/img/icon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="canonical" href="https://telson.dev/changelog.html">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Pteropilot 更新日志","description":"Pteropilot 从 v0.1.0 到 v0.2.33 的版本历史","url":"https://telson.dev/changelog.html","author":{"@type":"Person","name":"telson"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Pteropilot 更新日志","description":"Pteropilot 从 v0.1.0 到 v0.2.34 的版本历史","url":"https://telson.dev/changelog.html","author":{"@type":"Person","name":"telson"}}</script>
 <link rel="stylesheet" href="assets/css/style.css?v=20261026e">
 </head>
 <body data-title-zh="Pteropilot 更新日志 — 版本历史 | telson.dev" data-title-tw="Pteropilot 更新日誌 — 版本歷史 | telson.dev" data-title-en="Pteropilot Changelog — Version History | telson.dev">
@@ -58,9 +58,9 @@
       <span class="page-hero__badge"><span class="dot-live"></span><span data-version data-zh="Pteropilot · 更新日志 · MIT" data-zh-tw="Pteropilot · 更新日誌 · MIT" data-en="Pteropilot · Changelog · MIT">Pteropilot · 更新日志 · MIT</span></span>
       <h1 style="margin:22px 0 16px">更新日志</h1>
       <p class="lead" style="font-size:clamp(18px,2.1vw,22px);color:var(--text);font-weight:700"
-         data-zh="从 v0.1.0 到 v0.2.33：45 个工具、545 项测试，持续迭代。" data-zh-tw="從 v0.1.0 到 v0.2.33：45 個工具、545 項測試，持續迭代。"
-         data-en="From v0.1.0 to v0.2.33: 45 tools, 545 tests, iterating steadily.">
-        从 v0.1.0 到 v0.2.33：45 个工具、545 项测试，持续迭代。
+         data-zh="从 v0.1.0 到 v0.2.34：45 个工具、782 项测试，持续迭代。" data-zh-tw="從 v0.1.0 到 v0.2.34：45 個工具、782 項測試，持續迭代。"
+         data-en="From v0.1.0 to v0.2.34: 45 tools, 782 tests, iterating steadily.">
+        从 v0.1.0 到 v0.2.34：45 个工具、782 项测试，持续迭代。
       </p>
       <p class="lead" style="max-width:640px;margin-top:10px"
          data-zh="完整记录见 GitHub CHANGELOG；这里只列对使用者有影响的变更。" data-zh-tw="完整記錄見 GitHub CHANGELOG；這裡只列對使用者有影響的變更。"
@@ -80,7 +80,30 @@
 
       <!-- CHANGELOG:START（此区由 scripts/sync_changelog.py 自动生成，勿手工编辑） -->
 
-            <article class="card reveal" style="margin-bottom:18px">
+      <article class="card reveal" style="margin-bottom:18px">
+        <h2 style="margin:0 0 6px;font-size:20px">v0.2.34 <span class="muted" style="font-size:13px;font-weight:400">2026-11-16</span></h2>
+        <ul class="ticks">
+          <li data-zh="CLI `pteropilot --players [标识] [--days N] [--top N] [--json]`：命令行看玩家活跃趋势" data-en="CLI `pteropilot --players [标识] [--days N] [--top N] [--json]`：命令行看玩家活跃趋势">CLI `pteropilot --players [标识] [--days N] [--top N] [--json]`：命令行看玩家活跃趋势</li>
+          <li data-zh="CLI `pteropilot --log &lt;标识&gt; [--lines N] [--grep 关键字] [--json]`：命令行看控制台日志" data-en="CLI `pteropilot --log &lt;标识&gt; [--lines N] [--grep 关键字] [--json]`：命令行看控制台日志">CLI `pteropilot --log &lt;标识&gt; [--lines N] [--grep 关键字] [--json]`：命令行看控制台日志</li>
+          <li data-zh="`--status --watch [--interval N]`：轮询状态，**只在真的变化时刷屏**" data-en="`--status --watch [--interval N]`：轮询状态，**只在真的变化时刷屏**">`--status --watch [--interval N]`：轮询状态，**只在真的变化时刷屏**</li>
+          <li data-zh="`--status --backups [--backup-days N]`：多一列「最新备份」，并把过期的单独点名" data-en="`--status --backups [--backup-days N]`：多一列「最新备份」，并把过期的单独点名">`--status --backups [--backup-days N]`：多一列「最新备份」，并把过期的单独点名</li>
+          <li data-zh="CLI `pteropilot --help` / `-h`：命令行速查，**不依赖面板配置**" data-en="CLI `pteropilot --help` / `-h`：命令行速查，**不依赖面板配置**">CLI `pteropilot --help` / `-h`：命令行速查，**不依赖面板配置**</li>
+          <li data-zh="`pteropilot-alerts --backup-days N`：备份过期主动推送（合成状态 `stale_backup`）" data-en="`pteropilot-alerts --backup-days N`：备份过期主动推送（合成状态 `stale_backup`）">`pteropilot-alerts --backup-days N`：备份过期主动推送（合成状态 `stale_backup`）</li>
+          <li data-zh="三个阈值（`cpu_threshold` / `memory_threshold` / `backup_days`）支持在" data-en="三个阈值（`cpu_threshold` / `memory_threshold` / `backup_days`）支持在">三个阈值（`cpu_threshold` / `memory_threshold` / `backup_days`）支持在</li>
+          <li data-zh="`--doctor` 会对比 GitHub 最新 release，落后时给出可直接复制的升级命令" data-en="`--doctor` 会对比 GitHub 最新 release，落后时给出可直接复制的升级命令">`--doctor` 会对比 GitHub 最新 release，落后时给出可直接复制的升级命令</li>
+          <li data-zh="静态检查：引入 ruff，只开「会变成 bug 的」规则（未定义名 / 未使用导入与变量等），" data-en="静态检查：引入 ruff，只开「会变成 bug 的」规则（未定义名 / 未使用导入与变量等），">静态检查：引入 ruff，只开「会变成 bug 的」规则（未定义名 / 未使用导入与变量等），</li>
+          <li data-zh="批量工具加**并发上限**（默认 8，`PTEROPILOT_CONCURRENCY` 可调，夹在 1–32）（Changed）" data-en="批量工具加**并发上限**（默认 8，`PTEROPILOT_CONCURRENCY` 可调，夹在 1–32）（Changed）">批量工具加**并发上限**（默认 8，`PTEROPILOT_CONCURRENCY` 可调，夹在 1–32）（Changed）</li>
+          <li data-zh="只读请求遇 429 / 502 / 503 / 504 或连接错误时**自动退避重试**（默认额外 2 次）（Changed）" data-en="只读请求遇 429 / 502 / 503 / 504 或连接错误时**自动退避重试**（默认额外 2 次）（Changed）">只读请求遇 429 / 502 / 503 / 504 或连接错误时**自动退避重试**（默认额外 2 次）（Changed）</li>
+          <li data-zh="`alerts.py` 用了 `sys.stderr` 却从未 `import sys`——`--reset` 删除状态文件失败时（Fixed）" data-en="`alerts.py` 用了 `sys.stderr` 却从未 `import sys`——`--reset` 删除状态文件失败时（Fixed）">`alerts.py` 用了 `sys.stderr` 却从未 `import sys`——`--reset` 删除状态文件失败时（Fixed）</li>
+          <li data-zh="`server.py` 的 `import re` 只写在三个函数内部，模块顶层没有——`--log` 一跑到（Fixed）" data-en="`server.py` 的 `import re` 只写在三个函数内部，模块顶层没有——`--log` 一跑到（Fixed）">`server.py` 的 `import re` 只写在三个函数内部，模块顶层没有——`--log` 一跑到（Fixed）</li>
+          <li data-zh="`--in nan` / `--in inf` 会让 `time.sleep()` 抛未捕获异常：`float(&quot;nan&quot;)` 是合法的，（Fixed）" data-en="`--in nan` / `--in inf` 会让 `time.sleep()` 抛未捕获异常：`float(&quot;nan&quot;)` 是合法的，（Fixed）">`--in nan` / `--in inf` 会让 `time.sleep()` 抛未捕获异常：`float(&quot;nan&quot;)` 是合法的，（Fixed）</li>
+          <li data-zh="`--doctor` 的版本行与 `--version` 措辞不统一（同一次输出里「45 个 MCP 工具」和（Fixed）" data-en="`--doctor` 的版本行与 `--version` 措辞不统一（同一次输出里「45 个 MCP 工具」和（Fixed）">`--doctor` 的版本行与 `--version` 措辞不统一（同一次输出里「45 个 MCP 工具」和（Fixed）</li>
+          <li data-zh="测试从 545 涨到 782，覆盖率 96.6%（CI 门槛 90%）（Notes）" data-en="测试从 545 涨到 782，覆盖率 96.6%（CI 门槛 90%）（Notes）">测试从 545 涨到 782，覆盖率 96.6%（CI 门槛 90%）（Notes）</li>
+          <li data-zh="PyPI 上的包仍停在 0.2.0（账号找回中，见 issue pypi/support#12940）；（Notes）" data-en="PyPI 上的包仍停在 0.2.0（账号找回中，见 issue pypi/support#12940）；（Notes）">PyPI 上的包仍停在 0.2.0（账号找回中，见 issue pypi/support#12940）；（Notes）</li>
+        </ul>
+      </article>
+
+      <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.33 <span class="muted" style="font-size:13px;font-weight:400">2026-11-15</span></h2>
         <ul class="ticks">
           <li data-zh="<code>pteropilot --status [标识]</code>：不开 MCP 客户端直接看服务器状态。不给标识时列出全部（并发拉取）——状态、健康度、CPU、内存；单台失败显示 <code>⚠</code> 且不盖住其余服务器；给标识时额外读一次日志推断在线玩家数（拿不到就显示 <code>-</code>，不编数字）。<code>--json</code> 输出结构化结果。退出码：全部健康才 <code>0</code>，否则 <code>1</code>——可直接当 cron 健康检查。" data-zh-tw="<code>pteropilot --status [標識]</code>：不開 MCP 客戶端直接看伺服器狀態。不給標識時列出全部（併發拉取）——狀態、健康度、CPU、記憶體；單臺失敗顯示 <code>⚠</code> 且不蓋住其餘伺服器；給標識時額外讀一次日誌推斷線上玩家數（拿不到就顯示 <code>-</code>，不編數字）。<code>--json</code> 輸出結構化結果。退出碼：全部健康才 <code>0</code>，否則 <code>1</code>——可直接當 cron 健康檢查。" data-en="<code>pteropilot --status [id]</code>: inspect servers straight from the shell, no MCP client. Without an id it lists every server concurrently — state, health, CPU, memory; one failing server shows <code>⚠</code> without hiding the rest. With an id it also reads the console log to infer online players (shows <code>-</code> rather than guessing). <code>--json</code> for scripts. Exit code <code>0</code> only when everything is healthy, <code>1</code> otherwise — usable as a cron health check."><code>pteropilot --status [标识]</code>：不开 MCP 客户端直接看服务器状态。不给标识时列出全部（并发拉取）——状态、健康度、CPU、内存；单台失败显示 <code>⚠</code> 且不盖住其余服务器；给标识时额外读一次日志推断在线玩家数（拿不到就显示 <code>-</code>，不编数字）。<code>--json</code> 输出结构化结果。退出码：全部健康才 <code>0</code>，否则 <code>1</code>——可直接当 cron 健康检查。</li>
@@ -124,14 +147,14 @@
         </ul>
       </article>
 
-<article class="card reveal" style="margin-bottom:18px">
+      <article class="card reveal" style="margin-bottom:18px">
         <h2 style="margin:0 0 6px;font-size:20px">v0.2.27 <span class="muted" style="font-size:13px;font-weight:400">2026-11-12</span></h2>
         <ul class="ticks">
-          <li data-zh="<code>pteropilot --doctor</code> 环境自检：检查 Python 版本、面板配置、地址规范化（带 <code>/api</code> 会提示已剥掉）、密钥前缀角色（<code>ptla_</code> 用错会指出）、面板连通（401/403/404 分别给出含义与修法）、告警渠道；输出<strong>不含密钥</strong>，可整段贴给他人排查。配套 <code>--no-network</code> 只查配置不联网" data-zh-tw="<code>pteropilot --doctor</code> 環境自檢：檢查 Python 版本、面板配置、地址規範化（帶 <code>/api</code> 會提示已剝掉）、金鑰字首角色（<code>ptla_</code> 用錯會指出）、面板連通（401/403/404 分別給出含義與修法）、告警渠道；輸出<strong>不含金鑰</strong>，可整段貼給他人排查。配套 <code>--no-network</code> 只查配置不聯網" data-en="<code>pteropilot --doctor</code> 环境自检：检查 Python 版本、面板配置、地址规范化（带 <code>/api</code> 会提示已剥掉）、密钥前缀角色（<code>ptla_</code> 用错会指出）、面板连通（401/403/404 分别给出含义与修法）、告警渠道；输出<strong>不含密钥</strong>，可整段贴给他人排查。配套 <code>--no-network</code> 只查配置不联网"><code>pteropilot --doctor</code> 环境自检：检查 Python 版本、面板配置、地址规范化（带 <code>/api</code> 会提示已剥掉）、密钥前缀角色（<code>ptla_</code> 用错会指出）、面板连通（401/403/404 分别给出含义与修法）、告警渠道；输出<strong>不含密钥</strong>，可整段贴给他人排查。配套 <code>--no-network</code> 只查配置不联网</li>
-          <li data-zh="<code>list_mounts</code> 挂载点查看工具（第 43 个）：列出服务器的额外存储挂载——名称、<code>source → target</code> 路径、只读/可写、是否用户可自行挂载。排查「我上传的文件怎么看不到」（挂载没配或只读）。只读。" data-zh-tw="<code>list_mounts</code> 掛載點檢視工具（第 43 個）：列出伺服器的額外儲存掛載——名稱、<code>source → target</code> 路徑、只讀/可寫、是否使用者可自行掛載。排查「我上傳的檔案怎麼看不到」（掛載沒配或只讀）。只讀。" data-en="<code>list_mounts</code> 挂载点查看工具（第 43 个）：列出服务器的额外存储挂载——名称、<code>source → target</code> 路径、只读/可写、是否用户可自行挂载。排查「我上传的文件怎么看不到」（挂载没配或只读）。只读。"><code>list_mounts</code> 挂载点查看工具（第 43 个）：列出服务器的额外存储挂载——名称、<code>source → target</code> 路径、只读/可写、是否用户可自行挂载。排查「我上传的文件怎么看不到」（挂载没配或只读）。只读。</li>
-          <li data-zh="<strong>告警推送失败不再伪装成「查询失败」</strong>：webhook/邮件发送失败时单独归入 <code>send_failed</code> / <code>send_errors</code>，输出醒目警告并让进程<strong>退出码 3</strong>（此前混在查询错误里、退出码仍 0——服务器真挂了、告警又没发出去时，用户会以为有监控实际没人收到，属最危险的静默失败）；一条都没发出时也不推进冷却状态，下次扫描会重试（Fixed）" data-zh-tw="<strong>告警推送失敗不再偽裝成「查詢失敗」</strong>：webhook/郵件傳送失敗時單獨歸入 <code>send_failed</code> / <code>send_errors</code>，輸出醒目警告並讓程序<strong>退出碼 3</strong>（此前混在查詢錯誤裡、退出碼仍 0——伺服器真掛了、告警又沒發出去時，使用者會以為有監控實際沒人收到，屬最危險的靜默失敗）；一條都沒發出時也不推進冷卻狀態，下次掃描會重試（Fixed）" data-en="<strong>告警推送失败不再伪装成「查询失败」</strong>：webhook/邮件发送失败时单独归入 <code>send_failed</code> / <code>send_errors</code>，输出醒目警告并让进程<strong>退出码 3</strong>（此前混在查询错误里、退出码仍 0——服务器真挂了、告警又没发出去时，用户会以为有监控实际没人收到，属最危险的静默失败）；一条都没发出时也不推进冷却状态，下次扫描会重试（Fixed）"><strong>告警推送失败不再伪装成「查询失败」</strong>：webhook/邮件发送失败时单独归入 <code>send_failed</code> / <code>send_errors</code>，输出醒目警告并让进程<strong>退出码 3</strong>（此前混在查询错误里、退出码仍 0——服务器真挂了、告警又没发出去时，用户会以为有监控实际没人收到，属最危险的静默失败）；一条都没发出时也不推进冷却状态，下次扫描会重试（Fixed）</li>
-          <li data-zh="<code>pteropilot-alerts --reset</code>：清空冷却/连续确认状态（调完灵敏度想立刻验证、或服务器已修好但还卡在冷却期时用）；只动状态文件、不碰按服务器配置，支持 <code>--dry-run</code> 与 <code>--json</code>" data-zh-tw="<code>pteropilot-alerts --reset</code>：清空冷卻/連續確認狀態（調完靈敏度想立刻驗證、或伺服器已修好但還卡在冷卻期時用）；只動狀態檔案、不碰按伺服器配置，支援 <code>--dry-run</code> 與 <code>--json</code>" data-en="<code>pteropilot-alerts --reset</code>：清空冷却/连续确认状态（调完灵敏度想立刻验证、或服务器已修好但还卡在冷却期时用）；只动状态文件、不碰按服务器配置，支持 <code>--dry-run</code> 与 <code>--json</code>"><code>pteropilot-alerts --reset</code>：清空冷却/连续确认状态（调完灵敏度想立刻验证、或服务器已修好但还卡在冷却期时用）；只动状态文件、不碰按服务器配置，支持 <code>--dry-run</code> 与 <code>--json</code></li>
-          <li data-zh="发布脚本（<code>scripts/release.py</code>、<code>scripts/sync_release_notes.py</code>）的 GitHub API 调用加入<strong>指数退避重试</strong>：网络抖动（RemoteDisconnected / 超时 / 连接错误）自动重试 3 次，HTTP 4xx/5xx 仍立即失败——曾因一次连接中断导致打 tag 半途失败（Changed）" data-zh-tw="釋出指令碼（<code>scripts/release.py</code>、<code>scripts/sync_release_notes.py</code>）的 GitHub API 呼叫加入<strong>指數退避重試</strong>：網路抖動（RemoteDisconnected / 超時 / 連線錯誤）自動重試 3 次，HTTP 4xx/5xx 仍立即失敗——曾因一次連線中斷導致打 tag 半途失敗（Changed）" data-en="发布脚本（<code>scripts/release.py</code>、<code>scripts/sync_release_notes.py</code>）的 GitHub API 调用加入<strong>指数退避重试</strong>：网络抖动（RemoteDisconnected / 超时 / 连接错误）自动重试 3 次，HTTP 4xx/5xx 仍立即失败——曾因一次连接中断导致打 tag 半途失败（Changed）">发布脚本（<code>scripts/release.py</code>、<code>scripts/sync_release_notes.py</code>）的 GitHub API 调用加入<strong>指数退避重试</strong>：网络抖动（RemoteDisconnected / 超时 / 连接错误）自动重试 3 次，HTTP 4xx/5xx 仍立即失败——曾因一次连接中断导致打 tag 半途失败（Changed）</li>
+          <li data-zh="`pteropilot --doctor` 环境自检：检查 Python 版本、面板配置、地址规范化（带 `/api` 会提示已剥掉）、密钥前缀角色（`ptla_` 用错会指出）、面板连通（401/403/404 分别给出含义与修法）、告警渠道；输出**不含密钥**，可整段贴给他人排查。配套 `--no-network` 只查配置不联网" data-en="`pteropilot --doctor` 环境自检：检查 Python 版本、面板配置、地址规范化（带 `/api` 会提示已剥掉）、密钥前缀角色（`ptla_` 用错会指出）、面板连通（401/403/404 分别给出含义与修法）、告警渠道；输出**不含密钥**，可整段贴给他人排查。配套 `--no-network` 只查配置不联网">`pteropilot --doctor` 环境自检：检查 Python 版本、面板配置、地址规范化（带 `/api` 会提示已剥掉）、密钥前缀角色（`ptla_` 用错会指出）、面板连通（401/403/404 分别给出含义与修法）、告警渠道；输出**不含密钥**，可整段贴给他人排查。配套 `--no-network` 只查配置不联网</li>
+          <li data-zh="`list_mounts` 挂载点查看工具（第 43 个）：列出服务器的额外存储挂载——名称、`source → target` 路径、只读/可写、是否用户可自行挂载。排查「我上传的文件怎么看不到」（挂载没配或只读）。只读。" data-en="`list_mounts` 挂载点查看工具（第 43 个）：列出服务器的额外存储挂载——名称、`source → target` 路径、只读/可写、是否用户可自行挂载。排查「我上传的文件怎么看不到」（挂载没配或只读）。只读。">`list_mounts` 挂载点查看工具（第 43 个）：列出服务器的额外存储挂载——名称、`source → target` 路径、只读/可写、是否用户可自行挂载。排查「我上传的文件怎么看不到」（挂载没配或只读）。只读。</li>
+          <li data-zh="**告警推送失败不再伪装成「查询失败」**：webhook/邮件发送失败时单独归入 `send_failed` / `send_errors`，输出醒目警告并让进程**退出码 3**（此前混在查询错误里、退出码仍 0——服务器真挂了、告警又没发出去时，用户会以为有监控实际没人收到，属最危险的静默失败）；一条都没发出时也不推进冷却状态，下次扫描会重试（Fixed）" data-en="**告警推送失败不再伪装成「查询失败」**：webhook/邮件发送失败时单独归入 `send_failed` / `send_errors`，输出醒目警告并让进程**退出码 3**（此前混在查询错误里、退出码仍 0——服务器真挂了、告警又没发出去时，用户会以为有监控实际没人收到，属最危险的静默失败）；一条都没发出时也不推进冷却状态，下次扫描会重试（Fixed）">**告警推送失败不再伪装成「查询失败」**：webhook/邮件发送失败时单独归入 `send_failed` / `send_errors`，输出醒目警告并让进程**退出码 3**（此前混在查询错误里、退出码仍 0——服务器真挂了、告警又没发出去时，用户会以为有监控实际没人收到，属最危险的静默失败）；一条都没发出时也不推进冷却状态，下次扫描会重试（Fixed）</li>
+          <li data-zh="`pteropilot-alerts --reset`：清空冷却/连续确认状态（调完灵敏度想立刻验证、或服务器已修好但还卡在冷却期时用）；只动状态文件、不碰按服务器配置，支持 `--dry-run` 与 `--json`" data-en="`pteropilot-alerts --reset`：清空冷却/连续确认状态（调完灵敏度想立刻验证、或服务器已修好但还卡在冷却期时用）；只动状态文件、不碰按服务器配置，支持 `--dry-run` 与 `--json`">`pteropilot-alerts --reset`：清空冷却/连续确认状态（调完灵敏度想立刻验证、或服务器已修好但还卡在冷却期时用）；只动状态文件、不碰按服务器配置，支持 `--dry-run` 与 `--json`</li>
+          <li data-zh="发布脚本（`scripts/release.py`、`scripts/sync_release_notes.py`）的 GitHub API 调用加入**指数退避重试**：网络抖动（RemoteDisconnected / 超时 / 连接错误）自动重试 3 次，HTTP 4xx/5xx 仍立即失败——曾因一次连接中断导致打 tag 半途失败（Changed）" data-en="发布脚本（`scripts/release.py`、`scripts/sync_release_notes.py`）的 GitHub API 调用加入**指数退避重试**：网络抖动（RemoteDisconnected / 超时 / 连接错误）自动重试 3 次，HTTP 4xx/5xx 仍立即失败——曾因一次连接中断导致打 tag 半途失败（Changed）">发布脚本（`scripts/release.py`、`scripts/sync_release_notes.py`）的 GitHub API 调用加入**指数退避重试**：网络抖动（RemoteDisconnected / 超时 / 连接错误）自动重试 3 次，HTTP 4xx/5xx 仍立即失败——曾因一次连接中断导致打 tag 半途失败（Changed）</li>
         </ul>
       </article>
 

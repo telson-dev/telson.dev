@@ -464,7 +464,8 @@ pteropilot --status smp
 pteropilot --status --json
 pteropilot --status --watch --interval 10
 pteropilot --status --backups --backup-days 7
-pteropilot --backups smp --limit 10'
+pteropilot --backups smp --limit 10
+pteropilot --backup-url smp weekly-1'
                   data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
         </div>
         <pre class="code"><span class="c"># 全部服务器：状态 / 健康度 / CPU / 内存</span>
@@ -483,7 +484,10 @@ pteropilot --backups smp --limit 10'
 <span class="prompt">$</span> <span class="n">pteropilot</span> --status --backups --backup-days 7
 
 <span class="c"># 看到警告之后真正要问的是「哪个备份能拿来恢复」——直接列出来</span>
-<span class="prompt">$</span> <span class="n">pteropilot</span> --backups smp --limit 10</pre>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --backups smp --limit 10
+
+<span class="c"># 恢复：按备份名取一次性下载链接（不必手打 36 位 UUID）</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --backup-url smp weekly-1</pre>
         <p class="hint" style="margin-top:12px"
            data-zh="输出是一张表：标识、名称、🟢/🟡/🔴 健康度、CPU、内存、磁盘。单台查询失败显示 ⚠ 且不盖住其他服务器；玩家数拿不到就显示 -，不编数字。"
            data-zh-tw="輸出是一張表：識別碼、名稱、🟢/🟡/🔴 健康度、CPU、記憶體、磁碟。單台查詢失敗顯示 ⚠ 且不蓋住其他伺服器；玩家數拿不到就顯示 -，不編數字。"

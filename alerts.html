@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pteropilot 崩服告警与备份看护 — 状态 / 负载 / 备份三路通知 | telson.dev</title>
+<meta name="description" content="Pteropilot 告警：服务器离线、CPU 内存打满、备份太久没更新，都会推送。支持钉钉与企业微信 webhook、邮件、冷却去重、连续确认、按服务器单独设阈值。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="telson.dev">
+<meta property="og:title" content="Pteropilot 崩服告警与备份看护">
+<meta property="og:description" content="状态 / 负载 / 备份三路通知，支持 webhook 与邮件，按服务器单独设阈值">
+<meta property="og:url" content="https://telson.dev/alerts.html">
+<meta name="theme-color" content="#06090f">
+<link rel="icon" href="assets/img/icon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/icon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="canonical" href="https://telson.dev/alerts.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"用 Pteropilot 配崩服告警","description":"配置 Pteropilot 的崩服告警：webhook / 邮件通道、状态与负载阈值、备份过期提醒","step":[{"@type":"HowToStep","position":1,"name":"装好并发一条测试通知","text":"pteropilot-alerts --webhook ... --test"},{"@type":"HowToStep","position":2,"name":"定时运行","text":"用 cron 每 5 分钟跑一次 pteropilot-alerts"},{"@type":"HowToStep","position":3,"name":"按需要调阈值","text":"用 --cpu / --memory / --backup-days 或 alerts.json 按服务器设置"}]}</script>
+<link rel="stylesheet" href="assets/css/style.css?v=20261026e">
+</head>
+<body data-title-zh="Pteropilot 崩服告警与备份看护 | telson.dev" data-title-tw="Pteropilot 崩服告警與備份看護 | telson.dev" data-title-en="Pteropilot Alerts & Backup Watch | telson.dev">
+
+<div class="bg-field"></div>
+<div class="bg-grid"></div>
+<canvas class="grid-canvas" aria-hidden="true"></canvas>
+<div class="scroll-progress" aria-hidden="true"><i></i></div>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/mark.svg" alt="telson">
+      telson<span>.dev</span>
+    </a>
+    <button class="nav__toggle" type="button" aria-label="菜单" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav__links" id="nav-links" aria-label="主导航">
+      <a class="nav__link" href="index.html" data-zh="首页" data-zh-tw="首頁" data-en="Home">首页</a>
+      <a class="nav__link" href="projects.html" data-zh="作品" data-zh-tw="作品" data-en="Work">作品</a>
+      <a class="nav__link" href="pteropilot.html">Pteropilot</a>
+      <a class="nav__link" href="pro.html">Pteropilot Pro <span class="nav-new" data-zh="新" data-zh-tw="新" data-en="NEW">新</span></a>
+      <a class="nav__link" href="sitemap.html" data-zh="网站地图" data-zh-tw="網站地圖" data-en="Site map">网站地图</a>
+      <div class="lang-toggle" role="group" aria-label="语言 / Language">
+        <button type="button" data-lang="zh" aria-pressed="true">中</button>
+        <button type="button" data-lang="zh-TW" aria-pressed="false">繁</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="nav__link nav__link--cta" href="services.html" data-zh="接单 · 找我干活" data-zh-tw="接單 · 找我幹活" data-en="Hire me">接单 · 找我干活</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="page-hero__badge"><span class="dot-live"></span><span data-zh="Pteropilot 附带工具 · 开源免费" data-zh-tw="Pteropilot 附帶工具 · 開源免費" data-en="Ships with Pteropilot · free">Pteropilot 附带工具 · 开源免费</span></span>
+      <h1 style="margin:22px 0 16px" data-zh="崩服告警与备份看护" data-zh-tw="崩服告警與備份看護" data-en="Crash alerts and backup watch">崩服告警与备份看护</h1>
+      <p class="lead" style="max-width:660px" data-zh="「在线」不等于「没事」。一台 CPU 打满的服务器照样显示 running；一台从没备份过的服务器照样显示正常——直到它挂的那天。这个工具就是替你盯着这三件事：状态、负载、备份。" data-zh-tw="「線上」不等於「沒事」。一台 CPU 打滿的伺服器照樣顯示 running；一台從沒備份過的伺服器照樣顯示正常——直到它掛的那天。這個工具就是替你盯著這三件事：狀態、負載、備份。" data-en="&quot;Online&quot; is not the same as &quot;fine&quot;. A server pegged at 100% CPU still reports running, and a server with no backups still looks healthy — until the day it dies. This tool watches all three: state, load, backups.">
+        「在线」不等于「没事」。一台 CPU 打满的服务器照样显示 running；一台从没备份过的服务器照样显示正常——直到它挂的那天。这个工具就是替你盯着这三件事：状态、负载、备份。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="code__head">
+        <span class="code__label" data-zh="三步开始" data-zh-tw="三步開始" data-en="THREE STEPS">三步开始</span>
+        <button class="copy" type="button"
+                data-copy='pteropilot-alerts --webhook "https://..." --test
+pteropilot-alerts --webhook "https://..." --backup-days 7
+*/5 * * * * pteropilot-alerts --webhook "https://..." --cpu 85 --memory 90 --backup-days 7'
+                data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
+      </div>
+      <pre class="code"><span class="c"># 1. 先确认通道通不通（配置告警最常见的卡点是 webhook 地址填错）</span>
+<span class="prompt">$</span> <span class="n">pteropilot-alerts</span> --webhook <span class="s">"https://..."</span> --test
+
+<span class="c"># 2. 试着跑一次（--dry-run 只演算将要通知谁，不真的发）</span>
+<span class="prompt">$</span> <span class="n">pteropilot-alerts</span> --webhook <span class="s">"https://..."</span> --cpu 85 --memory 90 --backup-days 7 --dry-run
+
+<span class="c"># 3. 挂到 cron，每 5 分钟看一次</span>
+*/5 * * * * <span class="n">pteropilot-alerts</span> --webhook <span class="s">"https://..."</span> --cpu 85 --memory 90 --backup-days 7</pre>
+      <p class="hint" style="margin-top:12px" data-zh="它装在 Pteropilot 旁边，装 Pteropilot 就有：pip install pteropilot 之后同时得到 pteropilot 和 pteropilot-alerts 两个命令。只读运行，不会重启、不会改文件。" data-zh-tw="它裝在 Pteropilot 旁邊，裝 Pteropilot 就有：pip install pteropilot 之後同時得到 pteropilot 和 pteropilot-alerts 兩個命令。唯讀執行，不會重啟、不會改檔案。" data-en="It ships with Pteropilot: installing Pteropilot gives you both the pteropilot and pteropilot-alerts commands. It runs read-only — it never restarts anything or edits files.">
+        它装在 Pteropilot 旁边，装 Pteropilot 就有：<code>pip install pteropilot</code> 之后同时得到 <code>pteropilot</code> 和 <code>pteropilot-alerts</code> 两个命令。只读运行，不会重启、不会改文件。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-zh="三种触发" data-zh-tw="三種觸發" data-en="THREE TRIGGERS">三种触发</p>
+        <h2 data-zh="它到底在盯什么" data-zh-tw="它到底在盯什麼" data-en="What it actually watches">它到底在盯什么</h2>
+      </div>
+      <div class="grid grid--3">
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:10px" data-zh="① 状态异常" data-zh-tw="① 狀態異常" data-en="1. State">① 状态异常</h3>
+          <p class="muted" style="font-size:14.5px;line-height:1.7" data-zh="服务器离线、报错、挂起，或者日志里出现 OOM / JVM 崩溃 / 进程退出这类崩溃信号。这是默认就在管的一项。" data-zh-tw="伺服器離線、報錯、掛起，或者日誌裡出現 OOM / JVM 崩潰 / 程序退出這類崩潰訊號。這是預設就在管的一項。" data-en="Offline, error, suspended, or crash markers in the console log (OOM, JVM crash, process exit). This one is on by default.">
+            服务器离线、报错、挂起，或者日志里出现 OOM / JVM 崩溃 / 进程退出这类崩溃信号。这是默认就在管的一项。
+          </p>
+          <p class="muted" style="font-size:13px;margin-top:10px"><code>--min-level abnormal</code></p>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:10px" data-zh="② 负载超限" data-zh-tw="② 負載超限" data-en="2. Load">② 负载超限</h3>
+          <p class="muted" style="font-size:14.5px;line-height:1.7" data-zh="状态是 running，但 CPU 或内存已经顶到阈值。这种「活着但快撑不住」的情况，只看在不在线的工具永远不会叫。" data-zh-tw="狀態是 running，但 CPU 或記憶體已經頂到閾值。這種「活著但快撐不住」的情況，只看在不在線的工具永遠不會叫。" data-en="State is running, but CPU or memory is at the threshold. Tools that only check up-or-down never fire for this.">
+            状态是 running，但 CPU 或内存已经顶到阈值。这种「活着但快撑不住」的情况，只看在不在线的工具永远不会叫。
+          </p>
+          <p class="muted" style="font-size:13px;margin-top:10px"><code>--cpu 85 --memory 90</code></p>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:10px" data-zh="③ 备份过期" data-zh-tw="③ 備份過期" data-en="3. Backups">③ 备份过期</h3>
+          <p class="muted" style="font-size:14.5px;line-height:1.7" data-zh="最新成功备份比阈值还旧，或者一次都没成功过。这是最容易漏掉、代价也最大的一项——崩了你才发现上次备份是三个月前。" data-zh-tw="最新成功備份比閾值還舊，或者一次都沒成功過。這是最容易漏掉、代價也最大的一項——崩了你才發現上次備份是三個月前。" data-en="The newest successful backup is older than the threshold, or none ever succeeded. Easiest to miss, most expensive to miss.">
+            最新成功备份比阈值还旧，或者一次都没成功过。这是最容易漏掉、代价也最大的一项——崩了你才发现上次备份是三个月前。
+          </p>
+          <p class="muted" style="font-size:13px;margin-top:10px"><code>--backup-days 7</code></p>
+        </div>
+      </div>
+      <p class="hint" style="margin-top:18px" data-zh="负载那一项：CPU 是绝对值百分比，内存是使用率（memory_bytes / memory_limit）。面板没给内存上限的服务器会跳过内存检查，而不是拿 0 当分母算出一个假百分比。等于阈值就算命中（到 85 就叫，不是超过 85）。默认 0 = 关闭。失败的备份不算备份——恢复不了的不叫备份。" data-zh-tw="負載那一項：CPU 是絕對值百分比，記憶體是使用率（memory_bytes / memory_limit）。面板沒給記憶體上限的伺服器會跳過記憶體檢查，而不是拿 0 當分母算出一個假百分比。等於閾值就算命中（到 85 就叫，不是超過 85）。預設 0 = 關閉。失敗的備份不算備份——恢復不了的不叫備份。" data-en="For load: CPU is an absolute percentage, memory is a usage ratio (memory_bytes / memory_limit). Servers without a memory limit skip that check rather than dividing by zero. Hitting the threshold exactly counts as over. Default 0 disables. Failed backups do not count — a backup you cannot restore is not a backup.">
+        负载那一项：CPU 是绝对值百分比，内存是使用率（<code>memory_bytes / memory_limit</code>）。面板没给内存上限的服务器会跳过内存检查，而不是拿 0 当分母算出一个假百分比。等于阈值就算命中（到 85 就叫，不是超过 85）。默认 0 = 关闭。失败的备份不算备份——恢复不了的不叫备份。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-zh="别被误报淹没" data-zh-tw="別被誤報淹沒" data-en="DON'T DROWN IN NOISE">别被误报淹没</p>
+        <h2 data-zh="告警响太多次，人就学会无视它了" data-zh-tw="告警響太多次，人就學會無視它了" data-en="Alert too often and people learn to ignore it">告警响太多次，人就学会无视它了</h2>
+      </div>
+      <div class="grid grid--2">
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:10px" data-zh="冷却去重" data-zh-tw="冷卻去重" data-en="Cooldown">冷却去重</h3>
+          <p class="muted" style="font-size:14.5px;line-height:1.7" data-zh="同一台服务器、同一个状态，在冷却期内只推一次。状态真的变了（比如从「负载异常」变成「离线」）会立刻推——新故障值得马上知道。" data-zh-tw="同一台伺服器、同一個狀態，在冷卻期內只推一次。狀態真的變了（比如從「負載異常」變成「離線」）會立刻推——新故障值得馬上知道。" data-en="Same server, same state: one message per cooldown window. But if the state actually changes (say from high-load to offline) it pushes immediately — a new failure is worth knowing about.">
+            同一台服务器、同一个状态，在冷却期内只推一次。状态真的变了（比如从「负载异常」变成「离线」）会立刻推——新故障值得马上知道。
+          </p>
+          <p class="muted" style="font-size:13px;margin-top:10px"><code>--cooldown 60</code>（分钟）</p>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:10px" data-zh="连续确认" data-zh-tw="連續確認" data-en="Confirm count">连续确认</h3>
+          <p class="muted" style="font-size:14.5px;line-height:1.7" data-zh="连续 N 次检测到异常才推。对付那种一秒钟就恢复的抖动——它不该把你半夜叫醒。恢复正常会清零计数。" data-zh-tw="連續 N 次偵測到異常才推。對付那種一秒鐘就恢復的抖動——它不該把你半夜叫醒。恢復正常會清零計數。" data-en="Push only after N consecutive abnormal checks. This handles one-second blips that should not wake you up at night. Recovering resets the counter.">
+            连续 N 次检测到异常才推。对付那种一秒钟就恢复的抖动——它不该把你半夜叫醒。恢复正常会清零计数。
+          </p>
+          <p class="muted" style="font-size:13px;margin-top:10px"><code>--confirm-count 2</code></p>
+        </div>
+      </div>
+
+      <div class="code__head" style="margin-top:clamp(28px,4vw,40px)">
+        <span class="code__label" data-zh="按服务器单独设阈值" data-zh-tw="按伺服器單獨設閾值" data-en="PER-SERVER THRESHOLDS">按服务器单独设阈值</span>
+        <button class="copy" type="button" data-copy='{"default":{"cpu_threshold":85,"memory_threshold":90,"backup_days":7},"servers":{"heavy-pack":{"cpu_threshold":97,"memory_threshold":98},"tiny-lobby":{"cpu_threshold":60,"backup_days":2}}}'
+                data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
+      </div>
+      <pre class="code"><span class="c"># ~/.pteropilot/alerts.json —— 一个全局数字不可能同时适配这两种服</span>
+{
+  <span class="k">"default"</span>: { <span class="k">"cpu_threshold"</span>: <span class="s">85</span>, <span class="k">"memory_threshold"</span>: <span class="s">90</span>, <span class="k">"backup_days"</span>: <span class="s">7</span> },
+  <span class="k">"servers"</span>: {
+    <span class="s">"heavy-pack"</span>: { <span class="k">"cpu_threshold"</span>: <span class="s">97</span>, <span class="k">"memory_threshold"</span>: <span class="s">98</span> },
+    <span class="s">"tiny-lobby"</span>:  { <span class="k">"cpu_threshold"</span>: <span class="s">60</span>, <span class="k">"backup_days"</span>: <span class="s">2</span> }
+  }
+}</pre>
+      <p class="hint" style="margin-top:12px" data-zh="优先级：服务器条目 > default 段 > 命令行参数。重负载的整合包服 85% CPU 是常态，小大厅服 50% 就该看一眼——所以必须能按服务器调。这个文件里还能按服务器设 webhook 目标、收件人、冷却与确认次数。" data-zh-tw="優先級：伺服器條目 > default 段 > 命令列參數。重負載的整合包服 85% CPU 是常態，小大廳服 50% 就該看一眼——所以必須能按伺服器調。這個檔案裡還能按伺服器設 webhook 目標、收件人、冷卻與確認次數。" data-en="Precedence: server entry &gt; default block &gt; command-line flag. 85% CPU is normal for a heavy modpack and alarming for a tiny lobby, so per-server tuning is required. The same file can also override the webhook target, recipients, cooldown and confirm count per server.">
+        优先级：服务器条目 &gt; <code>default</code> 段 &gt; 命令行参数。重负载的整合包服 85% CPU 是常态，小大厅服 50% 就该看一眼——所以必须能按服务器调。这个文件里还能按服务器设 webhook 目标、收件人、冷却与确认次数。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-zh="通道与退出码" data-zh-tw="通道與退出碼" data-en="CHANNELS & EXIT CODES">通道与退出码</p>
+        <h2 data-zh="发到哪，以及脚本怎么判断" data-zh-tw="發到哪，以及腳本怎麼判斷" data-en="Where it goes, and how scripts tell">发到哪，以及脚本怎么判断</h2>
+      </div>
+      <div class="grid grid--2">
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:10px" data-zh="钉钉 / 企业微信 / 邮件" data-zh-tw="釘釘 / 企業微信 / 郵件" data-en="DingTalk / WeCom / email">钉钉 / 企业微信 / 邮件</h3>
+          <ul class="ticks" style="font-size:14.5px">
+            <li data-zh="webhook 机器人：<code>--webhook</code>，企业微信再加 <code>--token</code>" data-zh-tw="webhook 機器人：<code>--webhook</code>，企業微信再加 <code>--token</code>" data-en="Webhook bot: <code>--webhook</code>; add <code>--token</code> for WeCom">webhook 机器人：<code>--webhook</code>，企业微信再加 <code>--token</code></li>
+            <li data-zh="邮件：<code>--smtp-host</code> / <code>--smtp-user</code> / <code>--smtp-pass</code> / <code>--mail-to</code>" data-zh-tw="郵件：<code>--smtp-host</code> / <code>--smtp-user</code> / <code>--smtp-pass</code> / <code>--mail-to</code>" data-en="Email: <code>--smtp-host</code> / <code>--smtp-user</code> / <code>--smtp-pass</code> / <code>--mail-to</code>">邮件：<code>--smtp-host</code> / <code>--smtp-user</code> / <code>--smtp-pass</code> / <code>--mail-to</code></li>
+            <li data-zh="两者可以同时用；也都能在 <code>alerts.json</code> 里按服务器分开配" data-zh-tw="兩者可以同時用；也都能在 <code>alerts.json</code> 裡按伺服器分開配" data-en="Both can run at once, and both can be set per server in <code>alerts.json</code>">两者可以同时用；也都能在 <code>alerts.json</code> 里按服务器分开配</li>
+            <li data-zh="<code>--test</code> 会发一条测试通知并报告哪个通道失败" data-zh-tw="<code>--test</code> 會發一條測試通知並報告哪個通道失敗" data-en="<code>--test</code> sends one test message and reports which channel failed"><code>--test</code> 会发一条测试通知并报告哪个通道失败</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:10px" data-zh="退出码" data-zh-tw="退出碼" data-en="Exit codes">退出码</h3>
+          <ul class="ticks" style="font-size:14.5px">
+            <li data-zh="有异常服务器 → 非零（可直接接监控系统）" data-zh-tw="有異常伺服器 → 非零（可直接接監控系統）" data-en="Any abnormal server → non-zero (hook it into your monitoring)">有异常服务器 → 非零（可直接接监控系统）</li>
+            <li data-zh="全部健康 → 0" data-zh-tw="全部健康 → 0" data-en="All healthy → 0">全部健康 → 0</li>
+            <li data-zh="<code>--json</code> 输出里带 <code>channels</code> 与 <code>dry_run</code>，方便脚本判断" data-zh-tw="<code>--json</code> 輸出裡帶 <code>channels</code> 與 <code>dry_run</code>，方便腳本判斷" data-en="<code>--json</code> includes <code>channels</code> and <code>dry_run</code> so scripts can tell"><code>--json</code> 输出里带 <code>channels</code> 与 <code>dry_run</code>，方便脚本判断</li>
+            <li data-zh="推送失败会单独标注——「查询失败」和「告警没发出去」是两回事，后者更危险" data-zh-tw="推送失敗會單獨標註——「查詢失敗」和「告警沒發出去」是兩回事，後者更危險" data-en="A failed push is flagged separately: &quot;query failed&quot; and &quot;the alert never went out&quot; are different, and the latter is worse">推送失败会单独标注——「查询失败」和「告警没发出去」是两回事，后者更危险</li>
+          </ul>
+        </div>
+      </div>
+      <div class="link-row" style="margin-top:24px">
+        <a class="textlink" href="pteropilot.html" data-zh="← 回到 Pteropilot 总览" data-zh-tw="← 回到 Pteropilot 總覽" data-en="← Back to Pteropilot overview">← 回到 Pteropilot 总览</a>
+        <a class="textlink textlink--muted" href="tutorial.html" data-zh="安装与配置教程 →" data-zh-tw="安裝與配置教學 →" data-en="Install &amp; configure →">安装与配置教程 →</a>
+        <a class="textlink textlink--muted" href="https://github.com/telson-dev/pteropilot#crash-alerts-webhook" target="_blank" rel="noopener" data-zh="完整参数（README）↗" data-zh-tw="完整參數（README）↗" data-en="All options (README) ↗">完整参数（README）↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <span>© <span data-year>2026</span> telson.dev · 手写静态站，无框架无依赖</span>
+    <span>
+      <a href="index.html" data-zh="首页" data-zh-tw="首頁" data-en="Home">首页</a> ·
+      <a href="projects.html" data-zh="作品" data-zh-tw="作品" data-en="Work">作品</a> ·
+      <a href="pteropilot.html" data-zh="Pteropilot（开源版）" data-zh-tw="Pteropilot（開源版）" data-en="Pteropilot (open source)">Pteropilot（开源版）</a> ·
+      <a href="alerts.html" data-zh="崩服告警" data-zh-tw="崩服告警" data-en="Alerts">崩服告警</a> ·
+      <a href="pro.html">Pteropilot Pro</a> ·
+      <a href="tutorial.html" data-zh="教程" data-zh-tw="教學" data-en="Tutorial">教程</a> ·
+      <a href="changelog.html" data-zh="更新日志" data-zh-tw="更新日誌" data-en="Changelog">更新日志</a> ·
+      <a href="pro-guide.html" data-zh="Pro 使用指南" data-zh-tw="Pro 使用指南" data-en="Pro guide">Pro 使用指南</a> ·
+      <a href="services.html" data-zh="接单" data-zh-tw="接單" data-en="Hire me">接单</a> ·
+      <a href="sitemap.html" data-zh="网站地图" data-zh-tw="網站地圖" data-en="Site map">网站地图</a> ·
+      <a href="https://github.com/telson-dev" target="_blank" rel="noopener">GitHub</a>
+    </span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js?v=20261026e"></script>
+</body>
+</html>

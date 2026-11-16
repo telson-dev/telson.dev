@@ -69,7 +69,8 @@
         <button class="copy" type="button"
                 data-copy='pteropilot-alerts --webhook "https://..." --test
 pteropilot-alerts --webhook "https://..." --backup-days 7
-*/5 * * * * pteropilot-alerts --webhook "https://..." --cpu 85 --memory 90 --backup-days 7'
+pteropilot-alerts --webhook "https://..." --disk 85
+*/5 * * * * pteropilot-alerts --webhook "https://..." --cpu 85 --memory 90 --disk 85 --backup-days 7'
                 data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
       </div>
       <pre class="code"><span class="c"># 1. 先确认通道通不通（配置告警最常见的卡点是 webhook 地址填错）</span>
@@ -78,8 +79,11 @@ pteropilot-alerts --webhook "https://..." --backup-days 7
 <span class="c"># 2. 试着跑一次（--dry-run 只演算将要通知谁，不真的发）</span>
 <span class="prompt">$</span> <span class="n">pteropilot-alerts</span> --webhook <span class="s">"https://..."</span> --cpu 85 --memory 90 --backup-days 7 --dry-run
 
+<span class="c"># 2b. 磁盘快满也会静默出事：单独加 --disk</span>
+<span class="prompt">$</span> <span class="n">pteropilot-alerts</span> --webhook <span class="s">"https://..."</span> --disk 85 --dry-run
+
 <span class="c"># 3. 挂到 cron，每 5 分钟看一次</span>
-*/5 * * * * <span class="n">pteropilot-alerts</span> --webhook <span class="s">"https://..."</span> --cpu 85 --memory 90 --backup-days 7</pre>
+*/5 * * * * <span class="n">pteropilot-alerts</span> --webhook <span class="s">"https://..."</span> --cpu 85 --memory 90 --disk 85 --backup-days 7</pre>
       <p class="hint" style="margin-top:12px" data-zh="它装在 Pteropilot 旁边，装 Pteropilot 就有：pip install pteropilot 之后同时得到 pteropilot 和 pteropilot-alerts 两个命令。只读运行，不会重启、不会改文件。" data-zh-tw="它裝在 Pteropilot 旁邊，裝 Pteropilot 就有：pip install pteropilot 之後同時得到 pteropilot 和 pteropilot-alerts 兩個命令。唯讀執行，不會重啟、不會改檔案。" data-en="It ships with Pteropilot: installing Pteropilot gives you both the pteropilot and pteropilot-alerts commands. It runs read-only — it never restarts anything or edits files.">
         它装在 Pteropilot 旁边，装 Pteropilot 就有：<code>pip install pteropilot</code> 之后同时得到 <code>pteropilot</code> 和 <code>pteropilot-alerts</code> 两个命令。只读运行，不会重启、不会改文件。
       </p>
@@ -102,10 +106,11 @@ pteropilot-alerts --webhook "https://..." --backup-days 7
         </div>
         <div class="card reveal">
           <h3 style="font-size:17px;margin-bottom:10px" data-zh="② 负载超限" data-zh-tw="② 負載超限" data-en="2. Load">② 负载超限</h3>
-          <p class="muted" style="font-size:14.5px;line-height:1.7" data-zh="状态是 running，但 CPU 或内存已经顶到阈值。这种「活着但快撑不住」的情况，只看在不在线的工具永远不会叫。" data-zh-tw="狀態是 running，但 CPU 或記憶體已經頂到閾值。這種「活著但快撐不住」的情況，只看在不在線的工具永遠不會叫。" data-en="State is running, but CPU or memory is at the threshold. Tools that only check up-or-down never fire for this.">
+          <p class="muted" style="font-size:14.5px;line-height:1.7" data-zh="状态是 running，但 CPU 或内存已经顶到阈值。这种「活着但快撑不住」的情况，只看在不在线的工具永远不会叫。磁盘也是同一套：快满时存档写不进去，而它一直是静默的。" data-zh-tw="狀態是 running，但 CPU 或記憶體已經頂到閾值。這種「活著但快撐不住」的情況，只看在不在線的工具永遠不會叫。" data-en="State is running, but CPU or memory is at the threshold. Tools that only check up-or-down never fire for this.">
             状态是 running，但 CPU 或内存已经顶到阈值。这种「活着但快撑不住」的情况，只看在不在线的工具永远不会叫。
           </p>
           <p class="muted" style="font-size:13px;margin-top:10px"><code>--cpu 85 --memory 90</code></p>
+          <p class="muted" style="font-size:13px;margin-top:4px"><code>--disk 85</code></p>
         </div>
         <div class="card reveal">
           <h3 style="font-size:17px;margin-bottom:10px" data-zh="③ 备份过期" data-zh-tw="③ 備份過期" data-en="3. Backups">③ 备份过期</h3>
@@ -146,19 +151,19 @@ pteropilot-alerts --webhook "https://..." --backup-days 7
 
       <div class="code__head" style="margin-top:clamp(28px,4vw,40px)">
         <span class="code__label" data-zh="按服务器单独设阈值" data-zh-tw="按伺服器單獨設閾值" data-en="PER-SERVER THRESHOLDS">按服务器单独设阈值</span>
-        <button class="copy" type="button" data-copy='{"default":{"cpu_threshold":85,"memory_threshold":90,"backup_days":7},"servers":{"heavy-pack":{"cpu_threshold":97,"memory_threshold":98},"tiny-lobby":{"cpu_threshold":60,"backup_days":2}}}'
+        <button class="copy" type="button" data-copy='{"default":{"cpu_threshold":85,"memory_threshold":90,"disk_threshold":85,"backup_days":7},"servers":{"heavy-pack":{"cpu_threshold":97,"memory_threshold":98},"tiny-lobby":{"cpu_threshold":60,"backup_days":2}}}'
                 data-zh="复制" data-zh-tw="複製" data-en="Copy">复制</button>
       </div>
       <pre class="code"><span class="c"># ~/.pteropilot/alerts.json —— 一个全局数字不可能同时适配这两种服</span>
 {
-  <span class="k">"default"</span>: { <span class="k">"cpu_threshold"</span>: <span class="s">85</span>, <span class="k">"memory_threshold"</span>: <span class="s">90</span>, <span class="k">"backup_days"</span>: <span class="s">7</span> },
+  <span class="k">"default"</span>: { <span class="k">"cpu_threshold"</span>: <span class="s">85</span>, <span class="k">"memory_threshold"</span>: <span class="s">90</span>, <span class="k">"disk_threshold"</span>: <span class="s">85</span>, <span class="k">"backup_days"</span>: <span class="s">7</span> },
   <span class="k">"servers"</span>: {
     <span class="s">"heavy-pack"</span>: { <span class="k">"cpu_threshold"</span>: <span class="s">97</span>, <span class="k">"memory_threshold"</span>: <span class="s">98</span> },
     <span class="s">"tiny-lobby"</span>:  { <span class="k">"cpu_threshold"</span>: <span class="s">60</span>, <span class="k">"backup_days"</span>: <span class="s">2</span> }
   }
 }</pre>
-      <p class="hint" style="margin-top:12px" data-zh="优先级：服务器条目 > default 段 > 命令行参数。重负载的整合包服 85% CPU 是常态，小大厅服 50% 就该看一眼——所以必须能按服务器调。这个文件里还能按服务器设 webhook 目标、收件人、冷却与确认次数。" data-zh-tw="優先級：伺服器條目 > default 段 > 命令列參數。重負載的整合包服 85% CPU 是常態，小大廳服 50% 就該看一眼——所以必須能按伺服器調。這個檔案裡還能按伺服器設 webhook 目標、收件人、冷卻與確認次數。" data-en="Precedence: server entry &gt; default block &gt; command-line flag. 85% CPU is normal for a heavy modpack and alarming for a tiny lobby, so per-server tuning is required. The same file can also override the webhook target, recipients, cooldown and confirm count per server.">
-        优先级：服务器条目 &gt; <code>default</code> 段 &gt; 命令行参数。重负载的整合包服 85% CPU 是常态，小大厅服 50% 就该看一眼——所以必须能按服务器调。这个文件里还能按服务器设 webhook 目标、收件人、冷却与确认次数。
+      <p class="hint" style="margin-top:12px" data-zh="优先级：服务器条目 > default 段 > 命令行参数。四个阈值（含磁盘 disk_threshold）都能这样覆盖。重负载的整合包服 85% CPU 是常态，小大厅服 50% 就该看一眼——所以必须能按服务器调。这个文件里还能按服务器设 webhook 目标、收件人、冷却与确认次数。" data-zh-tw="優先級：伺服器條目 > default 段 > 命令列參數。四個閾值（含磁碟 disk_threshold）都能這樣覆蓋。重負載的整合包服 85% CPU 是常態，小大廳服 50% 就該看一眼——所以必須能按伺服器調。這個檔案裡還能按伺服器設 webhook 目標、收件人、冷卻與確認次數。" data-en="Four thresholds (including disk_threshold) follow this order. Precedence: server entry &gt; default block &gt; command-line flag. 85% CPU is normal for a heavy modpack and alarming for a tiny lobby, so per-server tuning is required. The same file can also override the webhook target, recipients, cooldown and confirm count per server.">
+        优先级：服务器条目 &gt; <code>default</code> 段 &gt; 命令行参数。四个阈值（含磁盘 <code>disk_threshold</code>）都能这样覆盖。重负载的整合包服 85% CPU 是常态，小大厅服 50% 就该看一眼——所以必须能按服务器调。这个文件里还能按服务器设 webhook 目标、收件人、冷却与确认次数。
       </p>
     </div>
   </section>

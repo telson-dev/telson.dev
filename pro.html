@@ -136,8 +136,12 @@
       <h2 style="margin:14px 0 20px" data-zh="Pteropilot Pro 是什么" data-zh-tw="Pteropilot Pro 是什麼" data-en="What Pteropilot Pro is">Pteropilot Pro 是什么</h2>
 
       <figure style="margin:0">
+        <!-- data-video-* 供 main.js 按语言换源；<source> 保留简中作为无 JS 兜底 -->
         <video
           id="promo"
+          data-video-zh="assets/video/pteropilot-pro-1080p60.mp4"
+          data-video-tw="assets/video/pteropilot-pro-1080p60-tw.mp4"
+          data-video-en="assets/video/pteropilot-pro-1080p60-en.mp4"
           poster="assets/video/pteropilot-pro-poster.jpg"
           width="1920" height="1080"
           preload="none"
@@ -147,10 +151,10 @@
           <source src="assets/video/pteropilot-pro-1080p60.mp4" type="video/mp4">
         </video>
         <figcaption class="muted" style="margin-top:10px;font-size:13px"
-          data-zh="1080p60 · 4.5 MB · 自研渲染与配乐。"
-          data-zh-tw="1080p60 · 4.5 MB · 自研算繪與配樂。"
-          data-en="1080p60 · 4.5 MB · rendered and scored from scratch.">
-          1080p60 · 4.5 MB · 自研渲染与配乐。
+          data-zh="1080p60 · 5.9 MB · 自研渲染与配乐 · 会跟着界面语言切字幕。"
+          data-zh-tw="1080p60 · 5.9 MB · 自研算繪與配樂 · 會跟著介面語言切字幕。"
+          data-en="1080p60 · 5.9 MB · rendered and scored from scratch · subtitles follow the page language.">
+          1080p60 · 5.9 MB · 自研渲染与配乐 · 会跟着界面语言切字幕。
         </figcaption>
       </figure>
 
@@ -402,7 +406,7 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=20261026e" defer></script>
+<script src="assets/js/main.js?v=20261116a" defer></script>
 <script>
   // 从 pro-version.json 动态读取最新版本号（与客户端自动更新检查同一数据源）
   fetch('pro-version.json', { cache: 'no-store' })

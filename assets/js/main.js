@@ -841,7 +841,41 @@
         b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false');
       });
 
+      syncPromoVideo(lang);
+
       try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+    }
+
+    // 影片跟着语言换字幕：站点是三语，但嵌的影片原来只有简中版，
+    // 切到 English 页面时片子里仍是中文字幕，读起来很割裂。
+    // 页面用 data-video-zh / -tw / -en 给出各语言文件，缺哪个就退回简中。
+    function syncPromoVideo(lang) {
+      var v = document.querySelector('video[data-video-zh]');
+      if (!v) return;
+      var want = lang === 'en' ? v.getAttribute('data-video-en')
+               : lang === 'zh-TW' ? v.getAttribute('data-video-tw')
+               : v.getAttribute('data-video-zh');
+      if (!want) want = v.getAttribute('data-video-zh');
+      var srcEl = v.querySelector('source') || v;
+      var now = srcEl.getAttribute('src') || '';
+      if (now === want) return;
+
+      // 已经播到一半的话换源后回到同一进度，别把用户丢回片头
+      var at = v.currentTime || 0;
+      var wasPlaying = !v.paused && !v.ended && at > 0;
+      srcEl.setAttribute('src', want);
+      v.load();
+      if (at > 0) {
+        var restore = function () {
+          try { v.currentTime = at; } catch (e) {}
+          v.removeEventListener('loadedmetadata', restore);
+          if (wasPlaying) {
+            var pr = v.play();
+            if (pr && pr.catch) pr.catch(function () {});
+          }
+        };
+        v.addEventListener('loadedmetadata', restore);
+      }
     }
 
     toggles.forEach(function (b) {

@@ -163,7 +163,7 @@ pteropilot-alerts --webhook "https://..." --disk 85
   }
 }</pre>
       <p class="hint" style="margin-top:12px" data-zh="优先级：服务器条目 > default 段 > 命令行参数。四个阈值（含磁盘 disk_threshold）都能这样覆盖。重负载的整合包服 85% CPU 是常态，小大厅服 50% 就该看一眼——所以必须能按服务器调。这个文件里还能按服务器设 webhook 目标、收件人、冷却与确认次数。" data-zh-tw="優先級：伺服器條目 > default 段 > 命令列參數。四個閾值（含磁碟 disk_threshold）都能這樣覆蓋。重負載的整合包服 85% CPU 是常態，小大廳服 50% 就該看一眼——所以必須能按伺服器調。這個檔案裡還能按伺服器設 webhook 目標、收件人、冷卻與確認次數。" data-en="Four thresholds (including disk_threshold) follow this order. Precedence: server entry &gt; default block &gt; command-line flag. 85% CPU is normal for a heavy modpack and alarming for a tiny lobby, so per-server tuning is required. The same file can also override the webhook target, recipients, cooldown and confirm count per server.">
-        优先级：服务器条目 &gt; <code>default</code> 段 &gt; 命令行参数。四个阈值（含磁盘 <code>disk_threshold</code>）都能这样覆盖。重负载的整合包服 85% CPU 是常态，小大厅服 50% 就该看一眼——所以必须能按服务器调。这个文件里还能按服务器设 webhook 目标、收件人、冷却与确认次数。
+        优先级：服务器条目 &gt; <code>default</code> 段 &gt; 命令行参数。四个阈值（含磁盘 <code>disk_threshold</code>）都能这样覆盖。这个文件里拼错一个键会被静默忽略——用 <code>pteropilot --doctor</code> 校验，它会指出键名并给出建议。重负载的整合包服 85% CPU 是常态，小大厅服 50% 就该看一眼——所以必须能按服务器调。这个文件里还能按服务器设 webhook 目标、收件人、冷却与确认次数。
       </p>
     </div>
   </section>

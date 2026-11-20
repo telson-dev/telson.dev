@@ -477,7 +477,7 @@ pteropilot --backup-url smp weekly-1'
 <span class="c"># 退出码分流：0 全部健康 / 1 有服务器异常 / 2 参数错 / 3 配置错 / 4 面板不可达</span>
 <span class="prompt">$</span> <span class="n">pteropilot</span> --status --json
 
-<span class="c"># 盯着看：只在状态/健康/人数变化时刷屏，CPU 内存抖动不算</span>
+<span class="c"># 盯着看：只在状态/健康/人数变化时刷屏，CPU 内存抖动不算；第二行起会显示「这台坏了多久」</span>
 <span class="prompt">$</span> <span class="n">pteropilot</span> --status --watch --interval 10
 
 <span class="c"># 备份是崩了之后才会想起来的东西：多一列「最新备份」，过期的单独点名</span>

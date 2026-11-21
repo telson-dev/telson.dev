@@ -490,6 +490,9 @@ pteropilot --backup-url smp weekly-1'
 <span class="prompt">$</span> <span class="n">pteropilot</span> --backups smp --create
 <span class="c"># 现在建一次备份（多台要加 --confirm，免得一次撑爆所有磁盘）</span>
 
+<span class="prompt">$</span> <span class="n">pteropilot</span> --backups smp --create --wait
+<span class="c"># 建完等它跑完，直接把一次性下载链接打出来</span>
+
 <span class="prompt">$</span> <span class="n">pteropilot</span> --backup-url smp weekly-1</pre>
         <p class="hint" style="margin-top:12px"
            data-zh="输出是一张表：标识、名称、🟢/🟡/🔴 健康度、CPU、内存、磁盘。单台查询失败显示 ⚠ 且不盖住其他服务器；玩家数拿不到就显示 -，不编数字。"

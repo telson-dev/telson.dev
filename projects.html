@@ -18,7 +18,7 @@
 <link rel="icon" href="assets/img/icon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="canonical" href="https://telson.dev/projects.html">
-<link rel="stylesheet" href="assets/css/style.css?v=20261026e">
+<link rel="stylesheet" href="assets/css/style.css?v=20261121a">
 </head>
 <body data-title-zh="作品 | telson.dev" data-title-en="Work | telson.dev">
 
@@ -100,7 +100,20 @@
     <div class="wrap">
       <article class="feature reveal">
         <div class="feature__media">
-          <img src="assets/video/pteropilot-pro-poster.jpg" alt="Pteropilot Pro 宣传片封面" loading="lazy" width="1280" height="720">
+          <!-- data-video-* 供 main.js 按界面语言换字幕；<source> 保留简中作为无 JS 兜底 -->
+          <video
+            id="film-pro"
+            data-video-zh="assets/video/pteropilot-pro-1080p60.mp4"
+            data-video-tw="assets/video/pteropilot-pro-1080p60-tw.mp4"
+            data-video-en="assets/video/pteropilot-pro-1080p60-en.mp4"
+            poster="assets/video/pteropilot-pro-poster.jpg"
+            width="1920" height="1080"
+            preload="none"
+            playsinline
+            controls
+            aria-label="Pteropilot Pro 宣传片">
+            <source src="assets/video/pteropilot-pro-1080p60.mp4" type="video/mp4">
+          </video>
         </div>
         <div class="feature__body">
           <span class="page-hero__badge"><span class="dot-live"></span>02 · 付费产品</span>

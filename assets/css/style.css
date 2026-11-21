@@ -1125,3 +1125,9 @@ button.btn {
     align-self: flex-start;
   }
 }
+
+/* feature__media 里的影片：与 img 同一套宽高规则（object-fit: cover 让竖屏裁切一致） */
+.feature__media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* 渐变遮罩只做视觉过渡，不能吃掉点击——否则盖在 video 上时播放按钮和进度条都点不动 */
+.feature__media::after { pointer-events: none; }

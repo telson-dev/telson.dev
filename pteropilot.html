@@ -519,6 +519,9 @@ pteropilot --players --record'
 <span class="c"># 机器可读，方便接 Grafana / 自建面板</span>
 <span class="prompt">$</span> <span class="n">pteropilot</span> --players <span class="n">smp</span> --json
 
+<span class="c"># 崩服时别反复手动重跑：跟读日志，只打新增行（Ctrl+C 退出）</span>
+<span class="prompt">$</span> <span class="n">pteropilot</span> --log smp --watch
+
 <span class="c"># 只用命令行也想攒历史：现在就采一条（可挂 cron；cron 停了 --doctor 会发现）</span>
 <span class="prompt">$</span> <span class="n">pteropilot</span> --players --record</pre>
 

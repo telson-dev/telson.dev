@@ -1131,3 +1131,72 @@ button.btn {
 
 /* 渐变遮罩只做视觉过渡，不能吃掉点击——否则盖在 video 上时播放按钮和进度条都点不动 */
 .feature__media::after { pointer-events: none; }
+
+/* ---------- 游戏介绍页：表单与云端存档 ---------- */
+
+.field { display: block; margin-bottom: 14px; }
+.field > span { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; letter-spacing: .2px; }
+.field input {
+  width: 100%;
+  padding: 11px 13px;
+  background: rgba(6, 12, 22, .72);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font: inherit;
+  font-size: 14.5px;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.field input::placeholder { color: var(--dim); }
+.field input:focus {
+  outline: none;
+  border-color: rgba(47, 217, 255, .55);
+  box-shadow: 0 0 0 3px rgba(47, 217, 255, .10);
+}
+
+.auth-msg { min-height: 20px; margin: 12px 0 0; font-size: 13.5px; color: var(--muted); }
+.auth-msg--ok { color: var(--green); }
+.auth-msg--err { color: #ff7a8a; }
+
+.auth-user {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin: 0 0 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.auth-user strong { color: var(--text); }
+
+.linkbtn {
+  background: none;
+  border: 0;
+  padding: 0 2px;
+  color: var(--cyan);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.linkbtn:hover { color: #fff; }
+
+.save-row {
+  display: grid;
+  grid-template-columns: 88px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 13px;
+}
+.save-row:last-child { border-bottom: 0; }
+.save-slot { color: var(--text); font-weight: 600; }
+.save-size { color: var(--dim); }
+.save-go { color: var(--cyan); white-space: nowrap; }
+.save-go:hover { color: #fff; }
+
+#authCard.is-offline { opacity: .82; }
+
+@media (max-width: 560px) {
+  .save-row { grid-template-columns: 1fr; gap: 3px; }
+}

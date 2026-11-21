@@ -334,3 +334,11 @@ button{font-family:inherit;color:inherit;cursor:pointer;border:0;background:none
 .site-mark span{color:var(--gold)}
 .site-mark:hover{color:#fff;border-bottom-color:var(--gold)}
 .site-note{color:#6f8496}
+
+/* 顶栏云端状态徽标 */
+.cloud-state{
+  font-size:10.5px;padding:3px 9px;border-radius:20px;letter-spacing:.3px;
+  border:1px solid rgba(255,255,255,.14);color:#8fa6b8;white-space:nowrap;
+}
+.cloud-state--ok{border-color:rgba(96,206,150,.42);color:#7fdcaa}
+.cloud-state--err{border-color:rgba(226,120,110,.45);color:#f0a1a1}

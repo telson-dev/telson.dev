@@ -9,14 +9,25 @@ telson-dev/
 ├── index.html          首页：自我介绍 + 精选作品 + 服务概览 + 联系
 ├── services.html       接单页：服务与报价、流程、交付标准、FAQ
 ├── pteropilot.html     Pteropilot 项目页（中英双语切换）
-├── projects.html       作品集：Pteropilot / 宣传片管线 / 本站
+├── projects.html       作品集：Pteropilot / 宣传片管线 / 本站 / 我的城市
 ├── 404.html            404 页
 ├── robots.txt
 ├── sitemap.xml
+├── games/
+│   └── my-city/        小游戏《我的城市》
+│       ├── index.html      介绍页：截图、玩法、账号与云端存档入口
+│       ├── account.js      注册 / 登录 / 云端存档列表
+│       ├── cloud.js        账号与存档 API 客户端（前后端共用）
+│       ├── api-config.js   后端地址（同源 /api 或独立域名，只改这一行）
+│       └── play/           真正的游戏本体
+│           ├── index.html
+│           ├── cloud-boot.js   登录态与 ?slot= 云端读档
+│           ├── css/style.css
+│           └── js/         util / defs / mapgen / render / sim / ui / game / main
 └── assets/
-    ├── css/style.css   全部样式（单文件，约 21KB）
-    ├── js/main.js      导航、滚动动画、复制、双语切换（约 4KB）
-    └── img/            icon.png / cover.jpg / 三张宣传片截图
+    ├── css/style.css   全部样式（单文件）
+    ├── js/main.js      导航、滚动动画、复制、双语切换
+    └── img/            icon.png / cover.jpg / 宣传片截图 / my-city*.jpg
 ```
 
 ## 本地预览
@@ -28,6 +39,27 @@ python -m http.server 8080 --bind 127.0.0.1
 ```
 
 直接双击 `index.html` 也能看，但本地服务器更接近线上效果（相对路径与 fetch 行为一致）。
+
+> 游戏页（`/games/my-city/`）是静态页 + 可选后端。**没有后端也能玩**（进游戏后用本机存档），
+> 有后端才会出现注册/登录与云端存档。想看完整效果，本地按下面「本地跑后端」起服务。
+
+## 本地跑后端（账号 / 云端存档）
+
+```powershell
+# 1) 起 API（监听 127.0.0.1:8787，SQLite 落在 ./dev.db）
+cd <仓库根>
+python ../_ops/backend/app.py --host 127.0.0.1 --port 8787 --db ./dev.db \
+    --origins http://127.0.0.1:8099,http://localhost:8099 --insecure-cookie
+
+# 2) 起"静态 + /api 反代"的同源开发服务器（等价于线上 nginx 形态）
+cd <仓库根>
+python ../_ops/devserver.py --root . --port 8099 --api http://127.0.0.1:8787
+
+# 3) 浏览器打开 http://127.0.0.1:8099/games/my-city/
+```
+
+后端只依赖 Python 标准库（`http.server` + `sqlite3` + `hashlib`），服务器上不需要 pip。
+
 
 ## 部署（三选一）
 

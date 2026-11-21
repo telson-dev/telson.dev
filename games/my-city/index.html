@@ -4,101 +4,250 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>我的城市 — 一座由种子决定的小岛 | telson.dev</title>
-<meta name="description" content="海中央的一座小岛，大小与形状由地图种子决定。开荒、修路、划区、通水通电，地不够就填海造陆。2.5D 等距视角，昼夜变化，经营与沙盒两种模式。">
+<meta name="description" content="海中央的一座小岛，大小与形状由地图种子决定。开荒、修路、划区、通水通电，地不够就填海造陆。2.5D 等距视角，昼夜变化，经营与沙盒两种模式，支持云端存档。">
+<meta name="author" content="telson">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="telson.dev">
 <meta property="og:title" content="我的城市 — 一座由种子决定的小岛">
 <meta property="og:description" content="开荒、修路、划区、填海造陆，把荒岛经营成城市。2.5D 等距视角，昼夜变化，无框架无依赖。">
+<meta property="og:image" content="https://telson.dev/assets/img/my-city.jpg">
 <meta property="og:url" content="https://telson.dev/games/my-city/">
-<meta name="theme-color" content="#0b161f">
-<link rel="canonical" href="https://telson.dev/games/my-city/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#06090f">
 <link rel="icon" href="../../assets/img/icon.svg" type="image/svg+xml">
 <link rel="icon" href="../../assets/img/icon.png" type="image/png">
-<link rel="stylesheet" href="css/style.css">
+<link rel="canonical" href="https://telson.dev/games/my-city/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"我的城市","alternateName":"My City","url":"https://telson.dev/games/my-city/","description":"种子生成的海岛城市经营游戏，2.5D 等距视角，支持填海造陆与昼夜变化。","genre":"城市经营","gamePlatform":"Web","applicationCategory":"Game","operatingSystem":"任意（浏览器）","author":{"@type":"Person","name":"telson","url":"https://telson.dev/"}}</script>
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261121a">
 </head>
-<body>
-<div id="app">
-  <canvas id="world"></canvas>
+<body data-title-zh="我的城市 — 一座由种子决定的小岛 | telson.dev" data-title-tw="我的城市 — 一座由種子決定的小島 | telson.dev" data-title-en="My City — an island decided by a seed | telson.dev">
 
-  <header id="topbar">
-    <div class="brand"><span class="brand-mark">市</span><span class="brand-text">我的城市</span></div>
-    <div id="statChips" class="chips"></div>
-    <div class="clock">
-      <div class="dateline">
-        <span id="dateText" class="date">第 1 年 1 月 1 日</span>
-        <span id="clockText" class="tclock">06:00</span>
+<div class="bg-field"></div>
+<div class="bg-grid"></div>
+<canvas class="grid-canvas" aria-hidden="true"></canvas>
+<div class="scroll-progress" aria-hidden="true"><i></i></div>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="../../index.html">
+      <img src="../../assets/img/mark.svg" alt="telson">
+      telson<span>.dev</span>
+    </a>
+    <button class="nav__toggle" type="button" aria-label="菜单" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav__links" id="nav-links" aria-label="主导航">
+      <a class="nav__link" href="../../index.html">首页</a>
+      <a class="nav__link" href="../../projects.html">作品</a>
+      <a class="nav__link" href="../../pteropilot.html">Pteropilot</a>
+      <a class="nav__link" href="../../pro.html">Pteropilot Pro</a>
+      <a class="nav__link" href="../../sitemap.html">网站地图</a>
+      <a class="nav__link nav__link--cta" href="./" aria-current="page">我的城市</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ hero ============ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero__badge"><span class="dot-live"></span>网页小游戏 · 无需下载</div>
+      <h1>我的城市<span class="hero__grad">.</span></h1>
+      <p class="lead" style="max-width:640px">
+        海中央的一座小岛，<strong>大小和形状由地图种子决定</strong>。
+        从一片什么都没有的荒岛开始：开荒、修路、划区、通水通电，
+        让市民和开发商自己把楼盖起来。地不够？填海造陆。
+      </p>
+      <div class="btn-row" style="margin-top:30px">
+        <a class="btn btn--primary" href="play/">立即开始 →</a>
+        <a class="btn btn--ghost" href="#account" data-zh="登录 / 注册" data-zh-tw="登入 / 註冊" data-en="Sign in / Sign up">登录 / 注册</a>
       </div>
-      <div class="speedrow">
-        <button class="sp" data-speed="0" title="暂停 (空格)">❚❚</button>
-        <button class="sp active" data-speed="1" title="1×：5 分钟一天">1×</button>
-        <button class="sp" data-speed="2">2×</button>
-        <button class="sp" data-speed="4">4×</button>
-        <button class="sp" data-speed="8">8×</button>
-        <button class="sp" data-speed="16">16×</button>
-        <button class="sp" data-speed="32">32×</button>
-        <button class="sp" data-speed="64">64×</button>
-        <button class="sp" data-speed="128">128×</button>
+      <p class="muted" style="margin-top:14px;font-size:13.5px">
+        进度自动保存在云端（也可离线本地存档）；换设备登录同一个账号就能接着玩。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 画面 ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="gallery reveal">
+        <figure>
+          <img src="../../assets/img/my-city.jpg" alt="我的城市：发展中的海岛城市，白天" loading="lazy" width="1600" height="900">
+          <figcaption>白天 · 街区长起来之后</figcaption>
+        </figure>
+        <figure>
+          <img src="../../assets/img/my-city-night.jpg" alt="我的城市：同一座岛的夜晚，窗户与路灯亮起" loading="lazy" width="1600" height="900">
+          <figcaption>夜晚 · 窗户和路灯会亮</figcaption>
+        </figure>
       </div>
-      <div class="progress"><i id="dayBar"></i></div>
     </div>
-    <div class="topbtns">
-      <button id="btnSave" class="tb">存档</button>
-      <button id="btnMenu" class="tb">菜单</button>
+  </section>
+
+  <!-- ============ 账号 ============ -->
+  <section class="section section--tight" id="account">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">账号与存档</p>
+        <h2>登录一次，存档跟着你走</h2>
+        <p class="lead">注册即可保存 3 个云端存档槽，自动存档同步到服务器；不登录也能玩，进度存在本机浏览器里。</p>
+      </div>
+
+      <div class="grid grid--2" style="gap:18px">
+        <div class="card reveal" id="authCard">
+          <h3 style="font-size:17px;margin-bottom:16px">登录 / 注册</h3>
+          <form id="authForm" autocomplete="on" novalidate>
+            <label class="field">
+              <span>用户名</span>
+              <input id="authUser" name="username" type="text" minlength="3" maxlength="24" autocomplete="username" placeholder="3～24 位，字母数字下划线" required>
+            </label>
+            <label class="field">
+              <span>密码</span>
+              <input id="authPass" name="password" type="password" minlength="8" maxlength="72" autocomplete="current-password" placeholder="至少 8 位" required>
+            </label>
+            <div class="btn-row" style="margin-top:16px">
+              <button class="btn btn--primary" type="submit" data-act="login" id="btnLogin">登录</button>
+              <button class="btn btn--ghost" type="button" data-act="register" id="btnRegister">注册新账号</button>
+            </div>
+            <p id="authMsg" class="auth-msg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <div class="card reveal" id="cloudCard">
+          <h3 style="font-size:17px;margin-bottom:16px">云端存档</h3>
+          <div id="cloudBody">
+            <p class="muted" style="font-size:13.5px;margin:0">
+              尚未登录。登录后这里会列出你在云端的存档，可以直接读档继续。
+            </p>
+          </div>
+          <ul class="ticks" style="font-size:13.5px;margin-top:16px">
+            <li>3 个手动存档槽 + 1 个自动存档</li>
+            <li>服务器只收存档数据，不记录你的操作过程</li>
+            <li>密码用加盐哈希存储，绝不明文落库</li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <aside id="toolbar"></aside>
-  <aside id="sidepanel"></aside>
-  <div id="infoPanel" class="hidden"></div>
-  <div id="layerbar"></div>
-  <div id="toasts"></div>
-  <div id="modalRoot"></div>
+  <!-- ============ 玩法 ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">怎么玩</p>
+        <h2>你是市政府，不是开发商</h2>
+        <p class="lead">你不直接盖楼。你只做决定：哪儿开荒、哪儿修路、哪儿划成住宅、水和电铺到哪。剩下的交给市场。</p>
+      </div>
 
-  <div id="startScreen">
-    <div class="start-card">
-      <div class="start-kicker">城市经营 · 2.5D</div>
-      <h1>我的<span class="gold">城市</span></h1>
-      <p class="start-sub">一座海中央的小岛交到你手上：四面是海，岛的<b>大小与形状由种子决定</b>。开荒、修路、划区、通水通电——地不够用，就填海造陆。</p>
-
-      <div class="setup">
-        <div class="setup-row">
-          <span class="setup-label">地图种子</span>
-          <input id="seedInput" class="seedinput" value="20261115" maxlength="10" spellcheck="false">
-          <span id="seedHint" class="setup-hint">岛的大小、形状、地块与地图尺寸，全部由种子决定</span>
+      <div class="grid grid--2" style="gap:18px">
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:16px">开局四步</h3>
+          <ul class="ticks" style="font-size:14.5px">
+            <li><strong>开荒</strong>：草地/沙滩/林地/缓丘，建设前先清理</li>
+            <li><strong>修路</strong>：路必须连到市政厅，否则没人来</li>
+            <li><strong>通水电</strong>：小型水站 + 风力发电机，覆盖范围内建筑才运转</li>
+            <li><strong>划区</strong>：住宅 / 商业 / 工业，需求满足后自动长楼</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:16px">会自己长大的城市</h3>
+          <ul class="ticks" style="font-size:14.5px">
+            <li>住宅区会长出低层住宅楼 → 多层公寓 → 高层住宅</li>
+            <li>商业区从临街商铺长到小型超市、大型综合体</li>
+            <li>工业区从小型工厂到物流仓库、重工业园区</li>
+            <li>没人住、没配套的建筑会荒废，地价也会跟着掉</li>
+          </ul>
         </div>
       </div>
 
-      <div class="modes">
-        <button class="mode" data-mode="manage">
-          <b>经营模式</b>
-          <span>预算有限，钱要算着花；赤字时不能动工</span>
-        </button>
-        <button class="mode" data-mode="sandbox">
-          <b>沙盒模式</b>
-          <span>资金无限，随便造，只看城市怎么长大</span>
-        </button>
-      </div>
-
-      <div class="start-foot">
-        <button id="btnContinue" class="ghost hidden">继续上次存档</button>
-        <div class="start-tip">开局：开荒 3 块 → 修路接到市政厅 → 划住宅区 → 建小型水站和风力发电机 → 划商业区。地图边缘都是海，想扩地就用「填海造陆」（需紧邻陆地，越深越贵）。</div>
-      </div>
-
-      <div class="start-site">
-        <a class="site-mark" href="../../index.html">← telson<span>.dev</span></a>
-        <span class="site-note">2.5D 等距沙盘 · 手写 Canvas，无框架无依赖</span>
+      <div class="grid grid--2" style="gap:18px;margin-top:18px">
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:16px">海是边界，也是机会</h3>
+          <ul class="ticks" style="font-size:14.5px">
+            <li>填海造陆必须紧邻陆地，不能凭空造岛</li>
+            <li>造价按离岸深度递增：¥800 → ¥1,500 → ¥2,200 …（≥6 格封顶 ¥5,000）</li>
+            <li>新填的地先铺路才能接进城市</li>
+            <li>沿海地块地价更高，沙滩次之</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:16px">时间与昼夜</h3>
+          <ul class="ticks" style="font-size:14.5px">
+            <li>1× 速度下 5 分钟走完一天</li>
+            <li>支持 0 / 1 / 2 / 4 / 8 / 16 / 32 / 64 / 128 倍速</li>
+            <li>天黑后路灯与窗户亮起，城市换一张脸</li>
+            <li>经营模式要算账（赤字不能动工）；沙盒模式资金无限</li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<script src="js/util.js"></script>
-<script src="js/defs.js"></script>
-<script src="js/mapgen.js"></script>
-<script src="js/render.js"></script>
-<script src="js/sim.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/game.js"></script>
-<script src="js/main.js"></script>
+  <!-- ============ 技术 ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">技术做法</p>
+        <h2>手写 Canvas，没有框架</h2>
+      </div>
+      <div class="grid grid--2" style="gap:18px">
+        <div class="card reveal">
+          <ul class="ticks" style="font-size:14.5px">
+            <li><strong>种子生成</strong>：极坐标 + 椭圆拉伸 + 角向谐波 + 海岸噪声，同种子逐字节一致</li>
+            <li><strong>2.5D</strong>：等距投影 + 体块建筑三面分色，地形整层离屏缓存</li>
+            <li><strong>昼夜</strong>：合成图层压暗 + 灯光加亮，静态渐变烘成位图</li>
+            <li><strong>性能</strong>：最大岛一帧约 16.5ms（无 GPU 的软件光栅化下实测）</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <ul class="ticks" style="font-size:14.5px">
+            <li><strong>后端正经做</strong>：用户注册登录、云端存档槽、密码加盐哈希</li>
+            <li><strong>零依赖前端</strong>：HTML + CSS + 原生 JS，双击就能跑</li>
+            <li><strong>离线优先</strong>：没网也能玩，登录后才同步到云端</li>
+            <li><strong>完全确定</strong>：同一份存档 + 同一个种子 = 同一座城</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ cta ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="contact-band reveal">
+        <p class="eyebrow">开始</p>
+        <h2 style="margin:14px 0 12px">挑一个种子，看看它长什么样</h2>
+        <p class="lead" style="max-width:640px">
+          输入种子后页面会先告诉你这张图多大、有多少陆地；不满意就换一个，进去之后再改就得重开了。
+        </p>
+        <div class="btn-row" style="margin-top:26px">
+          <a class="btn btn--primary" href="play/">进入游戏 →</a>
+          <a class="btn btn--ghost" href="../../projects.html">看别的作品</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <span>© <span data-year>2026</span> telson.dev · 手写静态站，无框架无依赖</span>
+    <span>
+      <a href="../../index.html">首页</a> ·
+      <a href="../../projects.html">作品</a> ·
+      <a href="../../pteropilot.html">Pteropilot</a> ·
+      <a href="../../pro.html">Pteropilot Pro</a> ·
+      <a href="../../services.html">接单</a> ·
+      <a href="../../sitemap.html">网站地图</a>
+    </span>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js?v=20261116a" defer></script>
+<script src="api-config.js"></script>
+<script src="cloud.js"></script>
+<script src="account.js?v=20261121a" defer></script>
 </body>
 </html>

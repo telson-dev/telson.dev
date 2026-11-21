@@ -449,9 +449,10 @@
   G.slotName = function (slot) { return SLOTS[slot] || slot; };
   function key(slot) { return 'cm_save_' + slot; }
 
-  G.saveGame = function (slot) {
+  /* 把当前状态序列化成存档对象（本地与云端共用同一份结构） */
+  G.serialize = function () {
     const st = G.state;
-    if (!st) return false;
+    if (!st) return null;
     const data = {};
     for (const k in st) {
       if (k === 'selected' || k === 'hover') continue;
@@ -459,14 +460,11 @@
     }
     data.selectedIdx = st.selected ? (st.selected.y * st.W + st.selected.x) : -1;
     data.savedAt = Date.now();
-    return store.set(key(slot), JSON.stringify({ v: 4, data: data }));
+    return { v: 4, data: data };
   };
 
-  G.loadGame = function (slot) {
-    const raw = store.get(key(slot));
-    if (!raw) return false;
-    let obj;
-    try { obj = JSON.parse(raw); } catch (e) { return false; }
+  /* 用一份存档对象恢复游戏（本地与云端共用） */
+  G.applySave = function (obj) {
     if (!obj || obj.v !== 4 || !obj.data || !obj.data.tiles) return false;
     const st = obj.data;
     if (st.tiles.length !== st.W * st.H) return false;
@@ -477,6 +475,7 @@
     delete st.selectedIdx;
 
     G.state = st;
+    G.cloudSlot = G.cloudSlot || null;
     CM.ui.resetHud();
     CM.sim.recompute(st);
     CM.renderer.bind(st);
@@ -488,7 +487,62 @@
     return true;
   };
 
-  G.deleteSave = function (slot) { store.del(key(slot)); };
+  G.saveGame = function (slot) {
+    const obj = G.serialize();
+    if (!obj) return false;
+    const localOk = store.set(key(slot), JSON.stringify(obj));
+    /* 云端同步（异步、失败不影响本地存档） */
+    G.pushCloud(slot, obj);
+    return localOk;
+  };
+
+  G.loadGame = function (slot) {
+    const raw = store.get(key(slot));
+    if (!raw) return false;
+    let obj;
+    try { obj = JSON.parse(raw); } catch (e) { return false; }
+    return G.applySave(obj);
+  };
+
+  /* ---------- 云端存档 ---------- */
+
+  /* 把存档推到云端；未登录或后端不可用时静默跳过 */
+  G.pushCloud = function (slot, obj) {
+    if (!window.MCCloud || !G.cloudUser) return;
+    const cloudSlot = slot === 'auto' ? 'auto' : String(slot).replace(/^s/, '');
+    const meta = {
+      mode: obj.data.mode, seed: String(obj.data.seed || ''),
+      day: obj.data.day, pop: Math.round(obj.data.pop || 0)
+    };
+    G.cloudPending = true;
+    window.MCCloud.save(cloudSlot, obj, meta).then(function () {
+      G.cloudPending = false;
+      G.cloudLastSync = Date.now();
+      if (CM.ui && CM.ui.cloudBadge) CM.ui.cloudBadge('ok');
+    }).catch(function (e) {
+      G.cloudPending = false;
+      G.cloudError = e.message;
+      if (CM.ui && CM.ui.cloudBadge) CM.ui.cloudBadge('err');
+    });
+  };
+
+  /* 从云端读档（成功返回 true） */
+  G.loadCloud = function (slot) {
+    if (!window.MCCloud) return Promise.resolve(false);
+    return window.MCCloud.load(slot).then(function (j) {
+      if (!j || !j.data) return false;
+      const ok = G.applySave(j.data);
+      if (ok) G.cloudSlot = slot;
+      return ok;
+    }).catch(function () { return false; });
+  };
+
+  G.deleteSave = function (slot) {
+    store.del(key(slot));
+    if (window.MCCloud && G.cloudUser) {
+      window.MCCloud.del(slot === 'auto' ? 'auto' : String(slot).replace(/^s/, '')).catch(function () { });
+    }
+  };
 
   G.listSaves = function () {
     return Object.keys(SLOTS).map(function (slot) {
@@ -511,6 +565,18 @@
   };
 
   G.hasSave = function () { return !!store.get(key('auto')); };
+
+  /* 启动时：登录状态 + 支持 ?slot= 直接读云端存档 */
+  G.cloudBoot = function () {
+    if (!window.MCCloud) return Promise.resolve(false);
+    return window.MCCloud.me().then(function (j) {
+      G.cloudUser = j.user || null;
+      const q = new URLSearchParams(location.search);
+      const slot = q.get('slot');
+      if (G.cloudUser && slot) return G.loadCloud(slot);
+      return false;
+    }).catch(function () { return false; });
+  };
 
   G.toStart = function () {
     G.state = null;

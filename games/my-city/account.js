@@ -134,9 +134,9 @@
   /* 启动：先探测后端，再拉账号状态 */
   MCCloud.probe().then(function (j) {
     if (!j) {
-      cloud.offline = cloud.offline;
-      renderGuest(cloud.offline);
-      say('云端服务未启用，当前为本机存档模式', 'err');
+      /* 后端还没上线：不当作错误，明确告诉玩家现在就是本机存档 */
+      renderGuest('云端存档正在开通中。现在进游戏用的是这台电脑上的本机存档，等开通后登录即可同步。');
+      say('云端存档开通中', '');
       var card = $('#authCard');
       if (card) card.classList.add('is-offline');
       return;

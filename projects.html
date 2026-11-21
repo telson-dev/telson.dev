@@ -59,7 +59,8 @@
       <p class="eyebrow">作品 · Work</p>
       <h1 style="margin:18px 0 18px">做过的东西</h1>
       <p class="lead" style="max-width:620px">
-        四个项目：一个能装进 AI 对话的开源工具，一个带图形界面的付费客户端，一条代码渲染出来的宣传片，一台不靠框架的网站。
+        五个项目：一个能装进 AI 对话的开源工具，一个带图形界面的付费客户端，一条代码渲染出来的宣传片，
+        一台不靠框架的网站，以及一个能真的玩下去的城市经营游戏。
       </p>
     </div>
   </section>
@@ -227,6 +228,61 @@
           <p style="margin-top:18px;font-size:13.5px">
             自己写站点的好处：想改哪儿改哪儿，不用跟框架斗智斗勇。
           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ project 5：我的城市 ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <article class="feature reveal">
+        <div class="feature__media">
+          <img src="assets/img/my-city.jpg" alt="我的城市：发展中的海岛城市，白天画面" loading="lazy" width="1600" height="900">
+        </div>
+        <div class="feature__body">
+          <span class="page-hero__badge"><span class="dot-live"></span>05 · 小游戏</span>
+          <h3>我的城市</h3>
+          <p>
+            海中央的一座小岛，大小和形状由地图种子决定。开荒、修路、划住宅商业工业区，通水通电，
+            让市民和开发商自己把楼盖起来；地不够就填海造陆——只能贴着陆地填，越往深海越贵。
+          </p>
+          <p style="margin-top:10px">
+            2.5D 等距沙盘，昼夜会真的黑下来、窗户和路灯亮起；1× 速度 5 分钟一天。
+            经营模式要算账（赤字不能动工），沙盒模式随便造。
+          </p>
+          <div class="tags">
+            <span class="tag">Canvas 2D</span>
+            <span class="tag">等距 2.5D</span>
+            <span class="tag">城市经营</span>
+            <span class="tag">种子生成</span>
+            <span class="tag">零依赖</span>
+          </div>
+          <div class="link-row">
+            <a class="textlink" href="games/my-city/">打开游戏 →</a>
+            <a class="textlink textlink--muted" href="assets/img/my-city-night.jpg">看夜景截图 ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="grid grid--2" style="gap:18px;margin-top:18px">
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:16px">玩法要点</h3>
+          <ul class="ticks" style="font-size:14.5px">
+            <li><strong>土地是自然的</strong>：草地 / 沙滩 / 林地 / 缓丘，建设前先开荒</li>
+            <li><strong>你只划区</strong>：住宅区会长出低层住宅楼 → 多层公寓 → 高层住宅</li>
+            <li><strong>配套要跟上</strong>：道路必须连到市政厅，缺水缺电的建筑会停摆</li>
+            <li><strong>海是边界</strong>：填海造陆 ¥800 起，每往深海一格 +¥700</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-size:17px;margin-bottom:16px">技术做法</h3>
+          <ul class="ticks" style="font-size:14.5px">
+            <li>河道与海岸线用极坐标 + 角向谐波 + 噪声生成，同种子逐字节一致</li>
+            <li>体块建筑三面分色，地形整层离屏缓存</li>
+            <li>昼夜用合成图层，静态渐变与投影烘成位图：一帧约 16.5ms</li>
+            <li>存档走 localStorage，3 个手动槽位 + 自动档</li>
+          </ul>
         </div>
       </div>
     </div>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我的城市 — 一座由种子决定的小岛 | telson.dev</title>
+<meta name="description" content="海中央的一座小岛，大小与形状由地图种子决定。开荒、修路、划区、通水通电，地不够就填海造陆。2.5D 等距视角，昼夜变化，经营与沙盒两种模式。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="telson.dev">
+<meta property="og:title" content="我的城市 — 一座由种子决定的小岛">
+<meta property="og:description" content="开荒、修路、划区、填海造陆，把荒岛经营成城市。2.5D 等距视角，昼夜变化，无框架无依赖。">
+<meta property="og:url" content="https://telson.dev/games/my-city/">
+<meta name="theme-color" content="#0b161f">
+<link rel="canonical" href="https://telson.dev/games/my-city/">
+<link rel="icon" href="../../assets/img/icon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/img/icon.png" type="image/png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <canvas id="world"></canvas>
+
+  <header id="topbar">
+    <div class="brand"><span class="brand-mark">市</span><span class="brand-text">我的城市</span></div>
+    <div id="statChips" class="chips"></div>
+    <div class="clock">
+      <div class="dateline">
+        <span id="dateText" class="date">第 1 年 1 月 1 日</span>
+        <span id="clockText" class="tclock">06:00</span>
+      </div>
+      <div class="speedrow">
+        <button class="sp" data-speed="0" title="暂停 (空格)">❚❚</button>
+        <button class="sp active" data-speed="1" title="1×：5 分钟一天">1×</button>
+        <button class="sp" data-speed="2">2×</button>
+        <button class="sp" data-speed="4">4×</button>
+        <button class="sp" data-speed="8">8×</button>
+        <button class="sp" data-speed="16">16×</button>
+        <button class="sp" data-speed="32">32×</button>
+        <button class="sp" data-speed="64">64×</button>
+        <button class="sp" data-speed="128">128×</button>
+      </div>
+      <div class="progress"><i id="dayBar"></i></div>
+    </div>
+    <div class="topbtns">
+      <button id="btnSave" class="tb">存档</button>
+      <button id="btnMenu" class="tb">菜单</button>
+    </div>
+  </header>
+
+  <aside id="toolbar"></aside>
+  <aside id="sidepanel"></aside>
+  <div id="infoPanel" class="hidden"></div>
+  <div id="layerbar"></div>
+  <div id="toasts"></div>
+  <div id="modalRoot"></div>
+
+  <div id="startScreen">
+    <div class="start-card">
+      <div class="start-kicker">城市经营 · 2.5D</div>
+      <h1>我的<span class="gold">城市</span></h1>
+      <p class="start-sub">一座海中央的小岛交到你手上：四面是海，岛的<b>大小与形状由种子决定</b>。开荒、修路、划区、通水通电——地不够用，就填海造陆。</p>
+
+      <div class="setup">
+        <div class="setup-row">
+          <span class="setup-label">地图种子</span>
+          <input id="seedInput" class="seedinput" value="20261115" maxlength="10" spellcheck="false">
+          <span id="seedHint" class="setup-hint">岛的大小、形状、地块与地图尺寸，全部由种子决定</span>
+        </div>
+      </div>
+
+      <div class="modes">
+        <button class="mode" data-mode="manage">
+          <b>经营模式</b>
+          <span>预算有限，钱要算着花；赤字时不能动工</span>
+        </button>
+        <button class="mode" data-mode="sandbox">
+          <b>沙盒模式</b>
+          <span>资金无限，随便造，只看城市怎么长大</span>
+        </button>
+      </div>
+
+      <div class="start-foot">
+        <button id="btnContinue" class="ghost hidden">继续上次存档</button>
+        <div class="start-tip">开局：开荒 3 块 → 修路接到市政厅 → 划住宅区 → 建小型水站和风力发电机 → 划商业区。地图边缘都是海，想扩地就用「填海造陆」（需紧邻陆地，越深越贵）。</div>
+      </div>
+
+      <div class="start-site">
+        <a class="site-mark" href="../../index.html">← telson<span>.dev</span></a>
+        <span class="site-note">2.5D 等距沙盘 · 手写 Canvas，无框架无依赖</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/util.js"></script>
+<script src="js/defs.js"></script>
+<script src="js/mapgen.js"></script>
+<script src="js/render.js"></script>
+<script src="js/sim.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/game.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
